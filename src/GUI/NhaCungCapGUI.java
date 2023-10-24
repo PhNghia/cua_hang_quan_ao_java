@@ -32,22 +32,22 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jcbNameSearch = new javax.swing.JComboBox<>();
         jtfNameSearch = new javax.swing.JTextField();
         jbtnSearch = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jlbStatusSearch = new javax.swing.JLabel();
+        jcbStatusSearch = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlbNcc = new javax.swing.JLabel();
         jtfNcc = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jlbSdt = new javax.swing.JLabel();
         jtfSdt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jlbDiaChi = new javax.swing.JLabel();
         jtfDiaChi = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jlbStatus = new javax.swing.JLabel();
         jcbStatus = new javax.swing.JComboBox<>();
         jbtnXacNhan = new javax.swing.JButton();
         jbtnHuy = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbDSNCC = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -59,9 +59,9 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
 
         jbtnSearch.setText("Tìm kiếm");
 
-        jLabel5.setText("Trạng thái");
+        jlbStatusSearch.setText("Trạng thái");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Đang hợp tác", "Ngừng hợp tác" }));
+        jcbStatusSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Đang hợp tác", "Ngừng hợp tác" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,9 +81,9 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnSearch)
                         .addGap(70, 70, 70)
-                        .addComponent(jLabel5)
+                        .addComponent(jlbStatusSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcbStatusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(302, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -98,8 +98,8 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                     .addComponent(jcbNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnSearch)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlbStatusSearch)
+                    .addComponent(jcbStatusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -107,9 +107,9 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin nhà cung cấp"));
 
-        jLabel1.setText("Nhà cung cấp");
+        jlbNcc.setText("Nhà cung cấp");
 
-        jLabel2.setText("Số điện thoại");
+        jlbSdt.setText("Số điện thoại");
 
         jtfSdt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,9 +117,9 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Địa chỉ");
+        jlbDiaChi.setText("Địa chỉ");
 
-        jLabel4.setText("Trạng thái");
+        jlbStatus.setText("Trạng thái");
 
         jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang hợp tác", "Ngừng hợp tác" }));
 
@@ -142,18 +142,18 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jlbNcc)
                                 .addGap(18, 18, 18))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(jlbSdt)
                                 .addGap(21, 21, 21)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jtfSdt)
                             .addComponent(jtfNcc, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
                         .addGap(86, 86, 86)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jlbDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbStatus))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,17 +169,17 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jlbNcc)
                     .addComponent(jtfNcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
+                    .addComponent(jlbDiaChi)
                     .addComponent(jtfDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
+                        .addComponent(jlbSdt)
                         .addComponent(jtfSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
+                        .addComponent(jlbStatus)
                         .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -190,10 +190,10 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Bảng nhà cung cấp"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách nhà cung cấp"));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbDSNCC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -212,12 +212,12 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(jtbDSNCC);
+        if (jtbDSNCC.getColumnModel().getColumnCount() > 0) {
+            jtbDSNCC.getColumnModel().getColumn(0).setResizable(false);
+            jtbDSNCC.getColumnModel().getColumn(1).setResizable(false);
+            jtbDSNCC.getColumnModel().getColumn(2).setResizable(false);
+            jtbDSNCC.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -235,17 +235,10 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtnHuy;
     private javax.swing.JButton jbtnSearch;
     private javax.swing.JButton jbtnSua;
@@ -253,6 +246,13 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
     private javax.swing.JButton jbtnXacNhan;
     private javax.swing.JComboBox<String> jcbNameSearch;
     private javax.swing.JComboBox<String> jcbStatus;
+    private javax.swing.JComboBox<String> jcbStatusSearch;
+    private javax.swing.JLabel jlbDiaChi;
+    private javax.swing.JLabel jlbNcc;
+    private javax.swing.JLabel jlbSdt;
+    private javax.swing.JLabel jlbStatus;
+    private javax.swing.JLabel jlbStatusSearch;
+    private javax.swing.JTable jtbDSNCC;
     private javax.swing.JTextField jtfDiaChi;
     private javax.swing.JTextField jtfNameSearch;
     private javax.swing.JTextField jtfNcc;

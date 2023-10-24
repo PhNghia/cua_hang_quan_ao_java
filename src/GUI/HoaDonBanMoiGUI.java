@@ -35,12 +35,11 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
         jbtnXacNhan = new javax.swing.JButton();
         jbtnLamMoi = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
+        jpnFormCTHD = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jlbTongTienTitle = new javax.swing.JLabel();
         jlbTongTienNumber = new javax.swing.JLabel();
-        jlbTongTienCurency = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jlbSdt = new javax.swing.JLabel();
         jtfSdt = new javax.swing.JTextField();
@@ -61,10 +60,10 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
         jbtnHuy = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtbCTHD = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbDSSP = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -114,23 +113,21 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Hiệu chỉnh chi tiết hóa đơn"));
-        jPanel9.setPreferredSize(new java.awt.Dimension(1282, 200));
-        jPanel9.setLayout(new java.awt.BorderLayout());
+        jpnFormCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder("Hiệu chỉnh chi tiết hóa đơn"));
+        jpnFormCTHD.setPreferredSize(new java.awt.Dimension(1282, 220));
+        jpnFormCTHD.setLayout(new java.awt.BorderLayout());
 
         jPanel6.setPreferredSize(new java.awt.Dimension(490, 140));
         jPanel6.setLayout(new java.awt.BorderLayout());
 
         jPanel7.setMinimumSize(new java.awt.Dimension(100, 30));
-        jPanel7.setPreferredSize(new java.awt.Dimension(490, 46));
+        jPanel7.setPreferredSize(new java.awt.Dimension(490, 30));
 
         jlbTongTienTitle.setText("Tổng tiền hóa đơn:");
 
         jlbTongTienNumber.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlbTongTienNumber.setForeground(new java.awt.Color(255, 0, 0));
-        jlbTongTienNumber.setText("100.000");
-
-        jlbTongTienCurency.setText("VND");
+        jlbTongTienNumber.setText("100.000 VNĐ");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -141,18 +138,15 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
                 .addComponent(jlbTongTienTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbTongTienNumber)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbTongTienCurency)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbTongTienTitle)
-                    .addComponent(jlbTongTienNumber)
-                    .addComponent(jlbTongTienCurency))
+                    .addComponent(jlbTongTienNumber))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -197,7 +191,7 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbSdt)
                     .addComponent(jtfSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,7 +207,7 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
 
         jPanel6.add(jPanel5, java.awt.BorderLayout.CENTER);
 
-        jPanel9.add(jPanel6, java.awt.BorderLayout.LINE_END);
+        jpnFormCTHD.add(jPanel6, java.awt.BorderLayout.LINE_END);
 
         jPanel8.setPreferredSize(new java.awt.Dimension(713, 140));
 
@@ -258,12 +252,12 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jtfMaSP)
                         .addComponent(jtfTenSP, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbMaSP)
                     .addComponent(jtfMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -279,18 +273,18 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
                     .addComponent(jbtnSua)
                     .addComponent(jbtnXoa)
                     .addComponent(jbtnHuy))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        jPanel9.add(jPanel8, java.awt.BorderLayout.CENTER);
+        jpnFormCTHD.add(jPanel8, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel9, java.awt.BorderLayout.PAGE_END);
+        jPanel3.add(jpnFormCTHD, java.awt.BorderLayout.PAGE_END);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn"));
         jPanel10.setPreferredSize(new java.awt.Dimension(500, 471));
         jPanel10.setLayout(new java.awt.BorderLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -309,12 +303,12 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane2.setViewportView(jtbCTHD);
+        if (jtbCTHD.getColumnModel().getColumnCount() > 0) {
+            jtbCTHD.getColumnModel().getColumn(0).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(1).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(2).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPanel10.add(jScrollPane2, java.awt.BorderLayout.CENTER);
@@ -324,7 +318,7 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách sản phẩm"));
         jPanel11.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbDSSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -343,13 +337,13 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(jtbDSSP);
+        if (jtbDSSP.getColumnModel().getColumnCount() > 0) {
+            jtbDSSP.getColumnModel().getColumn(0).setResizable(false);
+            jtbDSSP.getColumnModel().getColumn(1).setResizable(false);
+            jtbDSSP.getColumnModel().getColumn(2).setResizable(false);
+            jtbDSSP.getColumnModel().getColumn(3).setResizable(false);
+            jtbDSSP.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPanel11.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -378,11 +372,8 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton jbtnHuy;
     private javax.swing.JButton jbtnLamMoi;
     private javax.swing.JButton jbtnSearch;
@@ -399,10 +390,12 @@ public class HoaDonBanMoiGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jlbTenSP;
     private javax.swing.JLabel jlbTieuDiem;
     private javax.swing.JLabel jlbTitle;
-    private javax.swing.JLabel jlbTongTienCurency;
     private javax.swing.JLabel jlbTongTienNumber;
     private javax.swing.JLabel jlbTongTienTitle;
+    private javax.swing.JPanel jpnFormCTHD;
     private javax.swing.JSpinner jspnSoLuong;
+    private javax.swing.JTable jtbCTHD;
+    private javax.swing.JTable jtbDSSP;
     private javax.swing.JTextField jtfMaSP;
     private javax.swing.JTextField jtfSdt;
     private javax.swing.JTextField jtfTenSP;

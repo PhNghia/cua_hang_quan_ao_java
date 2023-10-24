@@ -4,6 +4,14 @@
  */
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author BomPC
@@ -15,6 +23,7 @@ public class HoaDonBanGUI extends javax.swing.JPanel {
      */
     public HoaDonBanGUI() {
         initComponents();
+        customComponents();
     }
 
     /**
@@ -37,7 +46,7 @@ public class HoaDonBanGUI extends javax.swing.JPanel {
         jtbCTHD = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jlbTongTienHD = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbDSHoaDon = new javax.swing.JTable();
@@ -92,9 +101,9 @@ public class HoaDonBanGUI extends javax.swing.JPanel {
 
         jLabel1.setText("Tổng tiền hóa đơn:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("1.000.000 VNĐ");
+        jlbTongTienHD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jlbTongTienHD.setForeground(new java.awt.Color(255, 0, 0));
+        jlbTongTienHD.setText("1.000.000 VNĐ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -104,7 +113,7 @@ public class HoaDonBanGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(jlbTongTienHD)
                 .addContainerGap(351, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -113,7 +122,7 @@ public class HoaDonBanGUI extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jlbTongTienHD))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -229,7 +238,6 @@ public class HoaDonBanGUI extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -243,8 +251,26 @@ public class HoaDonBanGUI extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcbCaSearch;
     private javax.swing.JComboBox<String> jcbNameSearch;
     private javax.swing.JLabel jlbCa;
+    private javax.swing.JLabel jlbTongTienHD;
     private javax.swing.JTable jtbCTHD;
     private javax.swing.JTable jtbDSHoaDon;
     private javax.swing.JTextField jtfNameSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void customComponents() {
+        jbtnThem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame topFrame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, (Component)e.getSource());
+                JDialog dialog = new JDialog(topFrame, JDialog.ModalityType.APPLICATION_MODAL);
+                dialog.setTitle("Tạo hóa đơn bán mới");
+                dialog.setLayout(new BorderLayout(0, 0));
+                dialog.setSize(1400, 800);
+                dialog.add(new HoaDonBanMoiGUI());
+                dialog.setLocationRelativeTo(null);
+                dialog.setVisible(true);
+            }
+            
+        });
+    }
 }

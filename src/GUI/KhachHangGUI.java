@@ -28,7 +28,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbDSKH = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jbtnThem = new javax.swing.JButton();
         jbtnSua = new javax.swing.JButton();
@@ -40,7 +40,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
         jtfHoTen = new javax.swing.JTextField();
         jlbSdt = new javax.swing.JLabel();
         jtfSdt = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        jbtnXacNhan = new javax.swing.JButton();
         jbtnHuy = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
@@ -48,7 +48,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách khách hàng"));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbDSKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -67,14 +67,14 @@ public class KhachHangGUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
+        jScrollPane1.setViewportView(jtbDSKH);
+        if (jtbDSKH.getColumnModel().getColumnCount() > 0) {
+            jtbDSKH.getColumnModel().getColumn(0).setResizable(false);
+            jtbDSKH.getColumnModel().getColumn(1).setResizable(false);
+            jtbDSKH.getColumnModel().getColumn(2).setResizable(false);
+            jtbDSKH.getColumnModel().getColumn(3).setResizable(false);
+            jtbDSKH.getColumnModel().getColumn(4).setResizable(false);
+            jtbDSKH.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -136,7 +136,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
 
         jlbSdt.setText("Số điện thoại");
 
-        jButton4.setText("Xác nhận");
+        jbtnXacNhan.setText("Xác nhận");
 
         jbtnHuy.setText("Hủy");
 
@@ -156,7 +156,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtfSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(98, 98, 98)
-                .addComponent(jButton4)
+                .addComponent(jbtnXacNhan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnHuy)
                 .addContainerGap(350, Short.MAX_VALUE))
@@ -172,7 +172,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbSdt)
                     .addComponent(jtfSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
+                    .addComponent(jbtnXacNhan)
                     .addComponent(jbtnHuy))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -186,19 +186,19 @@ public class KhachHangGUI extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtnHuy;
     private javax.swing.JButton jbtnSearch;
     private javax.swing.JButton jbtnSua;
     private javax.swing.JButton jbtnThem;
+    private javax.swing.JButton jbtnXacNhan;
     private javax.swing.JComboBox<String> jcbNameSearchType;
     private javax.swing.JLabel jlbHoTen;
     private javax.swing.JLabel jlbSdt;
+    private javax.swing.JTable jtbDSKH;
     private javax.swing.JTextField jtfHoTen;
     private javax.swing.JTextField jtfNameSearch;
     private javax.swing.JTextField jtfSdt;

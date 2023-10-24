@@ -38,27 +38,27 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jbtnThem = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbtnThuHoi = new javax.swing.JButton();
+        jbtnIn = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jcbNameSearch = new javax.swing.JComboBox<>();
+        jtfNameSearch = new javax.swing.JTextField();
+        jbtnSearch = new javax.swing.JButton();
+        jlbNcc = new javax.swing.JLabel();
+        jtfNcc = new javax.swing.JTextField();
+        jlbSanPham = new javax.swing.JLabel();
+        jtfSanPham = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtbCTHD = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jlbTongTienHD = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbDSHD = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout(0, 30));
 
@@ -66,14 +66,14 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jbtnThem.setText("Hóa đơn mới");
 
-        jButton2.setText("Thu hồi");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnThuHoi.setText("Thu hồi");
+        jbtnThuHoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnThuHoiActionPerformed(evt);
             }
         });
 
-        jButton3.setText("In");
+        jbtnIn.setText("In");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -83,9 +83,9 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jbtnThem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jbtnThuHoi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(jbtnIn)
                 .addContainerGap(1000, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -94,8 +94,8 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnThem)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jbtnThuHoi)
+                    .addComponent(jbtnIn))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -103,19 +103,19 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm hóa đơn"));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã hóa đơn", "Nguời tạo hóa đơn" }));
+        jcbNameSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã hóa đơn", "Nguời tạo hóa đơn" }));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtfNameSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtfNameSearchActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Tìm kiếm");
+        jbtnSearch.setText("Tìm kiếm");
 
-        jLabel1.setText("Nhà cung cấp");
+        jlbNcc.setText("Nhà cung cấp");
 
-        jLabel2.setText("Sản phẩm");
+        jlbSanPham.setText("Sản phẩm");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -123,19 +123,19 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(jbtnSearch)
                 .addGap(70, 70, 70)
-                .addComponent(jLabel1)
+                .addComponent(jlbNcc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfNcc, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
-                .addComponent(jLabel2)
+                .addComponent(jlbSanPham)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(143, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -143,13 +143,13 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnSearch)
+                    .addComponent(jlbNcc)
+                    .addComponent(jtfNcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbSanPham)
+                    .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -166,7 +166,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -185,15 +185,15 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
-            jTable2.getColumnModel().getColumn(4).setResizable(false);
-            jTable2.getColumnModel().getColumn(5).setResizable(false);
-            jTable2.getColumnModel().getColumn(6).setResizable(false);
+        jScrollPane2.setViewportView(jtbCTHD);
+        if (jtbCTHD.getColumnModel().getColumnCount() > 0) {
+            jtbCTHD.getColumnModel().getColumn(0).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(1).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(2).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(3).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(4).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(5).setResizable(false);
+            jtbCTHD.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jPanel5.add(jScrollPane2, java.awt.BorderLayout.CENTER);
@@ -202,9 +202,9 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jLabel3.setText("Tổng tiền hóa đơn:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel4.setText("1.000.000 VNĐ");
+        jlbTongTienHD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jlbTongTienHD.setForeground(new java.awt.Color(255, 0, 51));
+        jlbTongTienHD.setText("1.000.000 VNĐ");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -214,7 +214,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(jlbTongTienHD)
                 .addContainerGap(551, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -223,7 +223,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jlbTongTienHD))
                 .addGap(39, 39, 39))
         );
 
@@ -234,7 +234,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách hóa đơn mua"));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbDSHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -253,12 +253,12 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(jtbDSHD);
+        if (jtbDSHD.getColumnModel().getColumnCount() > 0) {
+            jtbDSHD.getColumnModel().getColumn(0).setResizable(false);
+            jtbDSHD.getColumnModel().getColumn(1).setResizable(false);
+            jtbDSHD.getColumnModel().getColumn(2).setResizable(false);
+            jtbDSHD.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -268,24 +268,17 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbtnThuHoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnThuHoiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbtnThuHoiActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtfNameSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNameSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtfNameSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -296,12 +289,19 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jbtnIn;
+    private javax.swing.JButton jbtnSearch;
     private javax.swing.JButton jbtnThem;
+    private javax.swing.JButton jbtnThuHoi;
+    private javax.swing.JComboBox<String> jcbNameSearch;
+    private javax.swing.JLabel jlbNcc;
+    private javax.swing.JLabel jlbSanPham;
+    private javax.swing.JLabel jlbTongTienHD;
+    private javax.swing.JTable jtbCTHD;
+    private javax.swing.JTable jtbDSHD;
+    private javax.swing.JTextField jtfNameSearch;
+    private javax.swing.JTextField jtfNcc;
+    private javax.swing.JTextField jtfSanPham;
     // End of variables declaration//GEN-END:variables
 
     private void customComponents() {

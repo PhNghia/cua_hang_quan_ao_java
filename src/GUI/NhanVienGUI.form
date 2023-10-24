@@ -30,32 +30,32 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jbtnThem3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnThem" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbtnSua3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnSua" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbtnXoa3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnXoa" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jcbNameSearchType3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbNameSearchType" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jtfNameSearch3" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Component id="jtfNameSearch" min="-2" pref="180" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbtnSearch3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnSearch" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="jlbGioiTinhSearch3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbGioiTinhSearch" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jcbGioiTinhSearchType3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbGioiTinhSearchType" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="70" max="32767" attributes="0"/>
-                          <Component id="jlbChucVuSearch3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbChucVuSearch" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jcbChucVuSearchType3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbChucVuSearchType" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                  <Component id="jlbStatusSearch3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbStatusSearch" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jcbStatusSearchType3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcbStatusSearchType" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="175" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -65,25 +65,25 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbtnThem3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnSua3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnXoa3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnThem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnSua" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnXoa" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="jlbStatusSearch3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jcbStatusSearchType3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbStatusSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbStatusSearchType" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfNameSearch3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbtnSearch3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlbGioiTinhSearch3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jcbGioiTinhSearchType3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlbChucVuSearch3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jcbChucVuSearchType3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfNameSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbGioiTinhSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbGioiTinhSearchType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbChucVuSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbChucVuSearchType" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jcbNameSearchType3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbNameSearchType" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
@@ -91,22 +91,22 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jbtnThem3">
+        <Component class="javax.swing.JButton" name="jbtnThem">
           <Properties>
             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnSua3">
+        <Component class="javax.swing.JButton" name="jbtnSua">
           <Properties>
             <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnXoa3">
+        <Component class="javax.swing.JButton" name="jbtnXoa">
           <Properties>
             <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbNameSearchType3">
+        <Component class="javax.swing.JComboBox" name="jcbNameSearchType">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="6">
@@ -123,19 +123,19 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfNameSearch3">
+        <Component class="javax.swing.JTextField" name="jtfNameSearch">
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnSearch3">
+        <Component class="javax.swing.JButton" name="jbtnSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbGioiTinhSearch3">
+        <Component class="javax.swing.JLabel" name="jlbGioiTinhSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbGioiTinhSearchType3">
+        <Component class="javax.swing.JComboBox" name="jcbGioiTinhSearchType">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -149,12 +149,12 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbChucVuSearch3">
+        <Component class="javax.swing.JLabel" name="jlbChucVuSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c v&#x1ee5;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbChucVuSearchType3">
+        <Component class="javax.swing.JComboBox" name="jcbChucVuSearchType">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -168,12 +168,12 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbStatusSearch3">
+        <Component class="javax.swing.JLabel" name="jlbStatusSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbStatusSearchType3">
+        <Component class="javax.swing.JComboBox" name="jcbStatusSearchType">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -189,7 +189,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel3">
+    <Container class="javax.swing.JPanel" name="jpnFormNV">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -214,50 +214,52 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlbGioiTinh3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlbHoTen3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbGioiTinh" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbHoTen" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtfHoTen3" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="jcbGioiTinh3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtfHoTen" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="jcbGioiTinh" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jlbNgaySinh3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbNgaySinh" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jtfNgaySinh3" min="-2" pref="179" max="-2" attributes="0"/>
+                          <Component id="jtfNgaySinh" min="-2" pref="179" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlbSdt3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbEmail3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbDiaChi3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbSdt" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbDiaChi" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jtfEmail3" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="jtfEmail" min="-2" pref="180" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtfSdt3" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="jtfDiaChi3" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="jtfSdt" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="jtfDiaChi" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jbtnXacNhan3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jbtnHuy3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jlbChucVu3" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jlbChucVu" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jcbChucVu3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jcbChucVu" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                  <Component id="jlbTrangThai3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbTrangThai" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jcbTrangThai3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jcbTrangThai" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jbtnXacNhan" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jbtnLamMoi" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jbtnHuy" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -271,30 +273,31 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlbHoTen3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfHoTen3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbSdt3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfSdt3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbChucVu3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbChucVu3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbTrangThai3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbTrangThai3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbHoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfHoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbSdt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfSdt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbChucVu" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbChucVu" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlbGioiTinh3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbGioiTinh3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbEmail3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfEmail3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlbNgaySinh3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfNgaySinh3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbDiaChi3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfDiaChi3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnXacNhan3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnHuy3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbNgaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfNgaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnXacNhan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnHuy" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnLamMoi" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="54" max="32767" attributes="0"/>
               </Group>
@@ -302,19 +305,19 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jlbHoTen3">
+        <Component class="javax.swing.JLabel" name="jlbHoTen">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#x1ecd; t&#xea;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfHoTen3">
+        <Component class="javax.swing.JTextField" name="jtfHoTen">
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbGioiTinh3">
+        <Component class="javax.swing.JLabel" name="jlbGioiTinh">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbGioiTinh3">
+        <Component class="javax.swing.JComboBox" name="jcbGioiTinh">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
@@ -324,46 +327,46 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbGioiTinh3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbGioiTinhActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbNgaySinh3">
+        <Component class="javax.swing.JLabel" name="jlbNgaySinh">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfNgaySinh3">
+        <Component class="javax.swing.JTextField" name="jtfNgaySinh">
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbSdt3">
+        <Component class="javax.swing.JLabel" name="jlbSdt">
           <Properties>
             <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfSdt3">
+        <Component class="javax.swing.JTextField" name="jtfSdt">
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbEmail3">
+        <Component class="javax.swing.JLabel" name="jlbEmail">
           <Properties>
             <Property name="text" type="java.lang.String" value="Email"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfEmail3">
+        <Component class="javax.swing.JTextField" name="jtfEmail">
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbDiaChi3">
+        <Component class="javax.swing.JLabel" name="jlbDiaChi">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfDiaChi3">
+        <Component class="javax.swing.JTextField" name="jtfDiaChi">
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbChucVu3">
+        <Component class="javax.swing.JLabel" name="jlbChucVu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c v&#x1ee5;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbChucVu3">
+        <Component class="javax.swing.JComboBox" name="jcbChucVu">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -377,12 +380,12 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlbTrangThai3">
+        <Component class="javax.swing.JLabel" name="jlbTrangThai">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbTrangThai3">
+        <Component class="javax.swing.JComboBox" name="jcbTrangThai">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
@@ -395,15 +398,23 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnXacNhan3">
+        <Component class="javax.swing.JButton" name="jbtnXacNhan">
           <Properties>
             <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnHuy3">
+        <Component class="javax.swing.JButton" name="jbtnHuy">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbtnLamMoi">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnLamMoiActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -438,7 +449,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable">
+            <Component class="javax.swing.JTable" name="jtbDSNV">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="9" rowCount="4">
