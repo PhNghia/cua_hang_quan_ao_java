@@ -281,6 +281,12 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		// Search as status
 		jcbStatusSearch.addActionListener(e -> searchAsStatus(jcbStatusSearch.getSelectedItem().toString()));
 
+		// Search as account name or employee name
+		jcbNameSearch.addActionListener(e -> {
+			String value = jcbNameSearch.getSelectedItem().toString();
+			searchAsName(value);
+		});
+
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void jpwMatKhauActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jpwMatKhauActionPerformed
@@ -402,6 +408,12 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		if (isSuccess) {
 			JOptionPane.showMessageDialog(null, "Tạo tài khoản thành công");
 			renderAccount();
+			
+			int lastRowIndex = model.getRowCount() - 1;
+			if (lastRowIndex >= 0) {
+			    jtbDSTK.setRowSelectionInterval(lastRowIndex, lastRowIndex);
+			    jtbDSTK.scrollRectToVisible(jtbDSTK.getCellRect(lastRowIndex, 0, true));
+			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Tạo tài khoản thất bại");
 		}
@@ -543,8 +555,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 	}
 
 	public void searchAsStatus(String status) {
-
-		renderAccount();
+		renderAccount(); // refresh the UI
 
 		for (int i = model.getRowCount() - 1; i >= 0; i--) {
 			String getStatusColumn = model.getValueAt(i, 3).toString();
@@ -556,6 +567,37 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		if (status.equalsIgnoreCase("Tất cả")) {
 			renderAccount();
 		}
+	}
+
+	public void searchAccountName(String value1, String value2) {
+		renderAccount(); // refresh the UI
+
+		for (int i = model.getRowCount() - 1; i >= 0; i--) {
+			String getTableValue = "";
+
+			if (value2.trim().equalsIgnoreCase("Tên tài khoản")) {
+				getTableValue = model.getValueAt(i, 0).toString();
+			} else if (value2.trim().equalsIgnoreCase("Nhân viên")) {
+				getTableValue = model.getValueAt(i, 1).toString();
+			}
+
+			if (!getTableValue.toUpperCase().contains(value1.toUpperCase())) {
+				model.removeRow(i);
+			}
+		}
+
+		if (value2.equalsIgnoreCase("Tất cả") || value1.isEmpty()) {
+			renderAccount();
+		}
+	}
+
+	public void searchAsName(String value) {
+		jbtnSearch.addActionListener(event -> {
+			String searchValue = jtfNameSearch.getText();
+			String comboboxValue = jcbNameSearch.getSelectedItem().toString();
+
+			searchAccountName(searchValue, comboboxValue);
+		});
 	}
 
 	public void renewText() {
