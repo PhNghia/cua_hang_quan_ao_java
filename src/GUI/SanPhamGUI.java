@@ -17,6 +17,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
      */
     public SanPhamGUI() {
         initComponents();
+        customComponents();
     }
 
     /**
@@ -85,7 +86,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
         jbtnXacNhan = new javax.swing.JButton();
         jbtnHuy = new javax.swing.JButton();
         jbtnLamMoi = new javax.swing.JButton();
-
+        
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.BorderLayout());
 
@@ -462,7 +463,16 @@ public class SanPhamGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfChatLieuActionPerformed
 
-
+    
+    
+    
+    
+    
+    public void customComponents() {
+    	 this.jbtnHuy.setText("Huỷ 10");
+    	 this.revalidate();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -522,4 +532,5 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JTextField jtfSanPham;
     private javax.swing.JTextField jtfSoLuong;
     // End of variables declaration//GEN-END:variables
+    
 }
