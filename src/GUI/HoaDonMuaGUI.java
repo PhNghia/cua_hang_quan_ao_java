@@ -4,13 +4,22 @@
  */
 package GUI;
 
+import BUS.HoaDonMuaBUS;
+import DAO.HoaDonMuaDAO;
+import DTO.ChiTietHDM;
+import DTO.HoaDonMua;
+import DTO.SanPham;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,10 +27,13 @@ import javax.swing.SwingUtilities;
  */
 public class HoaDonMuaGUI extends javax.swing.JPanel {
 
+    private final HoaDonMuaBUS hdmBUS;
+
     /**
      * Creates new form HoaDonMuaGUI
      */
     public HoaDonMuaGUI() {
+        hdmBUS = new HoaDonMuaBUS(new HoaDonMuaDAO());
         initComponents();
         customComponents();
     }
@@ -44,18 +56,26 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jcbNameSearch = new javax.swing.JComboBox<>();
         jtfNameSearch = new javax.swing.JTextField();
         jbtnSearch = new javax.swing.JButton();
-        jlbNcc = new javax.swing.JLabel();
+        jlbNccSearch = new javax.swing.JLabel();
         jtfNcc = new javax.swing.JTextField();
-        jlbSanPham = new javax.swing.JLabel();
+        jlbSanPhamSearch = new javax.swing.JLabel();
         jtfSanPham = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jpnCTHD = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtbCTHD = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jlbTitleTongTienHD = new javax.swing.JLabel();
         jlbTongTienHD = new javax.swing.JLabel();
+        jpnCTSP = new javax.swing.JPanel();
+        jlbMaSP = new javax.swing.JLabel();
+        jlbSanPham = new javax.swing.JLabel();
+        jlbGiaNhap = new javax.swing.JLabel();
+        jlbLoiNhuan = new javax.swing.JLabel();
+        jlbSoLuongNhap = new javax.swing.JLabel();
+        jlbTongTienCT = new javax.swing.JLabel();
+        jlbNcc = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbDSHD = new javax.swing.JTable();
@@ -67,11 +87,6 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jbtnThem.setText("Hóa đơn mới");
 
         jbtnThuHoi.setText("Thu hồi");
-        jbtnThuHoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnThuHoiActionPerformed(evt);
-            }
-        });
 
         jbtnIn.setText("In");
 
@@ -103,19 +118,11 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm hóa đơn"));
 
-        jcbNameSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã hóa đơn", "Nguời tạo hóa đơn" }));
-
-        jtfNameSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNameSearchActionPerformed(evt);
-            }
-        });
-
         jbtnSearch.setText("Tìm kiếm");
 
-        jlbNcc.setText("Nhà cung cấp");
+        jlbNccSearch.setText("Nhà cung cấp");
 
-        jlbSanPham.setText("Sản phẩm");
+        jlbSanPhamSearch.setText("Sản phẩm");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -129,14 +136,14 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnSearch)
                 .addGap(70, 70, 70)
-                .addComponent(jlbNcc)
+                .addComponent(jlbNccSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfNcc, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
-                .addComponent(jlbSanPham)
+                .addComponent(jlbSanPhamSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +153,9 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                     .addComponent(jcbNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnSearch)
-                    .addComponent(jlbNcc)
+                    .addComponent(jlbNccSearch)
                     .addComponent(jtfNcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbSanPham)
+                    .addComponent(jlbSanPhamSearch)
                     .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -159,22 +166,19 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn mua"));
-        jPanel3.setMinimumSize(new java.awt.Dimension(110, 500));
-        jPanel3.setPreferredSize(new java.awt.Dimension(800, 500));
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        jpnCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn mua"));
+        jpnCTHD.setMinimumSize(new java.awt.Dimension(110, 500));
+        jpnCTHD.setPreferredSize(new java.awt.Dimension(800, 500));
+        jpnCTHD.setLayout(new java.awt.BorderLayout());
 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập", "Lợi nhuận", "Số lượng nhập", "Tổng tiền"
+                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Lợi nhuận (%)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -198,51 +202,98 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jPanel5.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 20));
+        jPanel3.setPreferredSize(new java.awt.Dimension(790, 36));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING);
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel3.setLayout(flowLayout1);
 
-        jLabel3.setText("Tổng tiền hóa đơn:");
+        jlbTitleTongTienHD.setText("Tổng tiền hóa đơn:");
+        jPanel3.add(jlbTitleTongTienHD);
 
         jlbTongTienHD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlbTongTienHD.setForeground(new java.awt.Color(255, 0, 51));
-        jlbTongTienHD.setText("1.000.000 VNĐ");
+        jlbTongTienHD.setMaximumSize(new java.awt.Dimension(140, 25));
+        jlbTongTienHD.setMinimumSize(new java.awt.Dimension(140, 25));
+        jlbTongTienHD.setOpaque(true);
+        jlbTongTienHD.setPreferredSize(new java.awt.Dimension(140, 25));
+        jPanel3.add(jlbTongTienHD);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        jPanel5.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        jpnCTHD.add(jPanel5, java.awt.BorderLayout.CENTER);
+
+        jpnCTSP.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết sản phẩm"));
+        jpnCTSP.setPreferredSize(new java.awt.Dimension(790, 180));
+
+        jlbMaSP.setText("Mã sản phẩm:");
+
+        jlbSanPham.setText("Sản phẩm:");
+
+        jlbGiaNhap.setText("Giá nhập:");
+
+        jlbLoiNhuan.setText("Lợi nhuận:");
+
+        jlbSoLuongNhap.setText("Số lượng nhập:");
+
+        jlbTongTienCT.setText("Tổng tiền:");
+
+        jlbNcc.setText("Nhà cung cấp:");
+
+        javax.swing.GroupLayout jpnCTSPLayout = new javax.swing.GroupLayout(jpnCTSP);
+        jpnCTSP.setLayout(jpnCTSPLayout);
+        jpnCTSPLayout.setHorizontalGroup(
+            jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnCTSPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbTongTienHD)
-                .addContainerGap(551, Short.MAX_VALUE))
+                .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpnCTSPLayout.createSequentialGroup()
+                        .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlbSoLuongNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .addComponent(jlbMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlbGiaNhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlbNcc, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbLoiNhuan, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                            .addComponent(jlbTongTienCT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(195, 195, 195)))
+                .addContainerGap())
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jlbTongTienHD))
-                .addGap(39, 39, 39))
+        jpnCTSPLayout.setVerticalGroup(
+            jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnCTSPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbMaSP)
+                    .addComponent(jlbNcc))
+                .addGap(18, 18, 18)
+                .addComponent(jlbSanPham)
+                .addGap(18, 18, 18)
+                .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbGiaNhap)
+                    .addComponent(jlbLoiNhuan))
+                .addGap(18, 18, 18)
+                .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbSoLuongNhap)
+                    .addComponent(jlbTongTienCT))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_END);
+        jpnCTHD.add(jpnCTSP, java.awt.BorderLayout.PAGE_END);
 
-        jPanel2.add(jPanel3, java.awt.BorderLayout.LINE_END);
+        jPanel2.add(jpnCTHD, java.awt.BorderLayout.LINE_END);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách hóa đơn mua"));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
         jtbDSHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mã hóa đơn", "Người tạo hóa đơn", "Ngày tạo", "Tổng tiền"
+                "Mã hóa đơn", "Người tạo hóa đơn", "Ngày tạo", "Tổng tiền (VNĐ)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -268,23 +319,13 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnThuHoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnThuHoiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnThuHoiActionPerformed
-
-    private void jtfNameSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNameSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNameSearchActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -294,9 +335,19 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
     private javax.swing.JButton jbtnThem;
     private javax.swing.JButton jbtnThuHoi;
     private javax.swing.JComboBox<String> jcbNameSearch;
+    private javax.swing.JLabel jlbGiaNhap;
+    private javax.swing.JLabel jlbLoiNhuan;
+    private javax.swing.JLabel jlbMaSP;
     private javax.swing.JLabel jlbNcc;
+    private javax.swing.JLabel jlbNccSearch;
     private javax.swing.JLabel jlbSanPham;
+    private javax.swing.JLabel jlbSanPhamSearch;
+    private javax.swing.JLabel jlbSoLuongNhap;
+    private javax.swing.JLabel jlbTitleTongTienHD;
+    private javax.swing.JLabel jlbTongTienCT;
     private javax.swing.JLabel jlbTongTienHD;
+    private javax.swing.JPanel jpnCTHD;
+    private javax.swing.JPanel jpnCTSP;
     private javax.swing.JTable jtbCTHD;
     private javax.swing.JTable jtbDSHD;
     private javax.swing.JTextField jtfNameSearch;
@@ -305,10 +356,46 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void customComponents() {
+        
+        jcbNameSearch.removeAllItems();
+        for (String item : HoaDonMua.itemFiltersComboBox) {
+            jcbNameSearch.addItem(item);
+        }
+        
+        ListSelectionModel selectOfDSHD = this.jtbDSHD.getSelectionModel();
+        selectOfDSHD.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = jtbDSHD.getSelectedRow();
+                renderTableCTHDM(row);
+            }
+        });
+        
+        ListSelectionModel selectOfCTHD = this.jtbCTHD.getSelectionModel();
+        selectOfCTHD.addListSelectionListener(new ListSelectionListener () {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = jtbCTHD.getSelectedRow();
+                if (row < 0) {
+                    renderInforCTHD();
+                    return;
+                }
+                renderInforCTHD(row);
+            }
+        });
+        
+        jbtnSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleFilterHDM();
+            }
+        });
+
+
         jbtnThem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame topFrame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, (Component)e.getSource());
+                JFrame topFrame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, (Component) e.getSource());
                 JDialog dialog = new JDialog(topFrame, JDialog.ModalityType.APPLICATION_MODAL);
                 dialog.setTitle("Tạo hóa đơn mua mới");
                 dialog.setLayout(new BorderLayout(0, 0));
@@ -317,7 +404,85 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
             }
-            
         });
+        
+        renderTableHDM();
+    }
+
+    private void renderTableHDM() {
+        String[][] data = this.hdmBUS.getDsHDM();
+        this.jtbDSHD.setModel(new DefaultTableModel(
+                data,
+                new String[]{
+                    "Mã hóa đơn", "Người tạo hóa đơn", "Ngày tạo", "Tổng tiền (VNĐ)"
+                }
+        ){
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        this.revalidate();
+    }
+    
+    public void renderTableCTHDM(int row) {
+        HoaDonMua hdmSelected = hdmBUS.getHDMSelected(row);
+        jpnCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn mua " + hdmSelected.getMaHD()));
+        jlbTongTienHD.setText(hdmSelected.getTongTien() + " VNĐ");
+        
+        String[][] data = hdmBUS.getDsCTHDM(row);
+        jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
+            data,
+            new String [] {
+                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Lợi nhuận (%)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        this.revalidate();
+    };
+    
+    public void renderInforCTHD () {
+        this.jlbMaSP.setText("Mã sản phẩm:");
+        this.jlbSanPham.setText("Sản phẩm:");
+        this.jlbNcc.setText("Nhà cung cấp:");
+        this.jlbGiaNhap.setText("Giá nhập:");
+        this.jlbLoiNhuan.setText("Lợi nhuận:");
+        this.jlbSoLuongNhap.setText("Số lượng nhập:");
+        this.jlbTongTienCT.setText("Tổng tiền:");
+        this.revalidate();
+    }
+    
+    public void renderInforCTHD (int row) {
+        ChiTietHDM cthd = hdmBUS.getCTHDMSelected(row);
+        SanPham sp = cthd.getSanPham();
+        this.jlbMaSP.setText("Mã sản phẩm: " + sp.getMaSP());
+        this.jlbSanPham.setText("Sản phẩm: " + sp.getTenSP());
+        this.jlbNcc.setText("Nhà cung cấp: " + cthd.getNcc().getTenNcc());
+        this.jlbGiaNhap.setText("Giá nhập: " + sp.getGiaNhap() + " VNĐ");
+        this.jlbLoiNhuan.setText("Lợi nhuận: " + cthd.getLoiNhuan() + " %");
+        this.jlbSoLuongNhap.setText("Số lượng nhập: " + sp.getSoLuong() + " chiếc");
+        this.jlbTongTienCT.setText("Tổng tiền: " + cthd.getTongTien() + " VNĐ");
+        this.revalidate();
+    }
+    
+    public void handleFilterHDM () {
+        int indexFilterCbSelected = jcbNameSearch.getSelectedIndex();
+        String valueOfJtfNameSearch = jtfNameSearch.getText();
+        String valueOfJtfNcc = jtfNcc.getText();
+        String valueOfJtfSanPham = jtfSanPham.getText();
+        hdmBUS.filterDsHDM(indexFilterCbSelected, valueOfJtfNameSearch, valueOfJtfNcc, valueOfJtfSanPham);
+        renderTableHDM();
     }
 }

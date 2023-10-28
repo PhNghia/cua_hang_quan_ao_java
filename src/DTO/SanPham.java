@@ -31,6 +31,16 @@ public class SanPham {
         this.giaBan = giaBan;
         this.soLuong = soLuong;
     }
+
+    public SanPham(String maSP, String tenSP, int giaNhap, int giaBan, int soLuong) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.soLuong = soLuong;
+    }
+    
+    
     
     public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaNhap, int giaBan, int soLuong, int trangThai) {
         this.maSP = maSP;

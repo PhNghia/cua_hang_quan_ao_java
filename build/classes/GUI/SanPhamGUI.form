@@ -502,45 +502,41 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlbSanPham" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
+                              <Component id="jlbSanPham" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jlbHinhAnh" min="-2" max="-2" attributes="0"/>
                                       <Component id="jlbMa" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jtfMa" min="-2" pref="180" max="-2" attributes="0"/>
-                                                      <Component id="jtfSanPham" min="-2" pref="180" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jlbChatLieu" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jlbMauSac" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="jtfChatLieu" pref="150" max="32767" attributes="0"/>
-                                                      <Component id="jtfMauSac" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Component id="jtfHinhAnh" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jtfSanPham" min="-2" pref="180" max="-2" attributes="0"/>
+                                              <Component id="jtfMa" min="-2" pref="180" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jlbKichCo" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jlbGiaBan" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jlbChatLieu" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jlbMauSac" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jtfChatLieu" pref="150" max="32767" attributes="0"/>
+                                              <Component id="jtfMauSac" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Component id="jlbGiaNhap" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jtfHinhAnh" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="74" pref="74" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jlbKichCo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jlbGiaBan" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jlbGiaNhap" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -569,7 +565,7 @@
                           <Component id="jbtnHuy" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
