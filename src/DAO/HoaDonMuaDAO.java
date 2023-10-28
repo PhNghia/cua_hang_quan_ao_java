@@ -38,7 +38,7 @@ public class HoaDonMuaDAO {
                 dsHDM.add(new HoaDonMua(
                         rs.getString("ma_hoa_don"),
                         new NhanVien(
-                                rs.getString("ma_nhan_vien"),
+                                rs.getInt("ma_nhan_vien"),
                                 rs.getString("ten_nhan_vien")
                         ),
                         LocalDateTime.parse(rs.getString("ngay_tao").replace(" ","T")),
