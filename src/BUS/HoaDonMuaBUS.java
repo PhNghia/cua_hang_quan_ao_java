@@ -61,7 +61,7 @@ public class HoaDonMuaBUS {
         return hdmDAO.getDsCTHDM().get(row);
     }
     
-    public void filterDsHDM (int indexFilterSelected, String nameSearch, String ncc, String sanPham) {
-        
+    public void filterDsHDM (String itemFilterSelected, String nameSearch, String ncc, String sanPham) {
+        hdmDAO.getFilterDsHDMFromDB(itemFilterSelected, nameSearch, ncc, sanPham);
     }
 }

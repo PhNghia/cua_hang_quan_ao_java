@@ -104,6 +104,8 @@
                       <Component id="jtfNameSearch" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jbtnSearch" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jbtnLamMoi" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="jlbNccSearch" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -112,7 +114,7 @@
                       <Component id="jlbSanPhamSearch" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jtfSanPham" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace pref="206" max="32767" attributes="0"/>
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -128,6 +130,7 @@
                           <Component id="jtfNcc" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jlbSanPhamSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jtfSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnLamMoi" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="10" max="32767" attributes="0"/>
                   </Group>
@@ -165,6 +168,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfSanPham">
+            </Component>
+            <Component class="javax.swing.JButton" name="jbtnLamMoi">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

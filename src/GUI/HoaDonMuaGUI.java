@@ -60,6 +60,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jtfNcc = new javax.swing.JTextField();
         jlbSanPhamSearch = new javax.swing.JLabel();
         jtfSanPham = new javax.swing.JTextField();
+        jbtnLamMoi = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jpnCTHD = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -124,6 +125,8 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jlbSanPhamSearch.setText("Sản phẩm");
 
+        jbtnLamMoi.setText("Làm mới");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -135,6 +138,8 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnLamMoi)
                 .addGap(70, 70, 70)
                 .addComponent(jlbNccSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -143,7 +148,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addComponent(jlbSanPhamSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +161,8 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                     .addComponent(jlbNccSearch)
                     .addComponent(jtfNcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbSanPhamSearch)
-                    .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnLamMoi))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -331,6 +337,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnIn;
+    private javax.swing.JButton jbtnLamMoi;
     private javax.swing.JButton jbtnSearch;
     private javax.swing.JButton jbtnThem;
     private javax.swing.JButton jbtnThuHoi;
@@ -367,6 +374,11 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int row = jtbDSHD.getSelectedRow();
+                if (row < 0) {
+                    renderTableCTHDM();
+                    renderInforCTHD();
+                    return;
+                };
                 renderTableCTHDM(row);
             }
         });
@@ -390,7 +402,16 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 handleFilterHDM();
             }
         });
-
+        
+        jbtnLamMoi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jcbNameSearch.setSelectedIndex(0);
+                jtfNameSearch.setText("");
+                jtfNcc.setText("");
+                jtfSanPham.setText("");
+            }
+        });
 
         jbtnThem.addActionListener(new ActionListener() {
             @Override
@@ -419,6 +440,27 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         ){
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        this.revalidate();
+    }
+    
+    public void renderTableCTHDM () {
+        jpnCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn mua"));
+        jlbTongTienHD.setText("");
+        jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object[][] {},
+            new String [] {
+                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Lợi nhuận (%)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
             };
 
             @Override
@@ -478,11 +520,11 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
     }
     
     public void handleFilterHDM () {
-        int indexFilterCbSelected = jcbNameSearch.getSelectedIndex();
+        String itemFilterCbSelected = (String) jcbNameSearch.getSelectedItem();
         String valueOfJtfNameSearch = jtfNameSearch.getText();
         String valueOfJtfNcc = jtfNcc.getText();
         String valueOfJtfSanPham = jtfSanPham.getText();
-        hdmBUS.filterDsHDM(indexFilterCbSelected, valueOfJtfNameSearch, valueOfJtfNcc, valueOfJtfSanPham);
+        hdmBUS.filterDsHDM(itemFilterCbSelected, valueOfJtfNameSearch, valueOfJtfNcc, valueOfJtfSanPham);
         renderTableHDM();
     }
 }

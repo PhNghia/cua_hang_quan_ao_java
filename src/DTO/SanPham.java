@@ -14,7 +14,6 @@ public class SanPham {
     private String chatLieu;
     private String kichCo;
     private String mauSac;
-    private int giaNhap;
     private int giaBan;
     private int soLuong;
     private String hinhAnh;
@@ -32,23 +31,21 @@ public class SanPham {
         this.soLuong = soLuong;
     }
 
-    public SanPham(String maSP, String tenSP, int giaNhap, int giaBan, int soLuong) {
+    public SanPham(String maSP, String tenSP, int giaBan, int soLuong) {
         this.maSP = maSP;
         this.tenSP = tenSP;
-        this.giaNhap = giaNhap;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
     }
     
     
     
-    public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaNhap, int giaBan, int soLuong, int trangThai) {
+    public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaBan, int soLuong, int trangThai) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.chatLieu = chatLieu;
         this.kichCo = kichCo;
         this.mauSac = mauSac;
-        this.giaNhap = giaNhap;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
         this.trangThai = trangThai;
@@ -92,14 +89,6 @@ public class SanPham {
 
     public void setMauSac(String mauSac) {
         this.mauSac = mauSac;
-    }
-
-    public int getGiaNhap() {
-        return giaNhap;
-    }
-
-    public void setGiaNhap(int giaNhap) {
-        this.giaNhap = giaNhap;
     }
 
     public int getGiaBan() {

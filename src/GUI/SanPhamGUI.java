@@ -41,7 +41,6 @@ public class SanPhamGUI extends javax.swing.JPanel {
         jlbChatLieuCT = new javax.swing.JLabel();
         jlbMauSacCT = new javax.swing.JLabel();
         jlbKichCoCT = new javax.swing.JLabel();
-        jlbGiaNhapCT = new javax.swing.JLabel();
         jlbGiaBanCT = new javax.swing.JLabel();
         jlbSoLuongCT = new javax.swing.JLabel();
         jlbTrangThaiCT = new javax.swing.JLabel();
@@ -67,8 +66,6 @@ public class SanPhamGUI extends javax.swing.JPanel {
         jtfMa = new javax.swing.JTextField();
         jlbChatLieu = new javax.swing.JLabel();
         jtfChatLieu = new javax.swing.JTextField();
-        jlbGiaNhap = new javax.swing.JLabel();
-        jtfGiaNhap = new javax.swing.JTextField();
         jlbSoLuong = new javax.swing.JLabel();
         jtfSoLuong = new javax.swing.JTextField();
         jlbSanPham = new javax.swing.JLabel();
@@ -86,7 +83,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
         jbtnXacNhan = new javax.swing.JButton();
         jbtnHuy = new javax.swing.JButton();
         jbtnLamMoi = new javax.swing.JButton();
-        
+
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.BorderLayout());
 
@@ -96,17 +93,17 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
         jtbDSSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã", "Sản phẩm", "Giá nhập", "Giá bán", "Số lượng", "Trạng thái"
+                "Mã", "Sản phẩm", "Giá bán", "Số lượng", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -120,7 +117,6 @@ public class SanPhamGUI extends javax.swing.JPanel {
             jtbDSSP.getColumnModel().getColumn(2).setResizable(false);
             jtbDSSP.getColumnModel().getColumn(3).setResizable(false);
             jtbDSSP.getColumnModel().getColumn(4).setResizable(false);
-            jtbDSSP.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -146,11 +142,9 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
         jlbChatLieuCT.setText("Chất liệu:");
 
-        jlbMauSacCT.setText("Màu sắc:");
+        jlbMauSacCT.setText("Màu sắc: ");
 
         jlbKichCoCT.setText("Kích cỡ:");
-
-        jlbGiaNhapCT.setText("Giá nhập:");
 
         jlbGiaBanCT.setText("Giá bán:");
 
@@ -170,28 +164,30 @@ public class SanPhamGUI extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlbMauSacCT)
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbMauSacCT)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jlbGiaBanCT)
+                        .addGap(125, 125, 125)
+                        .addComponent(jlbSoLuongCT))
+                    .addComponent(jlbTrangThaiCT))
+                .addContainerGap(175, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(112, 112, 112)
-                    .addComponent(jlbImageCT, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(104, Short.MAX_VALUE))
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(6, 6, 6)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(112, 112, 112)
+                            .addComponent(jlbImageCT, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jlbGiaNhapCT)
-                                .addComponent(jlbSoLuongCT))
-                            .addGap(119, 119, 119)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jlbGiaBanCT)
-                                .addComponent(jlbTrangThaiCT)
-                                .addComponent(jlbKichCoCT)))
-                        .addComponent(jlbMaSPCT)
-                        .addComponent(jlbChatLieuCT)
-                        .addComponent(jlbSanPhamCT))
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(169, 169, 169)
+                                    .addComponent(jlbKichCoCT))
+                                .addComponent(jlbMaSPCT)
+                                .addComponent(jlbChatLieuCT)
+                                .addComponent(jlbSanPhamCT))
+                            .addGap(15, 15, 15)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
@@ -199,7 +195,13 @@ public class SanPhamGUI extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(309, Short.MAX_VALUE)
                 .addComponent(jlbMauSacCT)
-                .addGap(84, 84, 84))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbGiaBanCT)
+                    .addComponent(jlbSoLuongCT))
+                .addGap(18, 18, 18)
+                .addComponent(jlbTrangThaiCT)
+                .addGap(16, 16, 16))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addContainerGap()
@@ -212,15 +214,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
                     .addComponent(jlbChatLieuCT)
                     .addGap(18, 18, 18)
                     .addComponent(jlbKichCoCT)
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlbGiaNhapCT)
-                        .addComponent(jlbGiaBanCT))
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlbSoLuongCT)
-                        .addComponent(jlbTrangThaiCT))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(84, Short.MAX_VALUE)))
         );
 
         jScrollPane2.setViewportView(jPanel5);
@@ -337,8 +331,6 @@ public class SanPhamGUI extends javax.swing.JPanel {
             }
         });
 
-        jlbGiaNhap.setText("Giá nhập");
-
         jlbSoLuong.setText("Số lượng");
 
         jlbSanPham.setText("Sản phẩm");
@@ -371,7 +363,6 @@ public class SanPhamGUI extends javax.swing.JPanel {
                 .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnFormSPLayout.createSequentialGroup()
                         .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbSanPham)
                             .addGroup(jpnFormSPLayout.createSequentialGroup()
                                 .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlbHinhAnh)
@@ -390,27 +381,24 @@ public class SanPhamGUI extends javax.swing.JPanel {
                                         .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jtfChatLieu, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                             .addComponent(jtfMauSac)))
-                                    .addComponent(jtfHinhAnh))
-                                .addGap(74, 74, 74)
-                                .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlbKichCo)
-                                    .addComponent(jlbGiaBan)
-                                    .addComponent(jlbGiaNhap))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpnFormSPLayout.createSequentialGroup()
-                                .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtfGiaNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                    .addComponent(jtfGiaBan))
-                                .addGap(74, 74, 74)
-                                .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jlbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jlbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jcbKichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtfHinhAnh)))
+                            .addComponent(jlbSanPham))
+                        .addGap(74, 74, 74)
+                        .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlbGiaBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlbKichCo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtfGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcbKichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
+                        .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpnFormSPLayout.createSequentialGroup()
                         .addComponent(jbtnXacNhan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -428,26 +416,24 @@ public class SanPhamGUI extends javax.swing.JPanel {
                     .addComponent(jtfMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbChatLieu)
                     .addComponent(jtfChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbGiaNhap))
+                    .addComponent(jlbGiaBan)
+                    .addComponent(jlbSoLuong)
+                    .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbSanPham)
                     .addComponent(jtfSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbMauSac)
                     .addComponent(jtfMauSac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbGiaBan)
-                    .addComponent(jtfGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbSoLuong)
-                    .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbHinhAnh)
-                    .addComponent(jtfHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbKichCo)
                     .addComponent(jcbKichCo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbStatus)
                     .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbHinhAnh)
+                    .addComponent(jtfHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnFormSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnXacNhan)
@@ -499,8 +485,6 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jlbChatLieuSearch;
     private javax.swing.JLabel jlbGiaBan;
     private javax.swing.JLabel jlbGiaBanCT;
-    private javax.swing.JLabel jlbGiaNhap;
-    private javax.swing.JLabel jlbGiaNhapCT;
     private javax.swing.JLabel jlbHinhAnh;
     private javax.swing.JLabel jlbImageCT;
     private javax.swing.JLabel jlbKichCo;
@@ -523,7 +507,6 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JTextField jtfChatLieu;
     private javax.swing.JTextField jtfChatLieuSearch;
     private javax.swing.JTextField jtfGiaBan;
-    private javax.swing.JTextField jtfGiaNhap;
     private javax.swing.JTextField jtfHinhAnh;
     private javax.swing.JTextField jtfMa;
     private javax.swing.JTextField jtfMauSac;

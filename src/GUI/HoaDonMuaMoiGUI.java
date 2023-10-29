@@ -4,17 +4,23 @@
  */
 package GUI;
 
+import BUS.HoaDonMuaMoiBUS;
+import DAO.HoaDonMuaMoiDAO;
+
 /**
  *
  * @author BomPC
  */
 public class HoaDonMuaMoiGUI extends javax.swing.JPanel {
-
+    
+    private final HoaDonMuaMoiBUS hdmmBUS;
     /**
      * Creates new form HoaDonMuaMoiGUI
      */
     public HoaDonMuaMoiGUI() {
+        hdmmBUS = new HoaDonMuaMoiBUS(new HoaDonMuaMoiDAO());
         initComponents();
+        customComponents();
     }
 
     /**
@@ -96,7 +102,7 @@ public class HoaDonMuaMoiGUI extends javax.swing.JPanel {
 
         jlbNcc.setText("Nhà cung cấp");
 
-        jcbNcc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbNcc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jbtnNccMoi.setText("+");
 
@@ -115,18 +121,6 @@ public class HoaDonMuaMoiGUI extends javax.swing.JPanel {
         jbtnXoa.setText("Xóa khỏi hóa đơn");
 
         jbtnHuy.setText("Hủy");
-
-        jtfMaSP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfMaSPActionPerformed(evt);
-            }
-        });
-
-        jtfSanPham.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfSanPhamActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("<=>");
 
@@ -257,10 +251,7 @@ public class HoaDonMuaMoiGUI extends javax.swing.JPanel {
 
         jtbDSSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Mã sản phẩm", "Sản phẩm", "Số lượng", "Trạng thái", "Đang nhập"
@@ -292,10 +283,7 @@ public class HoaDonMuaMoiGUI extends javax.swing.JPanel {
 
         jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập", "Lợi nhuận", "Số lượng nhập", "Tổng tiền"
@@ -358,14 +346,6 @@ public class HoaDonMuaMoiGUI extends javax.swing.JPanel {
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfSanPhamActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfSanPhamActionPerformed
-
-    private void jtfMaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaSPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfMaSPActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel11;
@@ -408,4 +388,28 @@ public class HoaDonMuaMoiGUI extends javax.swing.JPanel {
     private javax.swing.JTextField jtfMaSP;
     private javax.swing.JTextField jtfSanPham;
     // End of variables declaration//GEN-END:variables
+
+    public void customComponents () {
+        renderDsSanPham();
+    }
+    
+    public void renderDsSanPham () {
+        String[][] data = hdmmBUS.getDsSanPham();
+        jtbDSSP.setModel(new javax.swing.table.DefaultTableModel(
+            data,
+            new String [] {
+                "Mã sản phẩm", "Sản phẩm", "Số lượng", "Trạng thái", "Đang nhập"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        revalidate();
+    }
 }
