@@ -4,7 +4,13 @@
  */
 package GUI;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,7 +23,8 @@ public class SanPhamGUI extends javax.swing.JPanel {
      */
     public SanPhamGUI() {
         initComponents();
-        customComponents();
+        defaultStatus();
+        actionEvent();
     }
 
     /**
@@ -449,15 +456,62 @@ public class SanPhamGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfChatLieuActionPerformed
 
-    
-    
-    
-    
-    
-    public void customComponents() {
-    	 this.jbtnHuy.setText("Huỷ 10");
-    	 this.revalidate();
+  //SET FORM STATUS
+    public void setFormStatus(JPanel panel, Boolean status) {
+    	for (Component cp : panel.getComponents() ){
+            if (!(cp instanceof JButton))
+    			cp.setEnabled(status);
+    	}
     }
+   //DEFAULT STATUS
+    public void defaultStatus() {
+    	jpnFormSP.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin sản phẩm"));
+    	jtbDSSP.setRowSelectionAllowed(true);
+    	jbtnXacNhan.setEnabled(false);
+    	jbtnHuy.setEnabled(false);
+    	jbtnXoa.setEnabled(false);
+    	jbtnThem.setEnabled(true);
+    	jbtnSua.setEnabled(true);
+    	jbtnXacNhan.setEnabled(false);
+    	setFormStatus(jpnFormSP,false);
+    }
+ 
+    public void actionEvent() {
+    	//ADD STATUS
+    	 jbtnThem.addActionListener(new ActionListener() {
+    		 public void actionPerformed(ActionEvent e) {
+    			 jpnFormSP.setBorder(javax.swing.BorderFactory.createTitledBorder("Thêm sản phẩm mới"));
+    			 jbtnSua.setEnabled(false);
+    			 jbtnHuy.setEnabled(true);
+    			 jbtnThem.setEnabled(true);
+    			 setFormStatus(jpnFormSP,true);
+    			 jtbDSSP.setRowSelectionAllowed(false);
+    			 jtfSoLuong.setEnabled(false);
+    			 //EXITING STATUS
+    			 jbtnHuy.addActionListener(new ActionListener() {
+    	    		 public void actionPerformed(ActionEvent e) {
+    	    			 defaultStatus();
+    	    		 }
+    			 });
+    		 }
+    	 });
+    	 //EDIT STATUS
+    	 jbtnSua.addActionListener(new ActionListener() {
+    		 public void actionPerformed(ActionEvent e) {
+    			 jpnFormSP.setBorder(javax.swing.BorderFactory.createTitledBorder("Sửa chi tiết sản phẩm"));
+    			 jbtnThem.setEnabled(false);
+    			 jbtnHuy.setEnabled(true);
+    			 setFormStatus(jpnFormSP,true);
+    			 //EXITING STATUS
+    			 jbtnHuy.addActionListener(new ActionListener() {
+    	    		 public void actionPerformed(ActionEvent e) {
+    	    			 defaultStatus();
+    	    		 }
+    			 });
+    		 }
+    	 });
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
