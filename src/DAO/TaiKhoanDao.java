@@ -23,7 +23,7 @@ public class TaiKhoanDao {
 
 	public ArrayList<TaiKhoan> getTaiKhoan() {
 		ArrayList<TaiKhoan> taiKhoanList = new ArrayList();
-		String query = "SELECT * FROM tai_khoan JOIN nhan_vien on nhan_vien.ma_nhan_vien = tai_khoan.ma_nhan_vien;";
+		String query = "SELECT * FROM tai_khoan JOIN nhan_vien ON nhan_vien.ma_nhan_vien = tai_khoan.ma_nhan_vien;";
 
 		try {
 			ResultSet result = this.connection.executeQuery(query);
@@ -41,18 +41,6 @@ public class TaiKhoanDao {
 					NhanVien employee = new NhanVien(employeeId, employeeName, employeeDisplay);
 
 					taiKhoanList.add(new TaiKhoan(accountName, employee, accountCreatedDate, accountStatus));
-
-//					int employeeGender = result.getInt("gioi_tinh");
-//					LocalDate employeeDob = result.getDate("ngay_sinh").toLocalDate();
-//					String employeePhoneNumber = result.getString("sdt");
-//					String employeeEmail = result.getString("email");
-//					String employeeAddress = result.getString("dia_chi");
-//					int employeeStatus = result.getInt("trang_thai");
-
-//					String accessId = result.getString("ma_nhom_quyen");
-//					String accessName = result.getString("ten_nhom_quyen");
-
-//					NhomQuyen accessGroup = new NhomQuyen(accessId, accessName);
 				}
 			}
 		} catch (SQLException e) {
@@ -65,7 +53,7 @@ public class TaiKhoanDao {
 
 	public ArrayList<NhanVien> getEmployees() {
 		ArrayList<NhanVien> employees = new ArrayList<>();
-		String query = "SELECT * FROM nhan_vien;";
+		String query = "SELECT nhan_vien.* FROM nhan_vien LEFT JOIN tai_khoan ON nhan_vien.ma_nhan_vien = tai_khoan.ma_nhan_vien WHERE tai_khoan.ma_nhan_vien IS NULL;";
 		try {
 			ResultSet result = this.connection.executeQuery(query);
 			if (result != null) {
@@ -83,7 +71,7 @@ public class TaiKhoanDao {
 	}
 
 	public Boolean add(TaiKhoan tk) {
-		String sql = "INSERT INTO tai_khoan (ten_tai_khoan, mat_khau, ma_nhan_vien, ngay_tao, trang_thai) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO tai_khoan(ten_tai_khoan,mat_khau,ma_nhan_vien,ngay_tao,trang_thai) VALUES (?,?,?,?,?)";
 
 		try (PreparedStatement preparedStatement = this.connection.getConnection().prepareStatement(sql)) {
 			preparedStatement.setString(1, tk.getTenTaiKhoan());
@@ -103,8 +91,8 @@ public class TaiKhoanDao {
 	}
 
 	public Boolean del(String tenTaiKhoan) {
-		Boolean ok = this.connection
-				.sqlUpdate("DELETE FROM `tai_khoan` WHERE `tai_khoan`.ten_tai_khoan = '" + tenTaiKhoan + "';", null);
+		Boolean ok = this.connection.sqlUpdate("DELETE FROM `tai_khoan` WHERE ten_tai_khoan = '" + tenTaiKhoan + "';",
+				null);
 		return ok;
 	}
 

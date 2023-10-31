@@ -26,6 +26,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import BUS.TaiKhoanBus;
@@ -46,7 +48,6 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		nhanVien = new NhanVien();
 		initComponents();
 		setDisable();
-		setTitleAccount("Thông tin tài khoản");
 		renderAccount();
 	}
 
@@ -253,38 +254,50 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
 		// ============================= HANDLE EVENTS =============================
 
+		// Get values from table and fill fields
+		// Get values from table and fill fields
+		ListSelectionListener lsl = e -> {
+			if (!e.getValueIsAdjusting()) {
+				fillFields();
+			}
+		};
+
+		jtbDSTK.getSelectionModel().addListSelectionListener(lsl);
+
 		// Renew
 		jbtnLamMoi.addActionListener(e -> renewText());
 
 		// delete account
 		jbtnXoa.addActionListener(e -> deleteAccount());
-
-		// Create account
-		jbtnThem.addActionListener(e -> createAccountAction());
+		jbtnXoa.removeActionListener(e -> deleteAccount());
 
 		// Modify account
 		jbtnSua.addActionListener(e -> modifyAccountAction());
+		jbtnSua.removeActionListener(e -> modifyAccountAction());
+
+		// Create account
+		jbtnThem.addActionListener(e -> createAccountAction());
+		jbtnThem.removeActionListener(e -> createAccountAction());
 
 		// cancel button
 		if (jbtnHuy.isEnabled()) {
 			jbtnHuy.addActionListener(e -> {
 				int response = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn hủy?");
 				if (response == JOptionPane.YES_OPTION) {
+					renderAccount();
 					renewText();
 					setDisable();
 					setEnableTable();
-					setTitleAccount("Thông tin tài khoản");
 				}
 			});
 		}
 
-		// Search as status
-		jcbStatusSearch.addActionListener(e -> searchAsStatus(jcbStatusSearch.getSelectedItem().toString()));
-
 		// Search as account name or employee name
-		jcbNameSearch.addActionListener(e -> {
-			String value = jcbNameSearch.getSelectedItem().toString();
-			searchAsName(value);
+		jbtnSearch.addActionListener(e -> {
+			String categoryValue = jcbNameSearch.getSelectedItem().toString();
+			String textValue = jtfNameSearch.getText();
+			String statusValue = jcbStatusSearch.getSelectedItem().toString();
+			search(categoryValue, textValue, statusValue);
 		});
 
 	}// </editor-fold>//GEN-END:initComponents
@@ -325,6 +338,8 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 	private javax.swing.JScrollPane jScrollPane1;
 	private ArrayList<Integer> employeeIds;
 	private ArrayList<TaiKhoan> accountForChecking;
+	private boolean isCreateAccount;
+	private boolean errorShown = false;
 	// End of variables declaration//GEN-END:variables
 
 	public void renderAccount() {
@@ -334,7 +349,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		renewText();
 		renewTable();
 		renewComboBox();
-		setTitleAccount("Thông tin tài khoản");
+		clearInfo();
 
 		ArrayList<TaiKhoan> accounts = this.taiKhoanBus.getTaiKhoan();
 		accountForChecking = accounts;
@@ -361,13 +376,15 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		comboBoxTrangThaiModel.addElement("Ngừng hoạt động");
 		this.jcbStatus.setModel(comboBoxTrangThaiModel);
 
+		jcbNhanVien.addItem("Chọn tài khoản");
+		jcbNhanVien.setSelectedItem("Chọn tài khoản");
+
 		jtbDSTK.setModel(model);
 	}
 
 	public int checkExistedId() {
-		int employeeId = -1;
 		int getSelectedName = jcbNhanVien.getSelectedIndex();
-		employeeId = employeeIds.get(getSelectedName);
+		int employeeId = employeeIds.get(getSelectedName);
 
 		if (getSelectedName != -1 && employeeId != -1) {
 			for (TaiKhoan account : accountForChecking) {
@@ -392,30 +409,79 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		NhanVien nv = new NhanVien(employeeId, employeeName);
 
 		LocalDateTime currentDateTime = LocalDateTime.now();
+
 		int newStatus = status.equalsIgnoreCase("Hoạt động") ? 1 : 0;
 		TaiKhoan tk = new TaiKhoan(username, nv, currentDateTime, newStatus);
 
-		if (!password.equalsIgnoreCase("") && !verifyPassword.equalsIgnoreCase("")) {
-			boolean isCorrectPassword = isConfirmedPassword(password, verifyPassword);
-			if (!isCorrectPassword) {
-				JOptionPane.showMessageDialog(null, "Mật khẩu không đúng");
-				return;
+		boolean isCorrectPassword = isConfirmedPassword(password, verifyPassword);
+		if (!isCorrectPassword) {
+			JOptionPane.showMessageDialog(null, "Mật khẩu không đúng");
+			return;
+		}
+		tk.setMatKhau(password);
+
+		if (isCorrectPassword) {
+			boolean isSuccess = taiKhoanBus.add(tk);
+			if (isSuccess) {
+				JOptionPane.showMessageDialog(null, "Tạo tài khoản thành công");
+				renderAccount();
+
+				int lastRowIndex = model.getRowCount() - 1;
+				if (lastRowIndex >= 0) {
+					jtbDSTK.setRowSelectionInterval(lastRowIndex, lastRowIndex);
+					jtbDSTK.scrollRectToVisible(jtbDSTK.getCellRect(lastRowIndex, 0, true));
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Tạo tài khoản thất bại");
 			}
-			tk.setMatKhau(password);
+		}
+	}
+
+	// Create account action
+	private void createAccountAction() {
+		errorShown = false;
+		System.out.println("Create");
+		isCreateAccount = true;
+		renderAccount();
+		setDisableTable();
+		setDisable();
+		jcbNhanVien.setEnabled(true);
+		jbtnHuy.setEnabled(true);
+		jcbNhanVien.removeItem("Chọn tài khoản");
+
+		// Remove the existing action listener
+		ActionListener[] listeners = jcbNhanVien.getActionListeners();
+		for (ActionListener listener : listeners) {
+			jcbNhanVien.removeActionListener(listener);
 		}
 
-		boolean isSuccess = taiKhoanBus.add(tk);
-		if (isSuccess) {
-			JOptionPane.showMessageDialog(null, "Tạo tài khoản thành công");
-			renderAccount();
-			
-			int lastRowIndex = model.getRowCount() - 1;
-			if (lastRowIndex >= 0) {
-			    jtbDSTK.setRowSelectionInterval(lastRowIndex, lastRowIndex);
-			    jtbDSTK.scrollRectToVisible(jtbDSTK.getCellRect(lastRowIndex, 0, true));
-			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Tạo tài khoản thất bại");
+		// Select employee to create account
+		if (isCreateAccount) {
+			jcbNhanVien.addActionListener(e -> {
+				if (jcbNhanVien.isEnabled()) {
+
+					if (checkExistedId() == -1) {
+						JOptionPane.showMessageDialog(null, "Nhân viên đã có tài khoản");
+						setDisable();
+						jcbNhanVien.setEnabled(true);
+						jbtnHuy.setEnabled(true);
+						return;
+					}
+
+					setEnable();
+					jbtnXacNhan.addActionListener(jbtnXacNhan -> {
+						String currentEmployee = comboBoxNhanVienModel.getSelectedItem().toString();
+						String currentUserName = jtfTenTK.getText();
+						@SuppressWarnings("deprecation")
+						String currentPassword = jpwMatKhau.getText();
+						@SuppressWarnings("deprecation")
+						String currentVerifyPassword = jpwXacNhanMatKhau.getText();
+						String currentStatus = comboBoxTrangThaiModel.getSelectedItem().toString();
+						createAccount(currentEmployee, currentUserName, currentPassword, currentVerifyPassword,
+								currentStatus);
+					});
+				}
+			});
 		}
 	}
 
@@ -434,72 +500,34 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		jtfTenTK.setEnabled(false);
 	}
 
-	// Create account action
-	private void createAccountAction() {
-		setTitleAccount("Tạo tài khoản");
-		setDisableTable();
-		setDisable();
-		jcbNhanVien.setEnabled(true);
-		jbtnHuy.setEnabled(true);
-
-		// Remove the existing action listener
-		ActionListener[] listeners = jcbNhanVien.getActionListeners();
-		for (ActionListener listener : listeners) {
-			jcbNhanVien.removeActionListener(listener);
-		}
-
-		// Select employee to create account
-		jcbNhanVien.addActionListener(e -> {
-			if (jcbNhanVien.isEnabled()) {
-
-				if (checkExistedId() == -1) {
-					JOptionPane.showMessageDialog(null, "Nhân viên đã có tài khoản");
-					setDisable();
-					jcbNhanVien.setEnabled(true);
-					jbtnHuy.setEnabled(true);
-					return;
-				}
-
-				setEnable();
-				jbtnXacNhan.addActionListener(event -> {
-					if (getTitleAccount().equalsIgnoreCase("Tạo tài khoản")) {
-						String currentEmployee = comboBoxNhanVienModel.getSelectedItem().toString();
-						String currentUserName = jtfTenTK.getText();
-						@SuppressWarnings("deprecation")
-						String currentPassword = jpwMatKhau.getText();
-						@SuppressWarnings("deprecation")
-						String currentVerifyPassword = jpwXacNhanMatKhau.getText();
-						String currentStatus = comboBoxTrangThaiModel.getSelectedItem().toString();
-						createAccount(currentEmployee, currentUserName, currentPassword, currentVerifyPassword,
-								currentStatus);
-					}
-				});
-			}
-		});
-	}
-
 	// Modify account action
 	private void modifyAccountAction() {
-		setTitleAccount("Chỉnh sửa tài khoản");
+		System.out.println("Update");
+		isCreateAccount = false;
 		modifyAccount();
 
 		// Remove the existing action listener
 		ActionListener[] listeners = jcbNhanVien.getActionListeners();
+		ActionListener[] listeners_2 = jbtnXacNhan.getActionListeners();
 		for (ActionListener listener : listeners) {
 			jcbNhanVien.removeActionListener(listener);
 		}
+		for (ActionListener listener : listeners_2) {
+			jcbNhanVien.removeActionListener(listener);
+		}
 
-		if (!jtfTenTK.isEnabled()) {
-			jbtnXacNhan.addActionListener(e -> {
-				if (getTitleAccount().equalsIgnoreCase("Chỉnh sửa tài khoản")) {
+		if (!isCreateAccount) {
+			if (!jtfTenTK.isEnabled()) {
+				jbtnXacNhan.addActionListener(e -> {
 					@SuppressWarnings("deprecation")
 					String password = jpwMatKhau.getText();
 					@SuppressWarnings("deprecation")
 					String verifyPassword = jpwXacNhanMatKhau.getText();
 					String status = jcbStatus.getSelectedItem().toString();
+
 					updateAccount(password, verifyPassword, status);
-				}
-			});
+				});
+			}
 		}
 	}
 
@@ -519,6 +547,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
 				if (!isPassword) {
 					JOptionPane.showMessageDialog(null, "Mật khẩu xác nhận không đúng");
+					return;
 				}
 
 				taiKhoanBus.updatePassword(accountName, password);
@@ -530,7 +559,6 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 	}
 
 	public void deleteAccount() {
-		setTitleAccount("Xóa tài khoản");
 		int selectedAccount = jtbDSTK.getSelectedRow();
 
 		if (selectedAccount == -1) {
@@ -549,55 +577,66 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 			} else {
 				JOptionPane.showMessageDialog(null, "Xóa tài khoản thất bại");
 			}
-		} else {
-			setTitleAccount("Thông tin tài khoản");
 		}
 	}
 
-	public void searchAsStatus(String status) {
-		renderAccount(); // refresh the UI
+	public void search(String categoryValue, String textValue, String statusValue) {
+		renderAccount(); // refresh UI
+		int rowCount = model.getRowCount();
+		textValue = textValue.toUpperCase();
 
-		for (int i = model.getRowCount() - 1; i >= 0; i--) {
-			String getStatusColumn = model.getValueAt(i, 3).toString();
-			if (!status.equalsIgnoreCase(getStatusColumn)) {
-				model.removeRow(i);
+		for (int i = rowCount - 1; i >= 0; i--) {
+			String accountName = model.getValueAt(i, 0).toString().toUpperCase();
+			String employeeName = model.getValueAt(i, 1).toString().toUpperCase();
+			String status = model.getValueAt(i, 3).toString();
+
+			if (categoryValue.equalsIgnoreCase("Tên tài khoản")) {
+				boolean shouldRemove = true;
+
+				if (accountName.contains(textValue)) {
+					if (status.equalsIgnoreCase(statusValue)) {
+						shouldRemove = false;
+					} else if (statusValue.equalsIgnoreCase("Tất cả")) {
+						shouldRemove = false;
+					}
+				}
+
+				if (shouldRemove) {
+					model.removeRow(i);
+				}
+
+			} else if (categoryValue.equalsIgnoreCase("Nhân viên")) {
+				boolean shouldRemove = true;
+
+				if (employeeName.contains(textValue)) {
+					if (status.equalsIgnoreCase(statusValue)) {
+						shouldRemove = false;
+					} else if (statusValue.equalsIgnoreCase("Tất cả")) {
+						shouldRemove = false;
+					}
+				}
+
+				if (shouldRemove) {
+					model.removeRow(i);
+				}
+
+			} else {
+				boolean shouldRemove = true;
+
+				if (employeeName.contains(textValue) || accountName.contains(textValue)) {
+					if (status.equalsIgnoreCase(statusValue)) {
+						shouldRemove = false;
+					} else if (statusValue.equalsIgnoreCase("Tất cả")) {
+						shouldRemove = false;
+					}
+				}
+
+				if (shouldRemove) {
+					model.removeRow(i);
+				}
+
 			}
 		}
-
-		if (status.equalsIgnoreCase("Tất cả")) {
-			renderAccount();
-		}
-	}
-
-	public void searchAccountName(String value1, String value2) {
-		renderAccount(); // refresh the UI
-
-		for (int i = model.getRowCount() - 1; i >= 0; i--) {
-			String getTableValue = "";
-
-			if (value2.trim().equalsIgnoreCase("Tên tài khoản")) {
-				getTableValue = model.getValueAt(i, 0).toString();
-			} else if (value2.trim().equalsIgnoreCase("Nhân viên")) {
-				getTableValue = model.getValueAt(i, 1).toString();
-			}
-
-			if (!getTableValue.toUpperCase().contains(value1.toUpperCase())) {
-				model.removeRow(i);
-			}
-		}
-
-		if (value2.equalsIgnoreCase("Tất cả") || value1.isEmpty()) {
-			renderAccount();
-		}
-	}
-
-	public void searchAsName(String value) {
-		jbtnSearch.addActionListener(event -> {
-			String searchValue = jtfNameSearch.getText();
-			String comboboxValue = jcbNameSearch.getSelectedItem().toString();
-
-			searchAccountName(searchValue, comboboxValue);
-		});
 	}
 
 	public void renewText() {
@@ -650,9 +689,11 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		jtbDSTK.setEnabled(true);
 	}
 
-	public void setTitleAccount(String title) {
-		TitledBorder titledBorder = BorderFactory.createTitledBorder(title);
-		jPanel1.setBorder(titledBorder);
+	public void clearInfo() {
+		jtfTenTK.setText("");
+		jcbNhanVien.removeAllItems();
+		jpwMatKhau.setText("");
+		jpwXacNhanMatKhau.setText("");
 	}
 
 	public String getTitleAccount() {
@@ -673,6 +714,17 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		}
 
 		return password.trim().equals(verifyPassword.trim());
+	}
+
+	public void fillFields() {
+		int selectedRow = jtbDSTK.getSelectedRow();
+
+		if (selectedRow >= 0) {
+			jcbNhanVien.addItem(model.getValueAt(selectedRow, 1).toString());
+			jcbNhanVien.setSelectedItem(model.getValueAt(selectedRow, 1).toString());
+			jtfTenTK.setText(model.getValueAt(selectedRow, 0).toString());
+			jcbStatus.setSelectedItem(model.getValueAt(selectedRow, 3).toString());
+		}
 	}
 
 	public static void main(String[] args) {
