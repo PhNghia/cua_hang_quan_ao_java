@@ -16,7 +16,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,20,0,0,3,-20"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,10,0,0,3,-20"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -55,10 +55,9 @@
             <Component class="javax.swing.JTable" name="jtbDSSP">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="4">
+                  <Table columnCount="5" rowCount="4">
                     <Column editable="false" title="M&#xe3;" type="java.lang.Object"/>
                     <Column editable="false" title="S&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
-                    <Column editable="false" title="Gi&#xe1; nh&#x1ead;p" type="java.lang.Object"/>
                     <Column editable="false" title="Gi&#xe1; b&#xe1;n" type="java.lang.Object"/>
                     <Column editable="false" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                     <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
@@ -66,11 +65,6 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
@@ -118,7 +112,7 @@
               </Border>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[380, 427]"/>
+              <Dimension value="[400, 427]"/>
             </Property>
           </Properties>
           <Constraints>
@@ -148,6 +142,10 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="autoscrolls" type="boolean" value="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[400, 411]"/>
+                </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -155,138 +153,152 @@
                 </Constraint>
               </Constraints>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="Center"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="jPanel5">
+
+                      <Layout>
+                        <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jlbMauSacCT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jlbGiaNhapCT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jlbSoLuongCT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jlbGiaBanCT" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                                          <Component id="jlbSoLuongCT" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jlbTrangThaiCT" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jlbKichCoCT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jlbTrangThaiCT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="175" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                                              <Component id="jlbImageCT" min="-2" pref="180" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
+                                                      <Component id="jlbKichCoCT" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jlbMaSPCT" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jlbChatLieuCT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jlbSanPhamCT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="99" max="32767" attributes="0"/>
-                                  <Component id="jlbImageCT" min="-2" pref="180" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jlbMaSPCT" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jlbChatLieuCT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jlbSanPhamCT" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="309" max="32767" attributes="0"/>
+                                  <Component id="jlbMauSacCT" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jlbGiaBanCT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jlbSoLuongCT" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jlbTrangThaiCT" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jlbImageCT" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jlbMaSPCT" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jlbSanPhamCT" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                      <Component id="jlbChatLieuCT" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="jlbKichCoCT" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="84" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="jlbImageCT" min="-2" pref="144" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jlbMaSPCT" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jlbSanPhamCT" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="jlbChatLieuCT" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jlbMauSacCT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlbKichCoCT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jlbGiaNhapCT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlbGiaBanCT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jlbSoLuongCT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlbTrangThaiCT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="jlbMaSPCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbChatLieuCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Ch&#x1ea5;t li&#x1ec7;u:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbMauSacCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbKichCoCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="K&#xed;ch c&#x1ee1;:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbGiaNhapCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Gi&#xe1; nh&#x1ead;p:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbGiaBanCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Gi&#xe1; b&#xe1;n:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbSoLuongCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbTrangThaiCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbImageCT">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/image/362262966_1023992471955085_8868555814812732925_n.jpg"/>
-                    </Property>
-                    <Property name="opaque" type="boolean" value="true"/>
-                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 220]"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbSanPhamCT">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m:"/>
-                  </Properties>
-                </Component>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="jlbMaSPCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbChatLieuCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Ch&#x1ea5;t li&#x1ec7;u:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbMauSacCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c: "/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbKichCoCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="K&#xed;ch c&#x1ee1;:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbGiaBanCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Gi&#xe1; b&#xe1;n:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbSoLuongCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbTrangThaiCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbImageCT">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/image/362262966_1023992471955085_8868555814812732925_n.jpg"/>
+                            </Property>
+                            <Property name="opaque" type="boolean" value="true"/>
+                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                              <Dimension value="[200, 220]"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jlbSanPhamCT">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m:"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -502,63 +514,53 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlbSanPham" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jlbHinhAnh" min="-2" max="-2" attributes="0"/>
                                       <Component id="jlbMa" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jtfMa" min="-2" pref="180" max="-2" attributes="0"/>
-                                                      <Component id="jtfSanPham" min="-2" pref="180" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jlbChatLieu" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jlbMauSac" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="jtfChatLieu" pref="150" max="32767" attributes="0"/>
-                                                      <Component id="jtfMauSac" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Component id="jtfHinhAnh" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jtfSanPham" min="-2" pref="180" max="-2" attributes="0"/>
+                                              <Component id="jtfMa" min="-2" pref="180" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jlbKichCo" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jlbGiaBan" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jlbChatLieu" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jlbMauSac" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jtfChatLieu" pref="150" max="32767" attributes="0"/>
+                                              <Component id="jtfMauSac" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Component id="jlbGiaNhap" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jtfHinhAnh" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="jlbSanPham" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jtfGiaNhap" pref="100" max="32767" attributes="0"/>
-                                      <Component id="jtfGiaBan" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jlbStatus" max="32767" attributes="0"/>
-                                      <Component id="jlbSoLuong" min="-2" pref="54" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="jcbKichCo" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace min="74" pref="74" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jlbGiaBan" max="32767" attributes="0"/>
+                              <Component id="jlbKichCo" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtfSoLuong" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="jtfGiaBan" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="jcbKichCo" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jlbStatus" max="32767" attributes="0"/>
+                              <Component id="jlbSoLuong" min="-2" pref="54" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jcbStatus" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="jtfSoLuong" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -569,7 +571,7 @@
                           <Component id="jbtnHuy" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -582,8 +584,10 @@
                       <Component id="jtfMa" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlbChatLieu" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtfChatLieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfGiaNhap" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbGiaNhap" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -591,19 +595,15 @@
                       <Component id="jtfSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlbMauSac" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtfMauSac" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbKichCo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbKichCo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlbHinhAnh" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtfHinhAnh" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbKichCo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbKichCo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -633,13 +633,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfChatLieuActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlbGiaNhap">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Gi&#xe1; nh&#x1ead;p"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtfGiaNhap">
         </Component>
         <Component class="javax.swing.JLabel" name="jlbSoLuong">
           <Properties>
