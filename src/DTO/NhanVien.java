@@ -11,20 +11,20 @@ import java.time.LocalDate;
  * @author BomPC
  */
 public class NhanVien {
-    private int maNhanVien;
-    private String tenNhanVien;
-    private int gioiTinh;
-    private LocalDate ngaySinh;
-    private String sdt;
-    private String email;
-    private String diaChi;
-    private NhomQuyen chucVu;
-    private int trangThai;
+	private int maNhanVien;
+	private String tenNhanVien;
+	private int gioiTinh;
+	private LocalDate ngaySinh;
+	private String sdt;
+	private String email;
+	private String diaChi;
+	private NhomQuyen chucVu;
+	private int trangThai;
 	private int hienThi;
 
-    private final String[] dsGioiTinh = new String[] { "Nữ", "Nam" };
-    private final String[] dsTrangThai = new String[] { "Đã nghỉ việc", "Đang làm việc" };
-    private final String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Đã nghỉ việc", "Đang làm việc" };
+	private final String[] dsGioiTinh = new String[] { "Nữ", "Nam" };
+	private final String[] dsTrangThai = new String[] { "Đã nghỉ việc", "Đang làm việc" };
+	private final String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Đã nghỉ việc", "Đang làm việc" };
 
 	public int getHienThi() {
 		return hienThi;
@@ -34,115 +34,122 @@ public class NhanVien {
 		this.hienThi = hien_thi;
 	}
 
-    public int getMaNhanVien() {
-        return maNhanVien;
-    }
+	public int getMaNhanVien() {
+		return maNhanVien;
+	}
 
-    public void setMaNhanVien(int maNhanVien) {
-        this.maNhanVien = maNhanVien;
-    }
+	public void setMaNhanVien(int maNhanVien) {
+		this.maNhanVien = maNhanVien;
+	}
 
-    public String getTenNhanVien() {
-        return tenNhanVien;
-    }
+	public String getTenNhanVien() {
+		return tenNhanVien;
+	}
 
-    public void setTenNhanVien(String tenNhanVien) {
-        this.tenNhanVien = tenNhanVien;
-    }
+	public void setTenNhanVien(String tenNhanVien) {
+		this.tenNhanVien = tenNhanVien;
+	}
 
-    public int getGioiTinh() {
-        return gioiTinh;
-    }
+	public int getGioiTinh() {
+		return gioiTinh;
+	}
 
-    public void setGioiTinh(int gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
+	public void setGioiTinh(int gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
 
-    public LocalDate getNgaySinh() {
-        return ngaySinh;
-    }
+	public LocalDate getNgaySinh() {
+		return ngaySinh;
+	}
 
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
+	public void setNgaySinh(LocalDate ngaySinh) {
+		this.ngaySinh = ngaySinh;
+	}
 
-    public String getSdt() {
-        return sdt;
-    }
+	public String getSdt() {
+		return sdt;
+	}
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
+	public void setSdt(String sdt) {
+		this.sdt = sdt;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getDiaChi() {
-        return diaChi;
-    }
+	public String getDiaChi() {
+		return diaChi;
+	}
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
+	}
 
-    public NhomQuyen getChucVu() {
-        return chucVu;
-    }
+	public NhomQuyen getChucVu() {
+		return chucVu;
+	}
 
-    public void setChucVu(NhomQuyen chucVu) {
-        this.chucVu = chucVu;
-    }
+	public void setChucVu(NhomQuyen chucVu) {
+		this.chucVu = chucVu;
+	}
 
-    public int getTrangThai() {
-        return trangThai;
-    }
+	public int getTrangThai() {
+		return trangThai;
+	}
 
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
-    }
+	public void setTrangThai(int trangThai) {
+		this.trangThai = trangThai;
+	}
 
-    public String[] getDsGioiTinh() {
-        return dsGioiTinh;
-    }
+	public String[] getDsGioiTinh() {
+		return dsGioiTinh;
+	}
 
-    public String[] getDsTrangThai() {
-        return dsTrangThai;
-    }
+	public String[] getDsTrangThai() {
+		return dsTrangThai;
+	}
 
-    public String[] getDsTrangThaiForFilter() {
-        return dsTrangThaiForFilter;
-    }
+	public String[] getDsTrangThaiForFilter() {
+		return dsTrangThaiForFilter;
+	}
 
-    public NhanVien() {
-    }
+	public NhanVien() {
+	}
 
-    public NhanVien(int maNhanVien, String tenNhanVien) {
-        this.maNhanVien = maNhanVien;
-        this.tenNhanVien = tenNhanVien;
-    }
+	public NhanVien(int maNhanVien, String tenNhanVien, int hienThi) {
+		this.maNhanVien = maNhanVien;
+		this.tenNhanVien = tenNhanVien;
+		this.hienThi = hienThi;
+	}
 
-    public NhanVien(int maNhanVien, String tenNhanVien, int gioiTinh, LocalDate ngaySinh, String sdt, String email, String diaChi, NhomQuyen chucVu, int trangThai) {
-        this.maNhanVien = maNhanVien;
-        this.tenNhanVien = tenNhanVien;
-        this.gioiTinh = gioiTinh;
-        this.ngaySinh = ngaySinh;
-        this.sdt = sdt;
-        this.email = email;
-        this.diaChi = diaChi;
-        this.chucVu = chucVu;
-        this.trangThai = trangThai;
-    }
-    
-    public String getGioiTinhText () {
-        return dsGioiTinh[gioiTinh];
-    }
-    
-    public String getTrangThaiText () {
-        return dsTrangThai[trangThai];
-    }
+	public NhanVien(int maNhanVien, String tenNhanVien) {
+		this.maNhanVien = maNhanVien;
+		this.tenNhanVien = tenNhanVien;
+	}
+
+	public NhanVien(int maNhanVien, String tenNhanVien, int gioiTinh, LocalDate ngaySinh, String sdt, String email,
+			String diaChi, NhomQuyen chucVu, int trangThai) {
+		this.maNhanVien = maNhanVien;
+		this.tenNhanVien = tenNhanVien;
+		this.gioiTinh = gioiTinh;
+		this.ngaySinh = ngaySinh;
+		this.sdt = sdt;
+		this.email = email;
+		this.diaChi = diaChi;
+		this.chucVu = chucVu;
+		this.trangThai = trangThai;
+	}
+
+	public String getGioiTinhText() {
+		return dsGioiTinh[gioiTinh];
+	}
+
+	public String getTrangThaiText() {
+		return dsTrangThai[trangThai];
+	}
 }

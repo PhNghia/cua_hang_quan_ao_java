@@ -1,17 +1,14 @@
 package DAO;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import DTO.ConnectionDB;
 import DTO.NhanVien;
-import DTO.NhomQuyen;
 import DTO.TaiKhoan;
 
 public class TaiKhoanDao {
@@ -22,25 +19,23 @@ public class TaiKhoanDao {
 	}
 
 	public ArrayList<TaiKhoan> getTaiKhoan() {
-<<<<<<< HEAD
 		ArrayList<TaiKhoan> taiKhoanList = new ArrayList();
 		String query = "SELECT * FROM tai_khoan JOIN nhan_vien ON nhan_vien.ma_nhan_vien = tai_khoan.ma_nhan_vien;";
-=======
-		ArrayList<TaiKhoan> taiKhoanList = new ArrayList<>();
-		String query = "SELECT * FROM tai_khoan JOIN nhan_vien on nhan_vien.ma_nhan_vien = tai_khoan.ma_nhan_vien WHERE hien_thi = 1;";
->>>>>>> b76724dd8fbb1613f65cc37c4ecc700cf156a4b1
 
 		try {
 			ResultSet result = this.connection.executeQuery(query);
 			if (result != null) {
 				while (result.next()) {
 					String accountName = result.getString("ten_tai_khoan");
+					String accountEmployee = result.getString("ten_nhan_vien");
 					LocalDateTime accountCreatedDate = result.getTimestamp("ngay_tao").toLocalDateTime();
 					int accountStatus = result.getInt("trang_thai");
+					String accountPassword = result.getString("mat_khau");
 
 					int employeeId = result.getInt("ma_nhan_vien");
-					String employeeName = result.getString("ten_nhan_vien");
-					NhanVien employee = new NhanVien(employeeId, employeeName);
+					int employeeDisplay = result.getInt("hien_thi");
+					NhanVien employee = new NhanVien(employeeId, accountEmployee);
+					employee.setHienThi(employeeDisplay);
 
 					taiKhoanList.add(new TaiKhoan(accountName, employee, accountCreatedDate, accountStatus));
 				}
