@@ -73,7 +73,6 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jlbMaSP = new javax.swing.JLabel();
         jlbSanPham = new javax.swing.JLabel();
         jlbGiaNhap = new javax.swing.JLabel();
-        jlbLoiNhuan = new javax.swing.JLabel();
         jlbSoLuongNhap = new javax.swing.JLabel();
         jlbTongTienCT = new javax.swing.JLabel();
         jlbNcc = new javax.swing.JLabel();
@@ -184,11 +183,11 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Lợi nhuận (%)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
+                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -203,7 +202,6 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
             jtbCTHD.getColumnModel().getColumn(3).setResizable(false);
             jtbCTHD.getColumnModel().getColumn(4).setResizable(false);
             jtbCTHD.getColumnModel().getColumn(5).setResizable(false);
-            jtbCTHD.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jPanel5.add(jScrollPane2, java.awt.BorderLayout.CENTER);
@@ -238,8 +236,6 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
 
         jlbGiaNhap.setText("Giá nhập:");
 
-        jlbLoiNhuan.setText("Lợi nhuận:");
-
         jlbSoLuongNhap.setText("Số lượng nhập:");
 
         jlbTongTienCT.setText("Tổng tiền:");
@@ -256,15 +252,17 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                     .addComponent(jlbSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpnCTSPLayout.createSequentialGroup()
                         .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jlbSoLuongNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .addComponent(jlbMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlbMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                             .addComponent(jlbGiaNhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlbNcc, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlbLoiNhuan, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(jlbTongTienCT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(195, 195, 195)))
+                        .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpnCTSPLayout.createSequentialGroup()
+                                .addComponent(jlbNcc, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(196, 196, 196))
+                            .addComponent(jlbSoLuongNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jpnCTSPLayout.createSequentialGroup()
+                        .addComponent(jlbTongTienCT, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpnCTSPLayout.setVerticalGroup(
@@ -279,11 +277,9 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbGiaNhap)
-                    .addComponent(jlbLoiNhuan))
+                    .addComponent(jlbSoLuongNhap))
                 .addGap(18, 18, 18)
-                .addGroup(jpnCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbSoLuongNhap)
-                    .addComponent(jlbTongTienCT))
+                .addComponent(jlbTongTienCT)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -343,7 +339,6 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
     private javax.swing.JButton jbtnThuHoi;
     private javax.swing.JComboBox<String> jcbNameSearch;
     private javax.swing.JLabel jlbGiaNhap;
-    private javax.swing.JLabel jlbLoiNhuan;
     private javax.swing.JLabel jlbMaSP;
     private javax.swing.JLabel jlbNcc;
     private javax.swing.JLabel jlbNccSearch;
@@ -456,11 +451,11 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object[][] {},
             new String [] {
-                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Lợi nhuận (%)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
+                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             @Override
@@ -480,11 +475,11 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         jtbCTHD.setModel(new javax.swing.table.DefaultTableModel(
             data,
             new String [] {
-                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Lợi nhuận (%)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
+                "Mã sản phẩm", "Sản phẩm", "Nhà cung cấp", "Giá nhập (VNĐ)", "Số lượng nhập (chiếc)", "Tổng tiền (VNĐ)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             @Override
@@ -500,7 +495,6 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         this.jlbSanPham.setText("Sản phẩm:");
         this.jlbNcc.setText("Nhà cung cấp:");
         this.jlbGiaNhap.setText("Giá nhập:");
-        this.jlbLoiNhuan.setText("Lợi nhuận:");
         this.jlbSoLuongNhap.setText("Số lượng nhập:");
         this.jlbTongTienCT.setText("Tổng tiền:");
         this.revalidate();
@@ -512,8 +506,7 @@ public class HoaDonMuaGUI extends javax.swing.JPanel {
         this.jlbMaSP.setText("Mã sản phẩm: " + sp.getMaSP());
         this.jlbSanPham.setText("Sản phẩm: " + sp.getTenSP());
         this.jlbNcc.setText("Nhà cung cấp: " + cthd.getNcc().getTenNcc());
-        this.jlbGiaNhap.setText("Giá nhập: " + sp.getGiaNhap() + " VNĐ");
-        this.jlbLoiNhuan.setText("Lợi nhuận: " + cthd.getLoiNhuan() + " %");
+        this.jlbGiaNhap.setText("Giá nhập: " + cthd.getGiaNhap() + " VNĐ");
         this.jlbSoLuongNhap.setText("Số lượng nhập: " + sp.getSoLuong() + " chiếc");
         this.jlbTongTienCT.setText("Tổng tiền: " + cthd.getTongTien() + " VNĐ");
         this.revalidate();

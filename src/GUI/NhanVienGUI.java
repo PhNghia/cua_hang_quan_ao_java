@@ -20,7 +20,14 @@ public class NhanVienGUI extends javax.swing.JPanel {
         loadData();//load all data to Jtable
         setEnabledThongTinNVForm(false);//disable textfield ,combobox trong thong tin nhan vien
     }
-
+    //chuyen cac combobox ,jtextfield tim kiem ve gia tri ban dau
+    public void clearSearchFilter(){
+        jcbNameSearchType.setSelectedIndex(0);
+        jtfNameSearch.setText("");
+        jcbGioiTinhSearchType.setSelectedIndex(0);
+        jcbChucVuSearchType.setSelectedIndex(0);
+        jcbStatusSearchType.setSelectedIndex(0);
+    }
     //chuyen sang trang thai mac dinh
     public void changeToNormalState() {
         clearThongTinNVForm();
@@ -33,6 +40,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         JTableNV.clearSelection();
         jbtnSua.setEnabled(false);
         jbtnXoa.setEnabled(false);
+        jpnFormNV.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin nhân viên"));
     }
 
     //lam moi cac textfield ,jcombobox trong phan thong tin nhan vien
@@ -63,7 +71,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
     public void loadToForm(int row) {
         DefaultTableModel tablemodel = (DefaultTableModel) JTableNV.getModel();
         int id = Integer.parseInt(tablemodel.getValueAt(row, 0).toString());
-        DTO.NhanVien dto = (DTO.NhanVien) BUS.NhanVienBUS.getInstance().getNhanVienByID(id);
+        DTO.NhanVien dto = BUS.NhanVienBUS.getInstance().getNhanVienByID(id);
         if (dto != null) {
             jtfHoTen.setText(dto.getTenNhanVien());
             jcbGioiTinh.setSelectedIndex(dto.getGioiTinh() + 1);
@@ -420,6 +428,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jbtnSua.setEnabled(false);
         jbtnXoa.setEnabled(false);
         jbtnThem.setEnabled(false);
+        jpnFormNV.setBorder(javax.swing.BorderFactory.createTitledBorder("Thêm thông tin nhân viên"));
     }//GEN-LAST:event_jbtnThemActionPerformed
     //kiem tra da dien day du thong tin chua ,neu chua return 0 ,neu co return 1
     public boolean checkFormFilled() {
@@ -496,6 +505,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
             } else {//neu thanh cong them tai khoan,chuyen sang mac dinh
                 loadData();
                 changeToNormalState();
+                clearSearchFilter();
             }
         } else {//neu la trang thai Sua Tai khoan
             if (!checkValidSDT(jtfSdt.getText())) {
@@ -537,6 +547,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
             } else {//neu thanh cong sua tai khoan,chuyen sang mac dinh
                 loadData();
                 changeToNormalState();
+                clearSearchFilter();
             }
         }
     }//GEN-LAST:event_jbtnXacNhanActionPerformed
@@ -553,6 +564,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jbtnXoa.setEnabled(false);
         jbtnSua.setEnabled(false);
         JTableNV.setEnabled(false);
+        jpnFormNV.setBorder(javax.swing.BorderFactory.createTitledBorder("Sửa thông tin nhân viên"));
     }//GEN-LAST:event_jbtnSuaActionPerformed
 
     private void jbtnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnXoaActionPerformed
@@ -563,6 +575,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
             } else {
                 loadData();
                 changeToNormalState();
+                clearSearchFilter();
             }
         }
     }//GEN-LAST:event_jbtnXoaActionPerformed

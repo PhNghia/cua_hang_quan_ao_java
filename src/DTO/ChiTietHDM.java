@@ -11,15 +11,16 @@ package DTO;
 public class ChiTietHDM {
     private String maHD;
     private NhaCungCap ncc; //các thuộc tính cần lấy: mã, tên
-    private SanPham sanPham; // các thuộc tính cần lấy: mã, tên, giá nhập, số lượng (ở đây là số lượng mua vào trong hóa đơn)
-    private float loiNhuan;
+    private SanPham sanPham; // các thuộc tính cần lấy: mã, tên, số lượng (ở đây là số lượng mua vào trong hóa đơn)
+    private int giaNhap;
     private int tongTien;
 
-    public ChiTietHDM(String maHD, NhaCungCap ncc, SanPham sanPham, float loiNhuan, int tongTien) {
+    public ChiTietHDM(String maHD, NhaCungCap ncc, SanPham sanPham, int giaNhap, int tongTien) {
         this.maHD = maHD;
         this.ncc = ncc;
         this.sanPham = sanPham;
-        this.loiNhuan = loiNhuan;
+        this.giaNhap = giaNhap;
+       
         this.tongTien = tongTien;
     }
 
@@ -47,12 +48,12 @@ public class ChiTietHDM {
         this.sanPham = sanPham;
     }
 
-    public float getLoiNhuan() {
-        return loiNhuan;
+    public int getGiaNhap() {
+        return giaNhap;
     }
 
-    public void setLoiNhuan(float loiNhuan) {
-        this.loiNhuan = loiNhuan;
+    public void setGiaNhap(int giaNhap) {
+        this.giaNhap = giaNhap;
     }
 
     public int getTongTien() {

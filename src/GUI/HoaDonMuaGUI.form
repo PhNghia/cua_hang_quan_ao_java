@@ -233,23 +233,17 @@
                     <Component class="javax.swing.JTable" name="jtbCTHD">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="0">
+                          <Table columnCount="6" rowCount="0">
                             <Column editable="false" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                             <Column editable="false" title="S&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                             <Column editable="false" title="Nh&#xe0; cung c&#x1ea5;p" type="java.lang.Object"/>
                             <Column editable="false" title="Gi&#xe1; nh&#x1ead;p (VN&#x110;)" type="java.lang.Object"/>
-                            <Column editable="false" title="L&#x1ee3;i nhu&#x1ead;n (%)" type="java.lang.Object"/>
                             <Column editable="false" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng nh&#x1ead;p (chi&#x1ebf;c)" type="java.lang.Object"/>
                             <Column editable="false" title="T&#x1ed5;ng ti&#x1ec1;n (VN&#x110;)" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                               <Title/>
                               <Editor/>
@@ -441,23 +435,27 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jlbSanPham" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jlbSoLuongNhap" pref="281" max="32767" attributes="0"/>
-                                      <Component id="jlbMaSP" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jlbMaSP" alignment="1" pref="281" max="32767" attributes="0"/>
                                       <Component id="jlbGiaNhap" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jlbNcc" min="-2" pref="279" max="-2" attributes="0"/>
-                                      <Component id="jlbLoiNhuan" pref="280" max="32767" attributes="0"/>
-                                      <Component id="jlbTongTienCT" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jlbNcc" min="-2" pref="279" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jlbSoLuongNhap" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jlbTongTienCT" min="-2" pref="280" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -477,13 +475,10 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jlbGiaNhap" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlbLoiNhuan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbSoLuongNhap" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jlbSoLuongNhap" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlbTongTienCT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jlbTongTienCT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="33" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -503,11 +498,6 @@
                 <Component class="javax.swing.JLabel" name="jlbGiaNhap">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Gi&#xe1; nh&#x1ead;p:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jlbLoiNhuan">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="L&#x1ee3;i nhu&#x1ead;n:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jlbSoLuongNhap">

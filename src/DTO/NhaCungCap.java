@@ -9,7 +9,7 @@ package DTO;
  * @author BomPC
  */
 public class NhaCungCap {
-    private String maNcc;
+    private int maNcc;
     private String tenNcc;
     private String sdt;
     private String diaChi;
@@ -21,12 +21,12 @@ public class NhaCungCap {
         this.tenNcc = tenNcc;
     }
 
-    public NhaCungCap(String maNcc, String tenNcc) {
+    public NhaCungCap(int maNcc, String tenNcc) {
         this.maNcc = maNcc;
         this.tenNcc = tenNcc;
     }
 
-    public NhaCungCap(String maNcc, String tenNcc, String sdt, String diaChi, int trangThai) {
+    public NhaCungCap(int maNcc, String tenNcc, String sdt, String diaChi, int trangThai) {
         this.maNcc = maNcc;
         this.tenNcc = tenNcc;
         this.sdt = sdt;
@@ -34,11 +34,11 @@ public class NhaCungCap {
         this.trangThai = trangThai;
     }
 
-    public String getMaNcc() {
+    public int getMaNcc() {
         return maNcc;
     }
 
-    public void setMaNcc(String maNcc) {
+    public void setMaNcc(int maNcc) {
         this.maNcc = maNcc;
     }
 

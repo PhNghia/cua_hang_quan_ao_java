@@ -9,7 +9,7 @@ package DTO;
  * @author BomPC
  */
 public class KhachHang {
-    private String maKH;
+    private int maKH;
     private String tenKH;
     private String sdt;
     private int tienTichLuy = 0;
@@ -19,12 +19,15 @@ public class KhachHang {
     // => quy đổi thành điểm
     // => quy đổi trở lại thành tiền theo 1 hệ số được xác định trước
 
+    public KhachHang() {
+    }
+
     public KhachHang(String tenKH, String sdt) {
         this.tenKH = tenKH;
         this.sdt = sdt;
     }
 
-    public KhachHang(String maKH, String tenKH, String sdt, int tienTichLuy, int diemTichLuy, int bangTien) {
+    public KhachHang(int maKH, String tenKH, String sdt, int tienTichLuy, int diemTichLuy, int bangTien) {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.sdt = sdt;
@@ -33,11 +36,11 @@ public class KhachHang {
         this.bangTien = bangTien;
     }
 
-    public String getMaKH() {
+    public int getMaKH() {
         return maKH;
     }
 
-    public void setMaKH(String maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 
