@@ -7,10 +7,32 @@ package GUI;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+
+import DTO.NhanVien;
+import DTO.SanPham;
+import DAO.SanPhamDAO;
+import BUS.SanPhamBUS;
+import BUS.TaiKhoanBus;
 
 /**
  *
@@ -21,8 +43,29 @@ public class SanPhamGUI extends javax.swing.JPanel {
     /**
      * Creates new form SanPhamView
      */
+	private SanPhamBUS SanPhamBUS = null;
+    private SanPham SanPham = null;
+    private String[] kichCoList = null;
+    private javax.swing.table.DefaultTableModel model;
+    private ArrayList<SanPham> checkList;
+    private List<JTextField> requiredFieldList = new ArrayList<>();
+    private String formStatus = "";
+    private String dupFlag="";
+    
     public SanPhamGUI() {
+    	SanPhamBUS = new SanPhamBUS();
+    	model = new DefaultTableModel(new Object[] {"Mã","Sản phẩm","Giá bán (VNĐ)","Số lượng","Trạng thái"},0){
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false
+                };
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit [columnIndex];
+                }
+            };
         initComponents();
+        editComponents();
+        setTable();
         defaultStatus();
         actionEvent();
     }
@@ -455,59 +498,358 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private void jtfChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfChatLieuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfChatLieuActionPerformed
-
-  //SET FORM STATUS
-    public void setFormStatus(JPanel panel, Boolean status) {
+    
+    public void editComponents() {
+    	jlbMa.setText("Mã*");
+    	jlbSanPham.setText("Sản phẩm*");
+    	jlbGiaBan.setText("Giá bán*");
+    	jcbKichCo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S","M","L","XL","XLL" }));
+    	jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ngừng bán", "Chuẩn bị bán", "Đang bán"}));
+    	jcbKickCoSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S","M","L","XL","XLL" }));
+    	jcbStatusSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ngừng bán", "Chuẩn bị bán", "Đang bán"}));
+    	
+    }
+    
+  //SET LIST FORM'S STATUS
+    public boolean setListFormStatus(JPanel panel, Boolean status) {
     	for (Component cp : panel.getComponents() ){
             if (!(cp instanceof JButton))
     			cp.setEnabled(status);
     	}
+    	return status;
     }
+  // GET LIST FORM
+    public SanPham getListForm() {
+    	 String maSP = jtfMa.getText();
+    	 String tenSP = jtfSanPham.getText();
+    	 String chatlieu = jtfChatLieu.getText();
+    	 String mausac = jtfMauSac.getText();
+    	 String kichco = jcbKichCo.getSelectedItem().toString();
+    	 int giaban = Integer.parseInt(jtfGiaBan.getText());
+    	 int soluong = Integer.parseInt(jtfSoLuong.getText());
+    	 String trangthai = jcbStatus.getSelectedItem().toString();
+    	 int status=0;
+    	 switch(trangthai) {
+    	 case "Ngừng bán": status=0; break;
+    	 case "Chuẩn bị bán": status=1; break;
+    	 case "Đang bán": status=2; break;
+    	 }
+    	 String hinhanh = jtfHinhAnh.getText();
+    	 SanPham sp = new SanPham(maSP,tenSP,chatlieu,kichco,mausac,giaban,soluong,hinhanh,status);
+    	 System.out.println(maSP+" "+tenSP+" "+chatlieu+" "+kichco+" "+mausac+" "+giaban+" "+soluong+" "+hinhanh+" "+status);
+    	 return sp;
+    }
+  // GET SEARCH FORM
+    public ArrayList<Object> getSearchForm() {
+   	 String name = jtfNameSearch.getText();
+   	 String chatlieu = jtfChatLieuSearch.getText();
+   	 String mausac = jtfMauSacSearch.getText();
+   	 String trangthai = jcbStatusSearch.getSelectedItem().toString();
+   	 String kichco = jcbKickCoSearch.getSelectedItem().toString();
+   	 int status=0;
+   	 switch(trangthai) {
+   	 case "Ngừng bán": status=0; break;
+   	 case "Chuẩn bị bán": status=1; break;
+   	 case "Đang bán": status=2; break;
+   	 }
+   	 ArrayList<Object> search = new ArrayList<>((Arrays.asList(name,chatlieu,mausac,kichco,status)));
+   	 System.out.println(name+" "+chatlieu+" "+mausac+" "+kichco+" "+status);
+   	 return search;
+   }
+  // CLEAR LIST FORM 
+    public void clearForm() {
+    	for (Component cp : jpnFormSP.getComponents() ){
+            if ((cp instanceof JTextField) && ( ((JTextField) cp).isEnabled() ) )
+    			((JTextField) cp).setText("");
+    	}
+    }
+   //DEFAULT DETAILS FORM
+    public void resetDetailForm() {
+    	jlbMaSPCT.setText("Mã sản phẩm:");
+   		jlbSanPhamCT.setText("Sản phẩm:");
+   		jlbChatLieuCT.setText("Chất liệu:");
+   		jlbMauSacCT.setText("Màu sắc:");
+   		jlbKichCoCT.setText("Kích cỡ:");
+   		jlbGiaBanCT.setText("Giá bán:");
+   		jlbSoLuongCT.setText("Số lượng:");
+   		jlbTrangThaiCT.setText("Trạng thái:");
+    }
+   //SET DETAILS FORM
+    public void setDetailForm() {
+    	resetDetailForm();
+    	int selectedRow = jtbDSSP.getSelectedRow();
+		 if (selectedRow != -1) {
+			 String maSP = jtbDSSP.getValueAt(selectedRow,0).toString();
+			 jlbMaSPCT.setText(jlbMaSPCT.getText() + " " + maSP);
+			 SanPham sp = this.SanPhamBUS.getChiTiet(maSP);
+			 jlbSanPhamCT.setText(jlbSanPhamCT.getText() + " " + sp.getTenSP());
+			 jlbChatLieuCT.setText(jlbChatLieuCT.getText() + " " + sp.getChatLieu());
+			 jlbMauSacCT.setText(jlbMauSacCT.getText() + " " + sp.getMauSac());
+			 jlbKichCoCT.setText(jlbKichCoCT.getText() + " " + sp.getKichCo());
+			 jlbGiaBanCT.setText(jlbGiaBanCT.getText() + " " + sp.getGiaBan());
+			 jlbSoLuongCT.setText(jlbSoLuongCT.getText() + " " + sp.getSoLuong());
+			 jlbTrangThaiCT.setText(jlbTrangThaiCT.getText() + " " + sp.getTrangThaiText());
+		 }	 
+    }
+    
+   //SET TABLE
+    public void setTable() {
+    	model.setRowCount(0);
+    	ArrayList<SanPham> sanPhamList = this.SanPhamBUS.getSanPham();
+    	checkList = sanPhamList;
+    	for (SanPham sp : checkList ) {
+    		Object[] column = new Object[model.getColumnCount()];
+            column[0] = sp.getMaSP();
+            column[1] = sp.getTenSP();
+            column[2] = sp.getGiaBan();
+            column[3] = sp.getSoLuong();
+            String status = sp.getTrangThaiText();
+            column[4] = status;
+            this.model.addRow(column);
+    	}
+    	jtbDSSP.setModel(model);
+    }
+    
+   //GET TABLE
+    public void getTable() {
+    	int selectedRow = jtbDSSP.getSelectedRow();
+		 if (selectedRow != -1) {
+			 jtfMa.setText(jtbDSSP.getValueAt(selectedRow,0).toString());
+			 SanPham sp = this.SanPhamBUS.getChiTiet(jtfMa.getText());
+			 jtfSanPham.setText(jtbDSSP.getValueAt(selectedRow,1).toString());
+			 jtfChatLieu.setText(sp.getChatLieu());
+			 jtfMauSac.setText(sp.getMauSac());
+			 jtfHinhAnh.setText(sp.getMauSac());
+			 jtfGiaBan.setText(String.valueOf(sp.getGiaBan()));
+			 jtfSoLuong.setText(String.valueOf(sp.getSoLuong()));
+			 jcbKichCo.setSelectedItem(sp.getKichCo().toString());
+			 jcbStatus.setSelectedItem(jtbDSSP.getValueAt(selectedRow,4).toString());
+		 }
+    }
+    
    //DEFAULT STATUS
     public void defaultStatus() {
     	jpnFormSP.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin sản phẩm"));
     	jtbDSSP.setRowSelectionAllowed(true);
     	jbtnXacNhan.setEnabled(false);
     	jbtnHuy.setEnabled(false);
-    	jbtnXoa.setEnabled(false);
+    	jbtnXoa.setEnabled(true);
     	jbtnThem.setEnabled(true);
     	jbtnSua.setEnabled(true);
+    	jbtnLamMoi.setEnabled(false);
     	jbtnXacNhan.setEnabled(false);
-    	setFormStatus(jpnFormSP,false);
+    	clearForm();
+    	setListFormStatus(jpnFormSP,false);
     }
- 
+    
+    
     public void actionEvent() {
+    	//CHECK REQUIRED FIELDS
+    	requiredFieldList.add(jtfMa);
+        requiredFieldList.add(jtfSanPham);
+        requiredFieldList.add(jtfGiaBan);
+        DocumentListener addListener = new DocumentListener() {
+			 	@Override
+			    public void removeUpdate(DocumentEvent e) { changedUpdate(e); }
+			    @Override
+			    public void insertUpdate(DocumentEvent e) { changedUpdate(e); }
+			    @Override
+			    public void changedUpdate(DocumentEvent e) {
+			        boolean canEnable = true;
+			        for (JTextField tf : requiredFieldList) {
+			            if (tf.getText().isEmpty() ) 
+				                canEnable = false;
+			        }
+			        if(formStatus.equals("edit") || formStatus.equals("add"))
+			        	jbtnXacNhan.setEnabled(canEnable);
+			        else jbtnXacNhan.setEnabled(false);
+			    }	
+		 };
+		 for (JTextField tf : requiredFieldList)
+			 tf.getDocument().addDocumentListener(addListener); 
+		 
+    	//SELECT TABLE
+    	jtbDSSP.addMouseListener(new java.awt.event.MouseAdapter() {
+			 @Override
+			    public void mouseClicked(java.awt.event.MouseEvent evt) {
+				 jbtnXacNhan.setEnabled(false);
+				 if ( jbtnThem.isEnabled() && jbtnSua.isEnabled() ) {
+					 setListFormStatus(jpnFormSP,true);
+					 clearForm();
+					 setDetailForm();
+					 getTable();
+					 setListFormStatus(jpnFormSP,false);
+					 //DELETE STATUS
+					 jbtnXoa.addActionListener(new ActionListener() {
+						 public void actionPerformed(ActionEvent e) {
+							 JOptionPane ask = new JOptionPane();
+								int choice = JOptionPane.showConfirmDialog(ask,"Bạn có chắc muốn xoá?", "XOÁ SẢN PHẨM", JOptionPane.YES_NO_OPTION); 
+								if(choice==JOptionPane.YES_OPTION) {
+									SanPhamBUS.deleteSanPham(jtfMa.getText().toString());
+									JOptionPane.showMessageDialog(null,"Xoá sản phẩm thành công!");
+									ask.setValue(false);  
+									setTable();
+									jbtnXoa.removeActionListener(this);
+								}
+							 else if(choice==JOptionPane.NO_OPTION) {
+								 ask.setValue(false); 
+								 jbtnXoa.removeActionListener(this);
+							 }
+			    		 } 
+					 });
+					//CANCEL BUTTON
+		    		jbtnHuy.addActionListener(new ActionListener() {
+		    			public void actionPerformed(ActionEvent e) {
+		    				setListFormStatus(jpnFormSP,true);
+		    				defaultStatus();
+		    			}
+		    		});
+				 }
+			 }
+		 });
+    	
+    	//CHECK FORM
+		 jtfMa.addFocusListener(new FocusListener() {
+			 @Override
+	            public void focusGained(FocusEvent e) {
+	            }
+			 @Override
+	            public void focusLost(FocusEvent e) {
+	                dupFlag = SanPhamBUS.checkDuplicate(jtfMa.getText());
+	                if(dupFlag.equals("dup")) {
+	                	JOptionPane.showMessageDialog(null,"Mã bị trùng, hãy đổi mã khác!","WARNING",JOptionPane.ERROR_MESSAGE);
+	                	jtfMa.requestFocus();
+	                }
+			 }
+		 });
+		 jtfGiaBan.addFocusListener(new FocusListener() {
+			 @Override
+	            public void focusGained(FocusEvent e) {
+	            }
+			 @Override
+	            public void focusLost(FocusEvent e) {
+				 	try {
+				 		Integer.parseInt( jtfGiaBan.getText() );
+				 	}
+				 	catch( Exception convertError ) {
+				 		if(!(jtfGiaBan.getText().isEmpty())) {
+				 			JOptionPane.showMessageDialog(null,"Giá bán phải là số nguyên!","WARNING",JOptionPane.ERROR_MESSAGE);
+				 			jtfGiaBan.requestFocus();
+				 		}
+				 	}
+			 }
+		 });
+		 
     	//ADD STATUS
     	 jbtnThem.addActionListener(new ActionListener() {
     		 public void actionPerformed(ActionEvent e) {
+    			 formStatus = "add";
+    			 setListFormStatus(jpnFormSP,true);
+    			 clearForm();
     			 jpnFormSP.setBorder(javax.swing.BorderFactory.createTitledBorder("Thêm sản phẩm mới"));
     			 jbtnSua.setEnabled(false);
     			 jbtnHuy.setEnabled(true);
+    			 jbtnXoa.setEnabled(false);
     			 jbtnThem.setEnabled(true);
-    			 setFormStatus(jpnFormSP,true);
-    			 jtbDSSP.setRowSelectionAllowed(false);
+    			 jbtnLamMoi.setEnabled(true);
+    			 jtbDSSP.setCellSelectionEnabled(false);
+    			 jtbDSSP.setFocusable(false);
+    			 jtbDSSP.setOpaque(false);
     			 jtfSoLuong.setEnabled(false);
-    			 //EXITING STATUS
+    			 jtfSoLuong.setText("0");
+    			 
+    			 //ADD TO DATABASE 
+    			 jbtnXacNhan.addActionListener(new ActionListener() {
+    	    		 public void actionPerformed(ActionEvent e) {
+    	    				SanPham sp = getListForm();
+    	    				SanPhamBUS.addSanPham(sp, dupFlag);
+    	    				//ADD TO TABLE
+    	    				setTable();
+    	    				int lastRowIndex = model.getRowCount()-1;
+    	    	            if (lastRowIndex >= 0) {
+    	    	                jtbDSSP.setRowSelectionInterval(lastRowIndex, lastRowIndex);
+    	    	                jtbDSSP.scrollRectToVisible(jtbDSSP.getCellRect(lastRowIndex, 0, true));
+    	    	            }
+    	    		 }
+    	    		 
+    			 });
+    			 //CLEAR BUTTON
+    			 jbtnLamMoi.addActionListener(new ActionListener() {
+    	    		 public void actionPerformed(ActionEvent e) {
+    	    			 clearForm();
+    	    		 }
+    			 });
+    			 //CANCEL BUTTON
     			 jbtnHuy.addActionListener(new ActionListener() {
     	    		 public void actionPerformed(ActionEvent e) {
+    	    			 formStatus = "default";
     	    			 defaultStatus();
     	    		 }
     			 });
     		 }
     	 });
+    	 
     	 //EDIT STATUS
     	 jbtnSua.addActionListener(new ActionListener() {
     		 public void actionPerformed(ActionEvent e) {
+    			 formStatus = "edit";
+    			 setListFormStatus(jpnFormSP,true);
     			 jpnFormSP.setBorder(javax.swing.BorderFactory.createTitledBorder("Sửa chi tiết sản phẩm"));
     			 jbtnThem.setEnabled(false);
+    			 jbtnXoa.setEnabled(false);
     			 jbtnHuy.setEnabled(true);
-    			 setFormStatus(jpnFormSP,true);
-    			 //EXITING STATUS
+    			 jtfSoLuong.setEnabled(false);
+    			 jtfMa.setEnabled(false);
+    			 jbtnLamMoi.setEnabled(true);
+    			 //SELECT TABLE ROW
+    			 jtbDSSP.addMouseListener(new java.awt.event.MouseAdapter() {
+    				 @Override
+    				    public void mouseClicked(java.awt.event.MouseEvent evt) {
+    					 if(jbtnSua.isEnabled()) {
+    						 setDetailForm();
+    						 getTable();
+    					 }
+    				 }
+    			 });
+    			//UPDATE TO DATABASE 
+    			 jbtnXacNhan.addActionListener(new ActionListener() {
+    	    		 public void actionPerformed(ActionEvent e) {
+    	    				SanPham sp = getListForm();
+    	    				SanPhamBUS.updateSanPham(sp);
+    	    				//ADD TO TABLE
+    	    				setTable();
+    	    				int lastRowIndex = model.getRowCount()-1;
+    	    	            if (lastRowIndex >= 0) {
+    	    	                jtbDSSP.setRowSelectionInterval(lastRowIndex, lastRowIndex);
+    	    	                jtbDSSP.scrollRectToVisible(jtbDSSP.getCellRect(lastRowIndex, 0, true));
+    	    	            }
+    	    		 }
+    	    		 
+    			 });
+    			//CLEAR BUTTON
+    			 jbtnLamMoi.addActionListener(new ActionListener() {
+    	    		 public void actionPerformed(ActionEvent e) {
+    	    			 clearForm();
+    	    		 }
+    			 });
+    			 //CANCEL BUTTON
     			 jbtnHuy.addActionListener(new ActionListener() {
     	    		 public void actionPerformed(ActionEvent e) {
+    	    			 formStatus = "default";
+    	    			 jtfMa.setEnabled(true);
+    	    			 jtfSoLuong.setEnabled(true);
     	    			 defaultStatus();
     	    		 }
     			 });
+    		 }
+    	 });
+    	 //SEARCH BAR
+    	 jbtnSearch.addActionListener(new ActionListener() {
+    		 public void actionPerformed(ActionEvent e) {
+    			 String type = jcbNameSearchType.getSelectedItem().toString();
+    			 ArrayList<Object> searchQuery = getSearchForm();
+    			 ArrayList<SanPham> spSearch = SanPhamBUS.searchSanPham(type,searchQuery);
+    			 
     		 }
     	 });
     }
