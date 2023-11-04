@@ -17,6 +17,9 @@ public class HoaDonMua {
     private int tongTien;
     public static final String[] itemFiltersComboBox = new String[] { "Tất cả", "Mã hóa đơn", "Người tạo" };
 
+    public HoaDonMua() {
+    }
+
     public HoaDonMua(String maHD, NhanVien nhanVien, LocalDateTime ngayTao) {
         this.maHD = maHD;
         this.nhanVien = nhanVien;

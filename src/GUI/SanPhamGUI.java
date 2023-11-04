@@ -59,15 +59,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
         jbtnXoa = new javax.swing.JButton();
         jcbNameSearchType = new javax.swing.JComboBox<>();
         jtfNameSearch = new javax.swing.JTextField();
-        jlbChatLieuSearch = new javax.swing.JLabel();
-        jtfChatLieuSearch = new javax.swing.JTextField();
-        jlbKichCoSearch = new javax.swing.JLabel();
-        jcbKickCoSearch = new javax.swing.JComboBox<>();
         jlbStatusSearch = new javax.swing.JLabel();
         jcbStatusSearch = new javax.swing.JComboBox<>();
         jbtnSearch = new javax.swing.JButton();
-        jlbMauSacSearch = new javax.swing.JLabel();
-        jtfMauSacSearch = new javax.swing.JTextField();
+        jbtnClearFilterForm = new javax.swing.JButton();
         jpnFormSP = new javax.swing.JPanel();
         jlbMa = new javax.swing.JLabel();
         jtfMa = new javax.swing.JTextField();
@@ -172,13 +167,14 @@ public class SanPhamGUI extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbMauSacCT)
+                    .addComponent(jlbTrangThaiCT)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jlbGiaBanCT)
-                        .addGap(125, 125, 125)
-                        .addComponent(jlbSoLuongCT))
-                    .addComponent(jlbTrangThaiCT))
-                .addContainerGap(175, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jlbMauSacCT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(jlbGiaBanCT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlbSoLuongCT)))
+                .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,8 +189,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
                                     .addComponent(jlbKichCoCT))
                                 .addComponent(jlbMaSPCT)
                                 .addComponent(jlbChatLieuCT)
-                                .addComponent(jlbSanPhamCT))
-                            .addGap(15, 15, 15)))
+                                .addComponent(jlbSanPhamCT))))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
@@ -244,19 +239,13 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
         jcbNameSearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã", "Sản phẩm" }));
 
-        jlbChatLieuSearch.setText("Chất liệu");
-
-        jlbKichCoSearch.setText("Kích cỡ");
-
-        jcbKickCoSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jlbStatusSearch.setText("Trạng thái");
 
         jcbStatusSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jbtnSearch.setText("Tìm kiếm");
 
-        jlbMauSacSearch.setText("Màu sắc");
+        jbtnClearFilterForm.setText("Làm mới");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -274,27 +263,16 @@ public class SanPhamGUI extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jcbNameSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnSearch))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbMauSacSearch)
-                            .addComponent(jlbChatLieuSearch))
+                        .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jtfChatLieuSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(jlbKichCoSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcbKickCoSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(jlbStatusSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcbStatusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtfMauSacSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbtnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnClearFilterForm)
+                        .addGap(120, 120, 120)
+                        .addComponent(jlbStatusSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbStatusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,18 +286,11 @@ public class SanPhamGUI extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbNameSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfNameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbChatLieuSearch)
-                    .addComponent(jtfChatLieuSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbKichCoSearch)
-                    .addComponent(jcbKickCoSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbStatusSearch)
-                    .addComponent(jcbStatusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbMauSacSearch)
-                    .addComponent(jtfMauSacSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnSearch))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jcbStatusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnSearch)
+                    .addComponent(jbtnClearFilterForm))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         add(jPanel4, java.awt.BorderLayout.PAGE_START);
@@ -522,6 +493,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbtnClearFilterForm;
     private javax.swing.JButton jbtnHuy;
     private javax.swing.JButton jbtnLamMoi;
     private javax.swing.JButton jbtnSearch;
@@ -530,25 +502,21 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JButton jbtnXacNhan;
     private javax.swing.JButton jbtnXoa;
     private javax.swing.JComboBox<String> jcbKichCo;
-    private javax.swing.JComboBox<String> jcbKickCoSearch;
     private javax.swing.JComboBox<String> jcbNameSearchType;
     private javax.swing.JComboBox<String> jcbStatus;
     private javax.swing.JComboBox<String> jcbStatusSearch;
     private javax.swing.JLabel jlbChatLieu;
     private javax.swing.JLabel jlbChatLieuCT;
-    private javax.swing.JLabel jlbChatLieuSearch;
     private javax.swing.JLabel jlbGiaBan;
     private javax.swing.JLabel jlbGiaBanCT;
     private javax.swing.JLabel jlbHinhAnh;
     private javax.swing.JLabel jlbImageCT;
     private javax.swing.JLabel jlbKichCo;
     private javax.swing.JLabel jlbKichCoCT;
-    private javax.swing.JLabel jlbKichCoSearch;
     private javax.swing.JLabel jlbMa;
     private javax.swing.JLabel jlbMaSPCT;
     private javax.swing.JLabel jlbMauSac;
     private javax.swing.JLabel jlbMauSacCT;
-    private javax.swing.JLabel jlbMauSacSearch;
     private javax.swing.JLabel jlbSanPham;
     private javax.swing.JLabel jlbSanPhamCT;
     private javax.swing.JLabel jlbSoLuong;
@@ -559,12 +527,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jpnFormSP;
     private javax.swing.JTable jtbDSSP;
     private javax.swing.JTextField jtfChatLieu;
-    private javax.swing.JTextField jtfChatLieuSearch;
     private javax.swing.JTextField jtfGiaBan;
     private javax.swing.JTextField jtfHinhAnh;
     private javax.swing.JTextField jtfMa;
     private javax.swing.JTextField jtfMauSac;
-    private javax.swing.JTextField jtfMauSacSearch;
     private javax.swing.JTextField jtfNameSearch;
     private javax.swing.JTextField jtfSanPham;
     private javax.swing.JTextField jtfSoLuong;

@@ -6,7 +6,7 @@ package BUS;
 
 import DAO.HoaDonMuaDAO;
 import DTO.ChiTietHDM;
-import DTO.FormatDateTime;
+import DTO.FormatValue;
 import DTO.HoaDonMua;
 import DTO.SanPham;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class HoaDonMuaBUS {
         for (int i = 0; i < length; i++) {
             data[i][0] = dsHDM.get(i).getMaHD();
             data[i][1] = dsHDM.get(i).getNhanVien().getTenNhanVien();
-            data[i][2] = FormatDateTime.formatDateTime(dsHDM.get(i).getNgayTao());
+            data[i][2] = FormatValue.formatDateTime(dsHDM.get(i).getNgayTao());
             data[i][3] = dsHDM.get(i).getTongTien() + "";
         }
         return data;
@@ -39,16 +39,15 @@ public class HoaDonMuaBUS {
     public String[][] getDsCTHDM (int row) {
         ArrayList<ChiTietHDM> dsCTHDM = hdmDAO.getDsCTHDMFromDB(row);
         int length = dsCTHDM.size();
-        String[][] data = new String[length][7]; // number of column in table
+        String[][] data = new String[length][6]; // number of column in table
         for (int i = 0; i < length; i++) {
             SanPham sp = dsCTHDM.get(i).getSanPham();
             data[i][0] = sp.getMaSP();
             data[i][1] = sp.getTenSP();
             data[i][2] = dsCTHDM.get(i).getNcc().getTenNcc();
-            data[i][3] = sp.getGiaNhap() + "";
-            data[i][4] = dsCTHDM.get(i).getLoiNhuan() + "";
-            data[i][5] = sp.getSoLuong() + "";
-            data[i][6] = dsCTHDM.get(i).getTongTien() + "";
+            data[i][3] = dsCTHDM.get(i).getGiaNhap() + "";
+            data[i][4] = sp.getSoLuong() + "";
+            data[i][5] = dsCTHDM.get(i).getTongTien() + "";
         }
         return data;
     }

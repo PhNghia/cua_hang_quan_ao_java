@@ -1,18 +1,23 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package DAO;
 
 import DTO.ConnectionDB;
-import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author BomPC
+ */
 public class NhanVienDAO {
-
     private static NhanVienDAO instance;
 
     public NhanVienDAO() {
@@ -96,8 +101,8 @@ public class NhanVienDAO {
         if (!text.isBlank()) {
             ma[0] = ma[1] = "'" + text + "'";
             hoten[0] = hoten[2] = "'%" + text + "%'";
-            email[0] = email[3] = "'" + text + "'";
-            Sdt[0] = Sdt[4] = "'" + text + "'";
+            email[0] = email[3] = "'%" + text + "%'";
+            Sdt[0] = Sdt[4] = "'" + text + "%'";
             diachi[0] = diachi[5] = "'%" + text + "%'";
             if (indexsearchtype != 0) {
                 operator = "and";
@@ -110,7 +115,8 @@ public class NhanVienDAO {
             chucvu = "'" + chucvu + "'";
         }
         String trangthai[] = {"trang_thai", "0", "1"};
-        String sql = String.format("Select * from nhan_vien nv,nhom_quyen nq where (nv.ma_nhan_vien=%s %9$s nv.ten_nhan_vien like %s %9$s nv.email = %s %9$s nv.sdt=%s %9$s nv.dia_chi like %s) and nv.gioi_tinh =%s and nq.ma_nhom_quyen = nv.ma_nhom_quyen and nq.ten_nhom_quyen = %s and nv.trang_thai = %s and nv.hien_thi = 1 order by ma_nhan_vien ", new Object[]{ma[indexsearchtype], hoten[indexsearchtype], email[indexsearchtype], Sdt[indexsearchtype], diachi[indexsearchtype], gender[indexgender], chucvu, trangthai[indextrangthai], operator});
+        String sql = String.format("Select * from nhan_vien nv,nhom_quyen nq where (nv.ma_nhan_vien=%s %9$s nv.ten_nhan_vien like %s %9$s nv.email like %s %9$s nv.sdt like %s %9$s nv.dia_chi like %s) and nv.gioi_tinh =%s and nq.ma_nhom_quyen = nv.ma_nhom_quyen and nq.ten_nhom_quyen = %s and nv.trang_thai = %s and nv.hien_thi = 1 order by ma_nhan_vien ", new Object[]{ma[indexsearchtype], hoten[indexsearchtype], email[indexsearchtype], Sdt[indexsearchtype], diachi[indexsearchtype], gender[indexgender], chucvu, trangthai[indextrangthai], operator});
+        System.out.println(sql);
         ConnectionDB connection = new ConnectionDB();
         List<DTO.NhanVien> list = new ArrayList();
         ResultSet rs = connection.executeQuery(sql);

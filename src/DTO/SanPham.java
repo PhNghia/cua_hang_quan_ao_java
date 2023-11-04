@@ -23,22 +23,13 @@ public class SanPham {
 
     public SanPham() {
     }
-
+    
     public SanPham(String maSP, String tenSP, int giaBan, int soLuong) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
     }
-
-    public SanPham(String maSP, String tenSP, int giaBan, int soLuong) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.giaBan = giaBan;
-        this.soLuong = soLuong;
-    }
-    
-    
     
     public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaBan, int soLuong, int trangThai) {
         this.maSP = maSP;

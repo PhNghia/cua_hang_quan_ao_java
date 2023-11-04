@@ -121,15 +121,15 @@ public class NhanVien {
 	public NhanVien() {
 	}
 
+	public NhanVien(int maNhanVien, String tenNhanVien) {
+		this.maNhanVien = maNhanVien;
+		this.tenNhanVien = tenNhanVien;
+	}
+	
 	public NhanVien(int maNhanVien, String tenNhanVien, int hienThi) {
 		this.maNhanVien = maNhanVien;
 		this.tenNhanVien = tenNhanVien;
 		this.hienThi = hienThi;
-	}
-
-	public NhanVien(int maNhanVien, String tenNhanVien) {
-		this.maNhanVien = maNhanVien;
-		this.tenNhanVien = tenNhanVien;
 	}
 
 	public NhanVien(int maNhanVien, String tenNhanVien, int gioiTinh, LocalDate ngaySinh, String sdt, String email,

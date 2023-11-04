@@ -11,67 +11,72 @@ import java.time.LocalDateTime;
  * @author BomPC
  */
 public class TaiKhoan {
-	private String tenTaiKhoan;
-	private NhanVien nguoiSoHuu;
-	private LocalDateTime ngayTao;
-	private int trangThai;
-	private String matKhau;
-	private final String[] dsTrangThai = new String[] { "Ngừng hoạt động", "Hoạt động" };
-	private final String[] dsTrangThaiForFilter = new String[] { "Tất ", "Ngừng hoạt động", "Hoạt động" };
 
-	public String getTenTaiKhoan() {
-		return tenTaiKhoan;
-	}
+    /*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+     */
+    private String tenTaiKhoan;
+    private NhanVien nguoiSoHuu;
+    private LocalDateTime ngayTao;
+    private int trangThai;
+    private String matKhau;
+    private final String[] dsTrangThai = new String[]{"Ngừng hoạt động", "Hoạt động"};
+    private final String[] dsTrangThaiForFilter = new String[]{"Tất ", "Ngừng hoạt động", "Hoạt động"};
 
-	public void setTenTaiKhoan(String tenTaiKhoan) {
-		this.tenTaiKhoan = tenTaiKhoan;
-	}
+    public String getTenTaiKhoan() {
+        return tenTaiKhoan;
+    }
 
-	public NhanVien getNguoiSoHuu() {
-		return nguoiSoHuu;
-	}
+    public void setTenTaiKhoan(String tenTaiKhoan) {
+        this.tenTaiKhoan = tenTaiKhoan;
+    }
 
-	public void setNguoiSoHuu(NhanVien nguoiSoHuu) {
-		this.nguoiSoHuu = nguoiSoHuu;
-	}
+    public NhanVien getNguoiSoHuu() {
+        return nguoiSoHuu;
+    }
 
-	public String getMatKhau() {
-		return matKhau;
-	}
+    public void setNguoiSoHuu(NhanVien nguoiSoHuu) {
+        this.nguoiSoHuu = nguoiSoHuu;
+    }
 
-	public void setMatKhau(String matKhau) {
-		this.matKhau = matKhau;
-	}
+    public String getMatKhau() {
+        return matKhau;
+    }
 
-	public LocalDateTime getNgayTao() {
-		return ngayTao;
-	}
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
 
-	public void setNgayTao(LocalDateTime ngayTao) {
-		this.ngayTao = ngayTao;
-	}
+    public LocalDateTime getNgayTao() {
+        return ngayTao;
+    }
 
-	public int getTrangThai() {
-		return trangThai;
-	}
+    public void setNgayTao(LocalDateTime ngayTao) {
+        this.ngayTao = ngayTao;
+    }
 
-	public void setTrangThai(int trangThai) {
-		this.trangThai = trangThai;
-	}
+    public int getTrangThai() {
+        return trangThai;
+    }
 
-	public String[] getDsTrangThai() {
-		return dsTrangThai;
-	}
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
 
-	public String[] getDsTrangThaiForFilter() {
-		return dsTrangThaiForFilter;
-	}
+    public String[] getDsTrangThai() {
+        return dsTrangThai;
+    }
 
-	public TaiKhoan(String tenTaiKhoan, NhanVien nguoiSoHuu, LocalDateTime ngayTao, int trangThai) {
-		this.tenTaiKhoan = tenTaiKhoan;
-		this.nguoiSoHuu = nguoiSoHuu;
-		this.ngayTao = ngayTao;
-		this.trangThai = trangThai;
-	}
+    public String[] getDsTrangThaiForFilter() {
+        return dsTrangThaiForFilter;
+    }
+
+    public TaiKhoan(String tenTaiKhoan, NhanVien nguoiSoHuu, LocalDateTime ngayTao, int trangThai) {
+        this.tenTaiKhoan = tenTaiKhoan;
+        this.nguoiSoHuu = nguoiSoHuu;
+        this.ngayTao = ngayTao;
+        this.trangThai = trangThai;
+    }
 
 }

@@ -8,10 +8,9 @@ import java.util.List;
 
 /**
  *
- * @author Windows
+ * @author BomPC
  */
 public class NhanVienBUS {
-
     private static NhanVienBUS instance;
 
     public NhanVienBUS() {
