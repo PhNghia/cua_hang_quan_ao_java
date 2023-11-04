@@ -280,25 +280,10 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		jbtnThem.removeActionListener(e -> createAccountAction());
 
 		// cancel button
-		if (jbtnHuy.isEnabled()) {
-			jbtnHuy.addActionListener(e -> {
-				int response = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn hủy?");
-				if (response == JOptionPane.YES_OPTION) {
-					renderAccount();
-					renewText();
-					setDisable();
-					setEnableTable();
-				}
-			});
-		}
+		jbtnHuy.addActionListener(e -> cancelExistingMode());
 
 		// Search as account name or employee name
-		jbtnSearch.addActionListener(e -> {
-			String categoryValue = jcbNameSearch.getSelectedItem().toString();
-			String textValue = jtfNameSearch.getText();
-			String statusValue = jcbStatusSearch.getSelectedItem().toString();
-			search(categoryValue, textValue, statusValue);
-		});
+		jbtnSearch.addActionListener(e -> searchAccountAction());
 
 	}// </editor-fold>//GEN-END:initComponents
 
@@ -338,11 +323,9 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 	private javax.swing.JScrollPane jScrollPane1;
 	private ArrayList<Integer> employeeIds;
 	private ArrayList<TaiKhoan> accountForChecking;
-	private boolean isCreateAccount;
-	// End of variables declaration//GEN-END:variables
 
 	public void renderAccount() {
-		// Clear before rendering
+		// Refresh UI before rendering the information
 		setDisable();
 		setEnableTable();
 		renewText();
@@ -381,19 +364,65 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		jtbDSTK.setModel(model);
 	}
 
+	@SuppressWarnings("finally")
 	public int checkExistedId() {
-		int getSelectedName = jcbNhanVien.getSelectedIndex();
-		int employeeId = employeeIds.get(getSelectedName);
-
-		if (getSelectedName != -1 && employeeId != -1) {
-			for (TaiKhoan account : accountForChecking) {
-				if (account.getNguoiSoHuu().getMaNhanVien() == employeeId) {
-					return -1;
+		int employeeId = -1;
+		try {
+			int getSelectedName = jcbNhanVien.getSelectedIndex();
+			employeeId = employeeIds.get(getSelectedName);
+			if (getSelectedName != -1 && employeeId != -1) {
+				for (TaiKhoan account : accountForChecking) {
+					if (account.getNguoiSoHuu().getMaNhanVien() == employeeId) {
+						return -1;
+					}
 				}
 			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			return employeeId;
 		}
 
-		return employeeId;
+	}
+
+	private void createAccountAction() {
+		renderAccount();
+		setDisableTable();
+		setDisable();
+		jcbNhanVien.setEnabled(true);
+		jbtnHuy.setEnabled(true);
+		jcbNhanVien.removeItem("Chọn tài khoản");
+
+		// Remove the the former actionListeners of the Nhân Viên combobox
+		ActionListener[] listeners = jcbNhanVien.getActionListeners();
+		for (ActionListener listener : listeners) {
+			jcbNhanVien.removeActionListener(listener);
+		}
+
+		// Select employee to create account
+		jcbNhanVien.addActionListener(e -> {
+			if (jcbNhanVien.isEnabled()) {
+
+				// Remove the former actionListenders of the xác nhận button
+				ActionListener[] xacNhanbtnListeners = jbtnXacNhan.getActionListeners();
+				for (ActionListener listener : xacNhanbtnListeners) {
+					jbtnXacNhan.removeActionListener(listener);
+				}
+
+				setEnable();
+				jbtnXacNhan.addActionListener(jbtnXacNhan -> {
+					String currentEmployee = comboBoxNhanVienModel.getSelectedItem().toString();
+					String currentUserName = jtfTenTK.getText();
+					@SuppressWarnings("deprecation")
+					String currentPassword = jpwMatKhau.getText();
+					@SuppressWarnings("deprecation")
+					String currentVerifyPassword = jpwXacNhanMatKhau.getText();
+					String currentStatus = comboBoxTrangThaiModel.getSelectedItem().toString();
+					createAccount(currentEmployee, currentUserName, currentPassword, currentVerifyPassword,
+							currentStatus);
+				});
+			}
+		});
 	}
 
 	public void createAccount(String employeeName, String username, String password, String verifyPassword,
@@ -405,7 +434,10 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		}
 
 		int employeeId = checkExistedId();
-		NhanVien nv = new NhanVien(employeeId, employeeName);
+		NhanVien nv = null;
+		if (employeeId != -1) {
+			nv = new NhanVien(employeeId, employeeName);
+		}
 
 		LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -414,7 +446,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
 		boolean isCorrectPassword = isConfirmedPassword(password, verifyPassword);
 		if (!isCorrectPassword) {
-			JOptionPane.showMessageDialog(null, "Mật khẩu không đúng");
+			JOptionPane.showMessageDialog(null, "Mật khẩu xác nhận không đúng");
 			return;
 		}
 		tk.setMatKhau(password);
@@ -436,53 +468,8 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		}
 	}
 
-	// Create account action
-	private void createAccountAction() {
-		isCreateAccount = true;
-		renderAccount();
-		setDisableTable();
-		setDisable();
-		jcbNhanVien.setEnabled(true);
-		jbtnHuy.setEnabled(true);
-		jcbNhanVien.removeItem("Chọn tài khoản");
-
-		// Remove the existing action listener
-		ActionListener[] listeners = jcbNhanVien.getActionListeners();
-		for (ActionListener listener : listeners) {
-			jcbNhanVien.removeActionListener(listener);
-		}
-
-		// Select employee to create account
-		if (isCreateAccount) {
-			jcbNhanVien.addActionListener(e -> {
-				if (jcbNhanVien.isEnabled()) {
-
-					if (checkExistedId() == -1) {
-						JOptionPane.showMessageDialog(null, "Nhân viên đã có tài khoản");
-						setDisable();
-						jcbNhanVien.setEnabled(true);
-						jbtnHuy.setEnabled(true);
-						return;
-					}
-
-					setEnable();
-					jbtnXacNhan.addActionListener(jbtnXacNhan -> {
-						String currentEmployee = comboBoxNhanVienModel.getSelectedItem().toString();
-						String currentUserName = jtfTenTK.getText();
-						@SuppressWarnings("deprecation")
-						String currentPassword = jpwMatKhau.getText();
-						@SuppressWarnings("deprecation")
-						String currentVerifyPassword = jpwXacNhanMatKhau.getText();
-						String currentStatus = comboBoxTrangThaiModel.getSelectedItem().toString();
-						createAccount(currentEmployee, currentUserName, currentPassword, currentVerifyPassword,
-								currentStatus);
-					});
-				}
-			});
-		}
-	}
-
-	public void modifyAccount() {
+	// Modify account action
+	private void modifyAccountAction() {
 		int selectedAccount = jtbDSTK.getSelectedRow();
 
 		if (selectedAccount == -1) {
@@ -495,51 +482,43 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		jbtnLamMoi.setEnabled(false);
 		jcbNhanVien.setEnabled(false);
 		jtfTenTK.setEnabled(false);
-	}
 
-	// Modify account action
-	private void modifyAccountAction() {
-		System.out.println("Update");
-		isCreateAccount = false;
-		modifyAccount();
-
-		// Remove the existing action listener
-		ActionListener[] listeners = jcbNhanVien.getActionListeners();
-		ActionListener[] listeners_2 = jbtnXacNhan.getActionListeners();
-		for (ActionListener listener : listeners) {
-			jcbNhanVien.removeActionListener(listener);
-		}
-		for (ActionListener listener : listeners_2) {
+		ActionListener[] xacNhanButtonListeners = jbtnXacNhan.getActionListeners();
+		for (ActionListener listener : xacNhanButtonListeners) {
 			jcbNhanVien.removeActionListener(listener);
 		}
 
-		if (!isCreateAccount) {
-			if (!jtfTenTK.isEnabled()) {
-				jbtnXacNhan.addActionListener(e -> {
-					@SuppressWarnings("deprecation")
-					String password = jpwMatKhau.getText();
-					@SuppressWarnings("deprecation")
-					String verifyPassword = jpwXacNhanMatKhau.getText();
-					String status = jcbStatus.getSelectedItem().toString();
-
-					updateAccount(password, verifyPassword, status);
-				});
-			}
-		}
+		jbtnXacNhan.addActionListener(e -> {
+			@SuppressWarnings("deprecation")
+			String password = jpwMatKhau.getText();
+			@SuppressWarnings("deprecation")
+			String verifyPassword = jpwXacNhanMatKhau.getText();
+			String status = jcbStatus.getSelectedItem().toString();
+			modifyAccount(password, verifyPassword, status);
+		});
 	}
 
-	public void updateAccount(String password, String verifyPassword, String status) {
+	public void modifyAccount(String password, String verifyPassword, String status) {
 		int selectedAccount = jtbDSTK.getSelectedRow();
 
 		if (selectedAccount != -1) {
+			if (!password.trim().isEmpty() && verifyPassword.trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Vui lòng xác nhận mật khẩu!");
+				return;
+			}
+
 			String accountName = jtbDSTK.getValueAt(selectedAccount, 0).toString();
 			int newStatus = status.equalsIgnoreCase("Hoạt động") ? 1 : 0;
 
+			// if the personnel does not update password
 			if (password.equalsIgnoreCase("") && verifyPassword.equalsIgnoreCase("")) {
 				taiKhoanBus.updateStatus(accountName, newStatus);
 				JOptionPane.showMessageDialog(null, "Cập nhật thành công");
 				renderAccount();
-			} else if (!password.equalsIgnoreCase("") && !verifyPassword.equalsIgnoreCase("")) {
+			}
+			// if the personnel wants to update password but doesn't enter the verify
+			// password
+			else if (!password.equalsIgnoreCase("") && !verifyPassword.equalsIgnoreCase("")) {
 				boolean isPassword = isConfirmedPassword(password, verifyPassword);
 
 				if (!isPassword) {
@@ -577,7 +556,14 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		}
 	}
 
-	public void search(String categoryValue, String textValue, String statusValue) {
+	public void searchAccountAction() {
+		String categoryValue = jcbNameSearch.getSelectedItem().toString();
+		String textValue = jtfNameSearch.getText();
+		String statusValue = jcbStatusSearch.getSelectedItem().toString();
+		searchAccount(categoryValue, textValue, statusValue);
+	}
+
+	public void searchAccount(String categoryValue, String textValue, String statusValue) {
 		renderAccount(); // refresh UI
 		int rowCount = model.getRowCount();
 		textValue = textValue.toUpperCase(); // input value
@@ -642,6 +628,16 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		jpwXacNhanMatKhau.setText("");
 	}
 
+	public void cancelExistingMode() {
+		int response = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn hủy?");
+		if (response == JOptionPane.YES_OPTION) {
+			renderAccount();
+			renewText();
+			setDisable();
+			setEnableTable();
+		}
+	}
+
 	public void renewTable() {
 		model.setRowCount(0);
 	}
@@ -691,17 +687,6 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 		jcbNhanVien.removeAllItems();
 		jpwMatKhau.setText("");
 		jpwXacNhanMatKhau.setText("");
-	}
-
-	public String getTitleAccount() {
-		Border border = jPanel1.getBorder();
-
-		if (border instanceof TitledBorder) {
-			TitledBorder titledBorder = (TitledBorder) border;
-			return titledBorder.getTitle();
-		} else {
-			return null;
-		}
 	}
 
 	public Boolean isConfirmedPassword(String password, String verifyPassword) {
