@@ -96,6 +96,9 @@ public class MenuGUI extends javax.swing.JPanel {
             case "Nhà cung cấp":
                 rootPage.add(new NhaCungCapGUI());
                 break;
+            case "Khuyến mãi":
+                rootPage.add(new KhuyenMaiGUI());
+                break;
             default:
         }
     }

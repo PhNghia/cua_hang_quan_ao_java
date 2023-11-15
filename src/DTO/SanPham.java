@@ -18,9 +18,15 @@ public class SanPham {
     private int soLuong;
     private String hinhAnh;
     private int trangThai;
+<<<<<<< HEAD
     public final String[] dsTrangThai = new String[] { "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
     public final String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
     
+=======
+    private final static String[] dsTrangThai = new String[] { "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
+    private final static String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
+
+>>>>>>> ba3d0d1b83f6dddcdffbe24441e45dff3fe75240
     public SanPham() {
     }
 
