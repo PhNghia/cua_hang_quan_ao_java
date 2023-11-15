@@ -18,8 +18,8 @@ public class SanPham {
     private int soLuong;
     private String hinhAnh;
     private int trangThai;
-    public final String[] dsTrangThai = new String[] { "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
-    public final String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
+    public final static String[] dsTrangThai = new String[] { "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
+    public final static String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
 
     public SanPham() {
     }
@@ -29,6 +29,17 @@ public class SanPham {
         this.tenSP = tenSP;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
+    }
+
+    public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaBan, int soLuong, int trangThai) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.chatLieu = chatLieu;
+        this.kichCo = kichCo;
+        this.mauSac = mauSac;
+        this.giaBan = giaBan;
+        this.soLuong = soLuong;
+        this.trangThai = trangThai;
     }
     
 
