@@ -18,12 +18,12 @@ public class SanPham {
     private int soLuong;
     private String hinhAnh;
     private int trangThai;
-    private final String[] dsTrangThai = new String[] { "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
-    private final String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
+    public final static String[] dsTrangThai = new String[] { "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
+    public final static String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
 
     public SanPham() {
     }
-    
+
     public SanPham(String maSP, String tenSP, int giaBan, int soLuong) {
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -31,7 +31,8 @@ public class SanPham {
         this.soLuong = soLuong;
     }
     
-    public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaBan, int soLuong, int trangThai) {
+
+    public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaBan, int soLuong, String hinhAnh, int trangThai) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.chatLieu = chatLieu;
@@ -39,9 +40,10 @@ public class SanPham {
         this.mauSac = mauSac;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
+        this.hinhAnh = hinhAnh;
         this.trangThai = trangThai;
     }
-
+    
     public String getMaSP() {
         return maSP;
     }

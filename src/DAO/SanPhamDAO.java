@@ -152,23 +152,20 @@ public class SanPhamDAO {
 	public ArrayList<SanPham> searchSanPham(String type, ArrayList<Object> search) {
 		String query="";
 		ArrayList<SanPham> spList = new ArrayList<>();
-		if(type.equals("Tất cả")) {
-			query = "SELECT * FROM san_pham WHERE (ma_san_pham LIKE N'%"+search.get(0)+"%' or ten_san_pham LIKE N'%"+search.get(0)+"%') "
-					+ "AND chat_lieu LIKE '%"+search.get(1)+"%' "
-					+ "AND mau_sac LIKE '%"+search.get(2)+"%' "
-					+ "AND kich_co = '"+search.get(3)+"' AND trang_thai = '"+search.get(4)+"'";
-		}
+		//check search type
+		if(type.equals("Tất cả")) 
+			query = "SELECT * FROM san_pham WHERE (ma_san_pham LIKE N'%"+search.get(0)+
+					"%' OR ten_san_pham LIKE N'%"+search.get(0)+"%') ";
 		else if(type.equals("Mã"))
-			query = "SELECT * FROM san_pham WHERE ma_san_pham LIKE '%"+search.get(0)+"%' "
-					+ "AND chat_lieu LIKE '%"+search.get(1)+"%'  "
-					+ "AND mau_sac LIKE '%"+search.get(2)+"%' OR mau_sac IS NULL) "
-					+ "AND kich_co = '"+search.get(3)+"' AND trang_thai = '"+search.get(4)+"'";
+			query = "SELECT * FROM san_pham WHERE ma_san_pham LIKE '%"+search.get(0)+"%' ";			
 		else
-			query = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%"+search.get(0)+"%' "
-					+ "AND chat_lieu LIKE '%"+search.get(1)+"%' "
-					+ "AND mau_sac LIKE '%"+search.get(2)+"%' "
-					+ "AND kich_co = '"+search.get(3)+"' AND trang_thai = '"+search.get(4)+"'";
-		System.out.println(query);
+			query = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%"+search.get(0)+"%' ";
+		//check status 
+		if(Integer.valueOf((int)search.get(1))!=0) {  
+			System.out.println("sttElse");
+			query += "AND trang_thai = " + (Integer.valueOf((int)search.get(1))-1) ;
+		}
+		
 		try {
 			ResultSet result = this.connection.executeQuery(query);
 			if (result != null) 

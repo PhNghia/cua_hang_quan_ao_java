@@ -467,7 +467,8 @@ public class SanPhamGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfChatLieuActionPerformed
-        // TODO add your handling code here:
+        // 
+
     }//GEN-LAST:event_jtfChatLieuActionPerformed
     
     public void editComponents() {
@@ -475,9 +476,9 @@ public class SanPhamGUI extends javax.swing.JPanel {
     	jlbSanPham.setText("Sản phẩm*");
     	jlbGiaBan.setText("Giá bán*");
     	jcbKichCo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S","M","L","XL","XLL" }));
-    	jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ngừng bán", "Chuẩn bị bán", "Đang bán"}));
-    	jcbKickCoSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S","M","L","XL","XLL" }));
-    	jcbStatusSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ngừng bán", "Chuẩn bị bán", "Đang bán"}));
+    	jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(SanPham.dsTrangThai));
+    	
+    	jcbStatusSearch.setModel(new javax.swing.DefaultComboBoxModel<>(SanPham.dsTrangThaiForFilter));
     	
     }
     
@@ -513,18 +514,9 @@ public class SanPhamGUI extends javax.swing.JPanel {
   // GET SEARCH FORM
     public ArrayList<Object> getSearchForm() {
    	 String name = jtfNameSearch.getText();
-   	 String chatlieu = jtfChatLieuSearch.getText();
-   	 String mausac = jtfMauSacSearch.getText();
-   	 String trangthai = jcbStatusSearch.getSelectedItem().toString();
-   	 String kichco = jcbKickCoSearch.getSelectedItem().toString();
-   	 int status=0;
-   	 switch(trangthai) {
-   	 case "Ngừng bán": status=0; break;
-   	 case "Chuẩn bị bán": status=1; break;
-   	 case "Đang bán": status=2; break;
-   	 }
-   	 ArrayList<Object> search = new ArrayList<>((Arrays.asList(name,chatlieu,mausac,kichco,status)));
-   	 System.out.println(name+" "+chatlieu+" "+mausac+" "+kichco+" "+status);
+   	 int trangthai = jcbStatusSearch.getSelectedIndex();
+   	 ArrayList<Object> search = new ArrayList<>((Arrays.asList(name,trangthai)));
+   	
    	 return search;
    }
   // CLEAR LIST FORM 
@@ -568,6 +560,22 @@ public class SanPhamGUI extends javax.swing.JPanel {
     	model.setRowCount(0);
     	ArrayList<SanPham> sanPhamList = this.SanPhamBUS.getSanPham();
     	checkList = sanPhamList;
+    	for (SanPham sp : checkList ) {
+    		Object[] column = new Object[model.getColumnCount()];
+            column[0] = sp.getMaSP();
+            column[1] = sp.getTenSP();
+            column[2] = sp.getGiaBan();
+            column[3] = sp.getSoLuong();
+            String status = sp.getTrangThaiText();
+            column[4] = status;
+            this.model.addRow(column);
+    	}
+    	jtbDSSP.setModel(model);
+    }
+    
+    public void setTable(ArrayList<SanPham> spList) {
+    	model.setRowCount(0);
+    	checkList = spList;
     	for (SanPham sp : checkList ) {
     		Object[] column = new Object[model.getColumnCount()];
             column[0] = sp.getMaSP();
@@ -820,7 +828,16 @@ public class SanPhamGUI extends javax.swing.JPanel {
     			 String type = jcbNameSearchType.getSelectedItem().toString();
     			 ArrayList<Object> searchQuery = getSearchForm();
     			 ArrayList<SanPham> spSearch = SanPhamBUS.searchSanPham(type,searchQuery);
-    			 
+    			 setTable(spSearch);
+    		 }
+    	 });
+    	 
+    	 jbtnClearFilterForm.addActionListener(new ActionListener() {
+    		 public void actionPerformed(ActionEvent e) {
+    			 setTable();
+    			 jcbStatusSearch.setSelectedItem("Tất cả");
+    			 jtfNameSearch.setText("");
+    			 jcbNameSearchType.setSelectedItem("Tất cả");
     		 }
     	 });
     }
