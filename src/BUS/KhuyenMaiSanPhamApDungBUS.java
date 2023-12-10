@@ -5,8 +5,10 @@
 package BUS;
 
 import DAO.KhuyenMaiSanPhamApDungDAO;
+import DTO.DotKhuyenMai;
 import DTO.SanPham;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -19,10 +21,18 @@ public class KhuyenMaiSanPhamApDungBUS {
     public KhuyenMaiSanPhamApDungBUS(KhuyenMaiSanPhamApDungDAO dao) {
         this.dao = dao;
     }
-    
-    public Object[][] getDSSP () {
+
+    public void changedDSSPADKM() {
+        dao.changedDSSPADKMIntoDB();
+    }
+
+    public DotKhuyenMai getDotKM () {
+        return dao.getDotKM();
+    }
+
+    public Object[][] getDSSP() {
         ArrayList<SanPham> dssp = dao.getDSSP();
-        Map dsspChecked = dao.getDsspChecked();
+        Map<String, SanPham> dsspadkm = dao.getDSSPADKM();
         int length = dssp.size();
         Object[][] data = new Object[length][4];
         for (int i = 0; i < length; i++) {
@@ -30,31 +40,48 @@ public class KhuyenMaiSanPhamApDungBUS {
             data[i][0] = sp.getMaSP();
             data[i][1] = sp.getTenSP();
             data[i][2] = sp.getGiaBan();
-            data[i][3] = dsspChecked.get(sp.getMaSP()) != null;
+            data[i][3] = dsspadkm.get(sp.getMaSP()) != null;
         }
         return data;
     }
-    
-    public Object[][] getDSSPADKM () {
-        ArrayList<SanPham> dssp = dao.getDSSPADKM();
-        Map dsspChecked = dao.getDsspChecked();
-        int length = dssp.size();
+
+    public Object[][] getDSSPADKM() {
+        Map<String, SanPham> dssp = dao.getDSSPADKM();
+        Collection<SanPham> values = dssp.values();
+        int length = values.size();
         Object[][] data = new Object[length][4];
-        for (int i = 0; i < length; i++) {
-            SanPham sp = dssp.get(i);
+        int i = 0;
+        for (SanPham sp : values) {
             data[i][0] = sp.getMaSP();
             data[i][1] = sp.getTenSP();
             data[i][2] = sp.getGiaBan();
-            data[i][3] = dsspChecked.get(sp.getMaSP()) != null;
+            data[i][3] = true;
+            i++;
         }
         return data;
-    } 
-    
-    public void checkedSanPham (int row) {
-        dao.checkedSanPham(row);
     }
-    
-    public void uncheckedSanPham (String masp) {
+
+    public SanPham checkedSanPham(int row) {
+        return dao.checkedSanPham(row);
+    }
+
+    public void uncheckedSanPham(String masp) {
         dao.uncheckedSanPham(masp);
+    }
+
+    public int getIndexSanPhamInDSSPByMasp (String masp) {
+        return dao.getIndexSanPhamInDSSPByMasp(masp);
+    }
+
+    public int getIndexSanPhamInDSSPADKMByMasp (String masp) {
+        return dao.getIndexSanPhamInDSSPADKMByMasp(masp);
+    }
+
+    public void restoreDSSPADKM () {
+        dao.restorDSSPADKM();
+    }
+
+    public void filteredDsSP (String value) {
+        dao.filteredDsSP(value);
     }
 }

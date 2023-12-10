@@ -22,6 +22,10 @@ public class HoaDonMuaBUS {
     public HoaDonMuaBUS (HoaDonMuaDAO hdmDAO) {
         this.hdmDAO = hdmDAO;
     }
+
+    public void getDsHDMFromDB () {
+        hdmDAO.getDsHDMFromDB();
+    }
     
     public String[][] getDsHDM () {
         ArrayList<HoaDonMua> dsHDM = hdmDAO.getDsHDM();
@@ -50,6 +54,10 @@ public class HoaDonMuaBUS {
             data[i][5] = dsCTHDM.get(i).getTongTien() + "";
         }
         return data;
+    }
+
+    public void thuHoiHDM (int row) {
+        hdmDAO.thuHoiHDM(row);
     }
     
     public HoaDonMua getHDMSelected (int row) {

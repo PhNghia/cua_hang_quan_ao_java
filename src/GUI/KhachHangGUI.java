@@ -19,13 +19,26 @@ public class KhachHangGUI extends javax.swing.JPanel {
     int selectedIndex;
     String sdt;
 
-    public KhachHangGUI() {
+    public KhachHangGUI(ArrayList<String> dsHanhDongCuaChucNang) {
         initComponents();
 
         Model = (DefaultTableModel) jtbDSKH.getModel();
         showTable();
         enableForm(false);
         normalState();
+
+        jbtnThem.setVisible(false);
+		jbtnSua.setVisible(false);
+        jButton1.setVisible(false);
+		for (String hd : dsHanhDongCuaChucNang) {
+			if (hd.toLowerCase().contains("thêm")) {
+				jbtnThem.setVisible(true);
+			} else if (hd.toLowerCase().contains("sửa")) {
+				jbtnSua.setVisible(true);
+			} else if (hd.toLowerCase().contains("điểm")) {
+                jButton1.setVisible(true);
+            }
+		}
     }
 
     @SuppressWarnings("unchecked")
@@ -41,6 +54,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
         jcbNameSearchType = new javax.swing.JComboBox<>();
         jtfNameSearch = new javax.swing.JTextField();
         jbtnSearch = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jlbHoTen = new javax.swing.JLabel();
         jtfHoTen = new javax.swing.JTextField();
@@ -115,6 +129,13 @@ public class KhachHangGUI extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Quy Ước Điểm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -125,7 +146,9 @@ public class KhachHangGUI extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jbtnThem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnSua))
+                        .addComponent(jbtnSua)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jcbNameSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,7 +163,8 @@ public class KhachHangGUI extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnThem)
-                    .addComponent(jbtnSua))
+                    .addComponent(jbtnSua)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbNameSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,19 +243,20 @@ public class KhachHangGUI extends javax.swing.JPanel {
         jbtnHuy.setEnabled(true);
         jbtnThem.setEnabled(false);
         jbtnSua.setEnabled(false);
-        jtbDSKH.setEnabled(false);
+        jtbDSKH.setEnabled(true);
     }//GEN-LAST:event_jbtnSuaActionPerformed
 
     private void jbtnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnThemActionPerformed
         resetForm();
         enableForm(true);
         jtbDSKH.clearSelection();
+        jtbDSKH.setEnabled(false);
         jbtnXacNhan.setVisible(true);
         jbtnHuy.setVisible(true);
         jbtnXacNhan.setEnabled(true);
         jbtnHuy.setEnabled(true);
         jbtnSua.setEnabled(false);
-        jbtnThem.setEnabled(false);
+        jbtnThem.setEnabled(true);
     }//GEN-LAST:event_jbtnThemActionPerformed
 
     private void jtbDSKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbDSKHMouseClicked
@@ -266,13 +291,15 @@ public class KhachHangGUI extends javax.swing.JPanel {
             try {
                 new KhachHangBUS().AddKH(dto);
                 showTable();
-                normalState();
+                resetForm();
+                //normalState();
                 clearSearchFilter();
+                JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Thêm khách hàng thất bại");
                 e.printStackTrace();
             }
-        } else {//neu la trang thai Sua Tai khoan
+        } else if(!jtbDSKH.getSelectionModel().isSelectionEmpty()) {//neu la trang thai Sua Tai khoan
             if (!checkValidSDT(jtfSdt.getText())) {
                 JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ");
                 return;
@@ -291,12 +318,16 @@ public class KhachHangGUI extends javax.swing.JPanel {
             try {
                 new KhachHangBUS().UpdateKH(dto);
                 showTable();
-                normalState();
+                resetForm();
+                //normalState();
                 clearSearchFilter();
+                JOptionPane.showMessageDialog(null, "Sửa khách hàng thành công");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Sửa khách hàng thất bại");
                 e.printStackTrace();
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng cần cập nhật");
         }
     }//GEN-LAST:event_jbtnXacNhanActionPerformed
 
@@ -331,8 +362,15 @@ public class KhachHangGUI extends javax.swing.JPanel {
         jbtnHuy.setEnabled(true);
     }//GEN-LAST:event_jbtnSearchActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        QuyUocDiemGUI a = new QuyUocDiemGUI();
+        a.setLocationRelativeTo(null);
+        a.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -376,7 +414,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
         enableForm(false);
         jtbDSKH.setEnabled(true);
         jbtnThem.setEnabled(true);
-        jbtnSua.setEnabled(false);
+        jbtnSua.setEnabled(true);
         jbtnXacNhan.setEnabled(false);
         jbtnHuy.setEnabled(false);
 

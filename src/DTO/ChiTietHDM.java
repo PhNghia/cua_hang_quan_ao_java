@@ -14,14 +14,23 @@ public class ChiTietHDM {
     private SanPham sanPham; // các thuộc tính cần lấy: mã, tên, số lượng (ở đây là số lượng mua vào trong hóa đơn)
     private int giaNhap;
     private int tongTien;
+    private boolean isNew;
 
     public ChiTietHDM(String maHD, NhaCungCap ncc, SanPham sanPham, int giaNhap, int tongTien) {
         this.maHD = maHD;
         this.ncc = ncc;
         this.sanPham = sanPham;
         this.giaNhap = giaNhap;
-       
         this.tongTien = tongTien;
+    }
+
+    public ChiTietHDM(String maHD, NhaCungCap ncc, SanPham sanPham, int giaNhap, int tongTien, boolean isNew) {
+        this.maHD = maHD;
+        this.ncc = ncc;
+        this.sanPham = sanPham;
+        this.giaNhap = giaNhap;
+        this.tongTien = tongTien;
+        this.isNew = isNew;
     }
 
     public String getMaHD() {
@@ -62,6 +71,14 @@ public class ChiTietHDM {
 
     public void setTongTien(int tongTien) {
         this.tongTien = tongTien;
+    }
+
+    public boolean isIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(boolean isNew) {
+        this.isNew = isNew;
     }
     
     

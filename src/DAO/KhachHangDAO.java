@@ -1,7 +1,6 @@
 package DAO;
 
 import DTO.KhachHang;
-import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,15 +16,15 @@ public class KhachHangDAO {
                 var user = "root";
                 var password = "";
                 conn = DriverManager.getConnection(url, user, password);
-                System.out.println("Connect Succesful !");
         } catch (Exception e){
             e.printStackTrace();
         }
     }
     
     public ArrayList<KhachHang> getListKH(){
+        // mã khách hàng 5 là khách hàng tự do (mặc định phải có trong hệ thống với giá trị là 5)
         ArrayList<KhachHang> list = new ArrayList<>();
-        String sql = "SELECT * FROM khach_hang";
+        String sql = "SELECT * FROM khach_hang where ma_khach_hang != 5";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -74,11 +73,25 @@ public class KhachHangDAO {
             e.printStackTrace();
         }
     }
+
+    public void UpdateDiem(KhachHang a) {
+    	String sql = "UPDATE `khach_hang` SET `tien_tich_luy` = ?, `diem_tich_luy` = ?, `bang_tien` = ? WHERE `khach_hang`.`sdt` = ?";
+    	try {
+            PreparedStatement p = conn.prepareStatement(sql);
+            p.setInt(1, a.getTienTichLuy());
+            p.setInt(2, a.getDiemTichLuy());
+            p.setInt(3, a.getBangTien());
+            p.setString(4,a.getSdt());
+            p.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
     public ArrayList<KhachHang> FindKH(String name, String loc) {
         ArrayList<KhachHang> list = new ArrayList<>();
         if (loc == "all") {
-            String sql = "SELECT * FROM khach_hang WHERE ma_khach_hang like ? or ten_khach_hang like ? or sdt like ?";
+            String sql = "SELECT * FROM khach_hang WHERE (ma_khach_hang like ? or ten_khach_hang like ? or sdt like ?) and ma_khach_hang != 5 ";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, "%" + name + "%");
@@ -100,7 +113,7 @@ public class KhachHangDAO {
                 e.printStackTrace();
             }
         } else {
-            String sql = "SELECT * FROM khach_hang WHERE "+loc+" like ?";
+            String sql = "SELECT * FROM khach_hang WHERE "+loc+" like ? and ma_khach_hang != 5";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, "%" + name + "%");
@@ -123,8 +136,4 @@ public class KhachHangDAO {
 
         return list;
     }
-    
-    /*public static void main(String[] args) {
-        new KhachHangDAO().AddKH();
-    }*/
 }

@@ -14,8 +14,8 @@ public class NhaCungCap {
     private String sdt;
     private String diaChi;
     private int trangThai;
-    private final String[] dsTrangThai = new String[] { "Ngừng hợp tác", "Đang hợp tác" };
-    private final String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng hợp tác", "Đang hợp tác" };
+    public final static String[] dsTrangThai = new String[] { "Ngừng hợp tác", "Đang hợp tác" };
+    public final static String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng hợp tác", "Đang hợp tác" };
 
     public NhaCungCap(String tenNcc) {
         this.tenNcc = tenNcc;

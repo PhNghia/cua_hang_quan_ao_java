@@ -13,25 +13,36 @@ import java.time.LocalDateTime;
 public class HoaDonBan {
     private String maHD;
     private KhachHang khachHang;
-    private CaLamViec ca;
     private NhanVien nhanVien;
     private LocalDateTime ngayTao;
     private int tongTien;
+    private int tongTienThang;
+    
+    public HoaDonBan() {}
 
-    public HoaDonBan(String maHD, CaLamViec ca, NhanVien nhanVien, LocalDateTime ngayTao) {
+    public HoaDonBan(String maHD, NhanVien nhanVien, LocalDateTime ngayTao) {
         this.maHD = maHD;
-        this.ca = ca;
         this.nhanVien = nhanVien;
         this.ngayTao = ngayTao;
     }
 
-    public HoaDonBan(String maHD, KhachHang khachHang, CaLamViec ca, NhanVien nhanVien, LocalDateTime ngayTao, int tongTien) {
+    public HoaDonBan(String maHD, KhachHang khachHang, NhanVien nhanVien, LocalDateTime ngayTao, int tongTien) {
         this.maHD = maHD;
         this.khachHang = khachHang;
-        this.ca = ca;
         this.nhanVien = nhanVien;
         this.ngayTao = ngayTao;
         this.tongTien = tongTien;
+    }
+
+    public HoaDonBan(String maHD, LocalDateTime ngayTao, int tongTien) {
+        this.maHD = maHD;
+        this.ngayTao = ngayTao;
+        this.tongTien = tongTien;
+    }
+
+    public HoaDonBan(LocalDateTime ngayTao, int tongTienThang) {
+        this.ngayTao = ngayTao;
+        this.tongTienThang = tongTienThang;
     }
 
     public String getMaHD() {
@@ -48,14 +59,6 @@ public class HoaDonBan {
 
     public void setKhachHang(KhachHang khachHang) {
         this.khachHang = khachHang;
-    }
-
-    public CaLamViec getCa() {
-        return ca;
-    }
-
-    public void setCa(CaLamViec ca) {
-        this.ca = ca;
     }
 
     public NhanVien getNhanVien() {
@@ -81,5 +84,12 @@ public class HoaDonBan {
     public void setTongTien(int tongTien) {
         this.tongTien = tongTien;
     }
-    
+
+    public void setTongTienThang(int tongTienThang) {
+        this.tongTienThang = tongTienThang;
+    }
+
+    public int getTongTienThang() {
+        return this.tongTienThang;
+    }
 }

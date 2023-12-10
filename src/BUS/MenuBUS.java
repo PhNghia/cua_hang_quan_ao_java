@@ -5,6 +5,8 @@
 package BUS;
 
 import DAO.MenuDAO;
+import DTO.ChucNang;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +21,11 @@ public class MenuBUS {
         this.menuDAO = menuDAO;
     }
     
-    public ArrayList<String> getDsChucNang (String maNhomQuyen) {
+    public ArrayList<ChucNang> getDsChucNang (String maNhomQuyen) {
         return menuDAO.getDsChucNangFromDB(maNhomQuyen);
+    }
+
+    public ArrayList<String> getDsHanhDong (String maNhomQuyen, String chucNang) {
+        return menuDAO.getDsHanhDongFromDB(maNhomQuyen, chucNang);
     }
 }

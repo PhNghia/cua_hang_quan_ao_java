@@ -1,9 +1,11 @@
 package GUI;
 
+import DTO.NhanVien;
 import DTO.NhomQuyen;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,10 +17,23 @@ import javax.swing.table.TableColumnModel;
 
 public class NhanVienGUI extends javax.swing.JPanel {
 
-    public NhanVienGUI() {
+    public NhanVienGUI(ArrayList<String> dsHanhDongCuaChucNang) {
         initComponents();
         loadData();//load all data to Jtable
         setEnabledThongTinNVForm(false);//disable textfield ,combobox trong thong tin nhan vien
+
+        jbtnThem.setVisible(false);
+		jbtnSua.setVisible(false);
+        jbtnXoa.setVisible(false);
+		for (String hd : dsHanhDongCuaChucNang) {
+			if (hd.toLowerCase().contains("thêm")) {
+				jbtnThem.setVisible(true);
+			} else if (hd.toLowerCase().contains("sửa")) {
+				jbtnSua.setVisible(true);
+			} else if (hd.toLowerCase().contains("xóa")) {
+                jbtnXoa.setVisible(true);
+            }
+		}
     }
     //chuyen cac combobox ,jtextfield tim kiem ve gia tri ban dau
     public void clearSearchFilter(){
@@ -254,8 +269,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jlbChucVu.setText("Chức vụ");
 
         jcbChucVu.addItem("");
-        for(String item:BUS.NhanVienBUS.getInstance().getAllNameChucVu())
-        jcbChucVu.addItem(item);
+        for(String item:BUS.NhanVienBUS.getInstance().getAllNameChucVu()) {
+            jcbChucVu.addItem(item);
+        }
 
         jlbTrangThai.setText("Trạng thái");
 
@@ -445,7 +461,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
     //kiem tra sdt co hop le ko ,neu co tra ve 1 ,ko tra ve 0
     public boolean checkValidSDT(String sdt) {
-        String regex = "^0\\d{9}$";//bat dau = 0 va tong cong co 10 so
+        String regex = "^0\\d{9,10}$";//bat dau = 0 va tong cong co 10 so
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(sdt);
         return matcher.matches();
@@ -568,9 +584,15 @@ public class NhanVienGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnSuaActionPerformed
 
     private void jbtnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnXoaActionPerformed
+        String manv = JTableNV.getValueAt(JTableNV.getSelectedRow(), 0).toString();
+        NhanVien nv = BUS.NhanVienBUS.getInstance().getNhanVienByID(Integer.parseInt(manv));
+        if (nv != null && nv.getChucVu().getMaNhomQuyen().equals("QL")) {
+            JOptionPane.showMessageDialog(null, "Không thể xóa nhân viên có chức vụ quản lí", "Xóa nhân viên", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa nhân viên", "Xóa nhân viên", JOptionPane.YES_NO_OPTION);
         if (dialogResult == 0) {
-            if (!BUS.NhanVienBUS.getInstance().deleteNhanVien(JTableNV.getValueAt(JTableNV.getSelectedRow(), 0).toString())) {
+            if (!BUS.NhanVienBUS.getInstance().deleteNhanVien(manv)) {
                 JOptionPane.showMessageDialog(null, "Xóa nhân viên thất bại");
             } else {
                 loadData();

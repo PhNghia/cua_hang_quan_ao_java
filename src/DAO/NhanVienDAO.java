@@ -1,23 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAO;
 
 import DTO.ConnectionDB;
+import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author BomPC
- */
 public class NhanVienDAO {
+
     private static NhanVienDAO instance;
 
     public NhanVienDAO() {
@@ -30,7 +24,8 @@ public class NhanVienDAO {
         }
         return instance;
     }
-    //lay het du lieu 
+
+    // lay het du lieu
     public List<DTO.NhanVien> getAll() {
         List<DTO.NhanVien> list = new ArrayList();
         ConnectionDB connection = new ConnectionDB();
@@ -49,9 +44,7 @@ public class NhanVienDAO {
                                     rs.getString("email"),
                                     rs.getString("dia_chi"),
                                     new DTO.NhomQuyen(rs.getString("ma_nhom_quyen"), rs.getString("ten_nhom_quyen")),
-                                    Integer.parseInt(rs.getString("trang_thai"))
-                            )
-                    );
+                                    Integer.parseInt(rs.getString("trang_thai"))));
                 }
             }
         } catch (NumberFormatException | SQLException ex) {
@@ -60,43 +53,55 @@ public class NhanVienDAO {
         try {
             connection.getConnection().close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         return list;
     }
-    //kiem tra trung lap sdt,neu sua tai khoan thi moi dung manv ,con neu dang trong trang thai them thi manv = "",sql:kiem tra xem co nhan vien nao co sdt do ngoai chinh minh ra ko
-    public boolean checkDuplicateSdt(String sdt,String manv){
-        String sql = String.format("select * from nhan_vien  where sdt='%s' and ma_nhan_vien <> '%s'",new Object[]{sdt,manv});
+
+    // kiem tra trung lap sdt,neu sua tai khoan thi moi dung manv ,con neu dang
+    // trong trang thai them thi manv = "",sql:kiem tra xem co nhan vien nao co sdt
+    // do ngoai chinh minh ra ko
+    public boolean checkDuplicateSdt(String sdt, String manv) {
+        String sql = String.format("select * from nhan_vien  where sdt='%s' and ma_nhan_vien <> '%s'",
+                new Object[] { sdt, manv });
         ConnectionDB connection = new ConnectionDB();
         ResultSet rs = connection.executeQuery(sql);
-        try{
-            if(rs.next()){
-            return true;
-        }
-        }catch(SQLException ex){
+        try {
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
         }
         return false;
     }
-    //kiem tra trung lap email,neu sua tai khoan thi moi dung manv ,con neu dang trong trang thai them thi manv = "",sql:kiem tra xem co nhan vien nao co email do ngoai chinh minh ra ko
-    public boolean checkDuplicateEmail(String email,String manv){
-        String sql = String.format("select * from nhan_vien  where email='%s' and ma_nhan_vien <> '%s'",new Object[]{email,manv});
+
+    // kiem tra trung lap email,neu sua tai khoan thi moi dung manv ,con neu dang
+    // trong trang thai them thi manv = "",sql:kiem tra xem co nhan vien nao co
+    // email do ngoai chinh minh ra ko
+    public boolean checkDuplicateEmail(String email, String manv) {
+        String sql = String.format("select * from nhan_vien  where email='%s' and ma_nhan_vien <> '%s'",
+                new Object[] { email, manv });
         ConnectionDB connection = new ConnectionDB();
         ResultSet rs = connection.executeQuery(sql);
-        try{
-            if(rs.next()){
-            return true;
-        }
-        }catch(SQLException ex){
+        try {
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
         }
         return false;
     }
-    //search 
-    public List<DTO.NhanVien> search(int indexsearchtype, String text, int indexgender, String chucvu, int indextrangthai) {
-        String ma[] = {"ma_nhan_vien", "ma_nhan_vien", "ma_nhan_vien", "ma_nhan_vien", "ma_nhan_vien", "ma_nhan_vien"};
-        String hoten[] = {"ten_nhan_vien", "ten_nhan_vien", "ten_nhan_vien", "ten_nhan_vien", "ten_nhan_vien", "ten_nhan_vien"};
-        String email[] = {"email", "email", "email", "email", "email", "email"};
-        String Sdt[] = {"sdt", "sdt", "sdt", "sdt", "sdt", "sdt"};
-        String diachi[] = {"dia_chi", "dia_chi", "dia_chi", "dia_chi", "dia_chi", "dia_chi"};
+
+    // search
+    public List<DTO.NhanVien> search(int indexsearchtype, String text, int indexgender, String chucvu,
+            int indextrangthai) {
+        String ma[] = { "ma_nhan_vien", "ma_nhan_vien", "ma_nhan_vien", "ma_nhan_vien", "ma_nhan_vien",
+                "ma_nhan_vien" };
+        String hoten[] = { "ten_nhan_vien", "ten_nhan_vien", "ten_nhan_vien", "ten_nhan_vien", "ten_nhan_vien",
+                "ten_nhan_vien" };
+        String email[] = { "email", "email", "email", "email", "email", "email" };
+        String Sdt[] = { "sdt", "sdt", "sdt", "sdt", "sdt", "sdt" };
+        String diachi[] = { "dia_chi", "dia_chi", "dia_chi", "dia_chi", "dia_chi", "dia_chi" };
         String operator = "or";
         if (!text.isBlank()) {
             ma[0] = ma[1] = "'" + text + "'";
@@ -108,14 +113,18 @@ public class NhanVienDAO {
                 operator = "and";
             }
         }
-        String gender[] = {"gioi_tinh", "0", "1"};
+        String gender[] = { "gioi_tinh", "0", "1" };
         if (chucvu.equals("Tất cả")) {
             chucvu = "ten_nhom_quyen";
         } else {
             chucvu = "'" + chucvu + "'";
         }
-        String trangthai[] = {"trang_thai", "0", "1"};
-        String sql = String.format("Select * from nhan_vien nv,nhom_quyen nq where (nv.ma_nhan_vien=%s %9$s nv.ten_nhan_vien like %s %9$s nv.email like %s %9$s nv.sdt like %s %9$s nv.dia_chi like %s) and nv.gioi_tinh =%s and nq.ma_nhom_quyen = nv.ma_nhom_quyen and nq.ten_nhom_quyen = %s and nv.trang_thai = %s and nv.hien_thi = 1 order by ma_nhan_vien ", new Object[]{ma[indexsearchtype], hoten[indexsearchtype], email[indexsearchtype], Sdt[indexsearchtype], diachi[indexsearchtype], gender[indexgender], chucvu, trangthai[indextrangthai], operator});
+        String trangthai[] = { "trang_thai", "0", "1" };
+        String sql = String.format(
+                "Select * from nhan_vien nv,nhom_quyen nq where (nv.ma_nhan_vien=%s %9$s nv.ten_nhan_vien like %s %9$s nv.email like %s %9$s nv.sdt like %s %9$s nv.dia_chi like %s) and nv.gioi_tinh =%s and nq.ma_nhom_quyen = nv.ma_nhom_quyen and nq.ten_nhom_quyen = %s and nv.trang_thai = %s and nv.hien_thi = 1 order by ma_nhan_vien ",
+                new Object[] { ma[indexsearchtype], hoten[indexsearchtype], email[indexsearchtype],
+                        Sdt[indexsearchtype], diachi[indexsearchtype], gender[indexgender], chucvu,
+                        trangthai[indextrangthai], operator });
         System.out.println(sql);
         ConnectionDB connection = new ConnectionDB();
         List<DTO.NhanVien> list = new ArrayList();
@@ -133,82 +142,106 @@ public class NhanVienDAO {
                                     rs.getString("email"),
                                     rs.getString("dia_chi"),
                                     new DTO.NhomQuyen(rs.getString("ma_nhom_quyen"), rs.getString("ten_nhom_quyen")),
-                                    Integer.parseInt(rs.getString("trang_thai"))
-                            )
-                    );
+                                    Integer.parseInt(rs.getString("trang_thai"))));
                 }
             }
         } catch (NumberFormatException | SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         try {
             connection.getConnection().close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         return list;
     }
-    //them nhan vien vao data
+
+    // them nhan vien vao data
     public boolean addNhanVien(DTO.NhanVien dto) {
         String sql = "insert into nhan_vien(ten_nhan_vien,gioi_tinh,ngay_sinh,sdt,email,dia_chi,ma_nhom_quyen,trang_thai,hien_thi) values('%s','%s','%s','%s','%s','%s',(select ma_nhom_quyen from nhom_quyen where ten_nhom_quyen='%s'),'%s',1)";
-        sql = String.format(sql, new Object[]{
-            dto.getTenNhanVien(),
-            dto.getGioiTinh(),
-            dto.getNgaySinh().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-            dto.getSdt(),
-            dto.getEmail(),
-            dto.getDiaChi(),
-            dto.getChucVu().getTenNhomQuyen(),
-            dto.getTrangThai()
+        sql = String.format(sql, new Object[] {
+                dto.getTenNhanVien(),
+                dto.getGioiTinh(),
+                dto.getNgaySinh().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                dto.getSdt(),
+                dto.getEmail(),
+                dto.getDiaChi(),
+                dto.getChucVu().getTenNhomQuyen(),
+                dto.getTrangThai()
         });
         ConnectionDB connection = new ConnectionDB();
         int n = connection.executeUpdate(sql);
         try {
             connection.getConnection().close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         return (n > 0) ? true : false;
     }
-    //sua nhan vien
+
+    // sua nhan vien
     public boolean editNhanVien(DTO.NhanVien dto) {
         String sql = "update nhan_vien set ten_nhan_vien='%s',gioi_tinh='%s',ngay_sinh='%s',sdt='%s',email='%s',dia_chi='%s',ma_nhom_quyen=(Select ma_nhom_quyen from nhom_quyen where ten_nhom_quyen='%s'),trang_thai='%s' where ma_nhan_vien='%s'";
-        sql = String.format(sql, new Object[]{
-            dto.getTenNhanVien(),
-            dto.getGioiTinh(),
-            dto.getNgaySinh().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-            dto.getSdt(),
-            dto.getEmail(),
-            dto.getDiaChi(),
-            dto.getChucVu().getTenNhomQuyen(),
-            dto.getTrangThai(),
-            dto.getMaNhanVien()
+        sql = String.format(sql, new Object[] {
+                dto.getTenNhanVien(),
+                dto.getGioiTinh(),
+                dto.getNgaySinh().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                dto.getSdt(),
+                dto.getEmail(),
+                dto.getDiaChi(),
+                dto.getChucVu().getTenNhomQuyen(),
+                dto.getTrangThai(),
+                dto.getMaNhanVien()
         });
         ConnectionDB connection = new ConnectionDB();
         int n = connection.executeUpdate(sql);
         try {
             connection.getConnection().close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         return (n > 0) ? true : false;
     }
-    //xoa nhan vien (set hien thi = 0 )
+
+    // xoa nhan vien (set hien thi = 0 )
     public boolean deleteNhanVien(String ma_nhan_vien) {
-        String sql = String.format("update nhan_vien set hien_thi = 0 where ma_nhan_vien = '%s'", new Object[]{ma_nhan_vien});
         ConnectionDB connection = new ConnectionDB();
-        int n = connection.executeUpdate(sql);
+        String sql = String.format("select * \r\n" + //
+                "from nhan_vien\r\n" + //
+                "where nhan_vien.ma_nhan_vien = %s and (exists (\r\n" + //
+                "\tselect *\r\n" + //
+                "    from hoa_don_ban\r\n" + //
+                "    where hoa_don_ban.ma_nhan_vien = nhan_vien.ma_nhan_vien\r\n" + //
+                ") or exists (\r\n" + //
+                "\tselect *\r\n" + //
+                "    from hoa_don_mua\r\n" + //
+                "    where hoa_don_mua.ma_nhan_vien = nhan_vien.ma_nhan_vien\r\n" + //
+                "))", ma_nhan_vien);
+        ResultSet rs = connection.executeQuery(sql);
         try {
-            connection.getConnection().close();
-        } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            sql = "delete from tai_khoan where ma_nhan_vien = " + ma_nhan_vien;
+            connection.executeUpdate(sql);
+            if (rs.next()) {
+                sql = String.format("update nhan_vien set ma_nhom_quyen = 'QL', hien_thi = 0 where ma_nhan_vien = '%s'",
+                        new Object[] { ma_nhan_vien });
+                connection.executeUpdate(sql);
+            } else {
+                sql = "delete from nhan_vien where ma_nhan_vien = " + ma_nhan_vien;
+                connection.executeUpdate(sql);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return (n > 0) ? true : false;
+        return false;
     }
-    //lay nhan vien khi co ma id
+
+    // lay nhan vien khi co ma id
     public DTO.NhanVien getNhanVienByID(int id) {
         DTO.NhanVien dto = null;
-        String sql = String.format("select * from nhan_vien nv,nhom_quyen nq where nv.ma_nhom_quyen = nq.ma_nhom_quyen  and nv.ma_nhan_vien ='%d'", new Object[]{id});
+        String sql = String.format(
+                "select * from nhan_vien nv,nhom_quyen nq where nv.ma_nhom_quyen = nq.ma_nhom_quyen  and nv.ma_nhan_vien ='%d'",
+                new Object[] { id });
         ConnectionDB connection = new ConnectionDB();
         ResultSet rs = connection.executeQuery(sql);
         try {
@@ -223,21 +256,22 @@ public class NhanVienDAO {
                             rs.getString("email"),
                             rs.getString("dia_chi"),
                             new DTO.NhomQuyen(rs.getString("ma_nhom_quyen"), rs.getString("ten_nhom_quyen")),
-                            Integer.parseInt(rs.getString("trang_thai"))
-                    );
+                            Integer.parseInt(rs.getString("trang_thai")));
                 }
             }
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         try {
             connection.getConnection().close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         return dto;
     }
-    //lay tat ca ten nhom quyen (de nhet vao combobox chuc vu khi moi load chuong trinh)
+
+    // lay tat ca ten nhom quyen (de nhet vao combobox chuc vu khi moi load chuong
+    // trinh)
     public List<String> getAllNameChucVu() {
         List<String> list = new ArrayList();
         ConnectionDB connection = new ConnectionDB();
@@ -247,12 +281,11 @@ public class NhanVienDAO {
             if (rs != null) {
                 while (rs.next()) {
                     list.add(
-                            new String(rs.getString("ten_nhom_quyen"))
-                    );
+                            new String(rs.getString("ten_nhom_quyen")));
                 }
             }
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         try {
 
@@ -262,16 +295,19 @@ public class NhanVienDAO {
         }
         return list;
     }
-    //kiem tra ma quyen moi co khac voi ma quyen cu 
-    public boolean checkMaQuyenThayDoi(String manv,String tennhomquyenmoi){
-        String sql = String.format("Select * from nhan_vien nv,nhom_quyen nq where nv.ma_nhom_quyen = nq.ma_nhom_quyen and nv.ma_nhan_vien = '%s' and nq.ten_nhom_quyen = '%s' ",new Object[]{manv,tennhomquyenmoi});
+
+    // kiem tra ma quyen moi co khac voi ma quyen cu
+    public boolean checkMaQuyenThayDoi(String manv, String tennhomquyenmoi) {
+        String sql = String.format(
+                "Select * from nhan_vien nv,nhom_quyen nq where nv.ma_nhom_quyen = nq.ma_nhom_quyen and nv.ma_nhan_vien = '%s' and nq.ten_nhom_quyen = '%s' ",
+                new Object[] { manv, tennhomquyenmoi });
         ConnectionDB connection = new ConnectionDB();
         ResultSet rs = connection.executeQuery(sql);
-        try{
-            if(rs.next()){
+        try {
+            if (rs.next()) {
                 return false;
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
         }
         return true;
     }

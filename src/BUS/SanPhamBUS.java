@@ -38,14 +38,17 @@ public class SanPhamBUS{
 		return flag;
 	}
 	
-	public void addSanPham(SanPham sp, String flag) {
+	public boolean addSanPham(SanPham sp, String flag) {
+		boolean result = false;
 		if(flag.equals("ok")) {
 			this.SanPhamDAO.insertNew(sp);
 			JOptionPane.showMessageDialog(null, "Tạo sản phẩm mới thành công!");
+			result = true;
 		}
 		else if(flag.equals("dupNE")) {
-			JOptionPane.showMessageDialog(null, "Mã bị trùng với sản phẩm đã xoá trước đó!","WARNING",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Mã bị trùng với sản phẩm đã xoá!","WARNING",JOptionPane.ERROR_MESSAGE);
 		}
+		return result;
 	}
 	
 	public void updateSanPham(SanPham sp) {
@@ -53,11 +56,23 @@ public class SanPhamBUS{
 		JOptionPane.showMessageDialog(null,"Sửa chi tiết thành công!");
 	}
 	
-	public boolean deleteSanPham(String maSP) {
-		return this.SanPhamDAO.deleteSanPham(maSP);
+	public void deleteSanPham(String maSP, int typeDelete) {
+		this.SanPhamDAO.deleteSanPham(maSP, typeDelete);
 	}
 	
 	public ArrayList<SanPham> searchSanPham(String type, ArrayList<Object> search) {
 		return this.SanPhamDAO.searchSanPham(type,search);
+	}
+
+	public boolean checkSPJoinedHD(String maSP) {
+		return this.SanPhamDAO.checkSPJoinedHD(maSP);
+	}
+
+	public boolean checkAPDKMSP (String masp) {
+		return this.SanPhamDAO.checkAPDKMSP(masp);
+	}
+
+	public void stopSPADKM (String masp) {
+		this.SanPhamDAO.stopSPADKM(masp);
 	}
 }

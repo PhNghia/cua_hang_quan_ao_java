@@ -26,12 +26,13 @@ public class ConnectionDB {
 	private final String password = "";
 	private String url = String.format("jdbc:mysql://localhost:3306/%s", db);
 	private ResultSet rst;
+	private Connection conn;
 
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection(url, user, password);
-			return con;
+			conn = DriverManager.getConnection(url, user, password);
+			return conn;
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, "MySQL JDBC Driver not found", ex);
 		} catch (SQLException e) {
@@ -41,25 +42,35 @@ public class ConnectionDB {
 	}
 
 	public ResultSet executeQuery(String sql) {
-		Connection con = getConnection();
+		getConnection();
 		Statement sttm;
 		try {
-			sttm = con.createStatement();
+			sttm = conn.createStatement();
 			ResultSet rs = sttm.executeQuery(sql);
 			return rs;
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
 
 	public int executeUpdate(String sql) {
-		Connection con = getConnection();
+		getConnection();
 		try {
-			Statement sttm = con.createStatement();
+			Statement sttm = conn.createStatement();
 			int rowEffect = sttm.executeUpdate(sql);
 			return rowEffect;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return -1;
+		}
+	}
+
+	public void close () {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

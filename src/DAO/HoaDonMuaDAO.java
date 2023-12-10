@@ -25,13 +25,13 @@ public class HoaDonMuaDAO {
     private ArrayList<ChiTietHDM> dsCTHDM;
 
     public HoaDonMuaDAO() {
-        dsHDM = new ArrayList<>();
         getDsHDMFromDB();
     }
 
     public void getDsHDMFromDB() {
-        String sql = "select * from hoa_don_mua join nhan_vien "
-                + "on hoa_don_mua.ma_nhan_vien = nhan_vien.ma_nhan_vien limit 100";
+        dsHDM = new ArrayList<>();
+        String sql = "select * from hoa_don_mua join nhan_vien " +
+                "on hoa_don_mua.ma_nhan_vien = nhan_vien.ma_nhan_vien order by ngay_tao desc";
         ConnectionDB con = new ConnectionDB();
         ResultSet rs = con.executeQuery(sql);
         try {
@@ -40,11 +40,9 @@ public class HoaDonMuaDAO {
                         rs.getString("ma_hoa_don"),
                         new NhanVien(
                                 rs.getInt("ma_nhan_vien"),
-                                rs.getString("ten_nhan_vien")
-                        ),
+                                rs.getString("ten_nhan_vien")),
                         LocalDateTime.parse(rs.getString("ngay_tao").replace(" ", "T")),
-                        rs.getInt("tong_tien")
-                ));
+                        rs.getLong("tong_tien")));
             }
         } catch (SQLException e) {
         }
@@ -68,17 +66,14 @@ public class HoaDonMuaDAO {
                         rs.getString("ma_hoa_don"),
                         new NhaCungCap(
                                 rs.getInt("ma_ncc"),
-                                rs.getString("ten_ncc")
-                        ),
+                                rs.getString("ten_ncc")),
                         new SanPham(
                                 rs.getString("ma_san_pham"),
                                 rs.getString("ten_san_pham"),
                                 0,
-                                rs.getInt("so_luong")
-                        ),
+                                rs.getInt("so_luong")),
                         rs.getInt("gia_nhap"),
-                        rs.getInt("tong_tien")
-                ));
+                        rs.getInt("tong_tien")));
             }
         } catch (SQLException e) {
         }
@@ -86,8 +81,7 @@ public class HoaDonMuaDAO {
     }
 
     public void getFilterDsHDMFromDB(String itemFilterSelected, String nameSearch, String ncc, String sanPham) {
-        String sql
-                = "select hoa_don_mua.ma_hoa_don, nhan_vien.ma_nhan_vien, nhan_vien.ten_nhan_vien, hoa_don_mua.ngay_tao, hoa_don_mua.tong_tien "
+        String sql = "select hoa_don_mua.ma_hoa_don, nhan_vien.ma_nhan_vien, nhan_vien.ten_nhan_vien, hoa_don_mua.ngay_tao, hoa_don_mua.tong_tien "
                 + "from hoa_don_mua join nhan_vien on hoa_don_mua.ma_nhan_vien = nhan_vien.ma_nhan_vien "
                 + "where ";
         switch (itemFilterSelected) {
@@ -108,9 +102,10 @@ public class HoaDonMuaDAO {
                 + "join san_pham on chi_tiet_hoa_don_mua.ma_san_pham = san_pham.ma_san_pham "
                 + "where chi_tiet_hoa_don_mua.ma_hoa_don = hoa_don_mua.ma_hoa_don and "
                 + "nha_cung_cap.ten_ncc like '%" + ncc + "%' and "
-                + "san_pham.ten_san_pham like '%" + sanPham + "%' "
-                + ")";
-        
+                + "(san_pham.ma_san_pham like '%" + sanPham + "%' or "
+                + "san_pham.ten_san_pham like '%" + sanPham + "%')"
+                + ")  order by ngay_tao desc";
+
         ConnectionDB con = new ConnectionDB();
         ResultSet rs = con.executeQuery(sql);
         try {
@@ -120,15 +115,33 @@ public class HoaDonMuaDAO {
                         rs.getString("ma_hoa_don"),
                         new NhanVien(
                                 rs.getInt("ma_nhan_vien"),
-                                rs.getString("ten_nhan_vien")
-                        ),
+                                rs.getString("ten_nhan_vien")),
                         LocalDateTime.parse(rs.getString("ngay_tao").replace(" ", "T")),
-                        rs.getInt("tong_tien")
-                ));
-            }
+                        rs.getLong("tong_tien")));
+            } 
         } catch (SQLException e) {
         }
+    }
 
+    public void thuHoiHDM(int row) {
+        HoaDonMua hdm = dsHDM.get(row);
+        ConnectionDB con = new ConnectionDB();
+        String sql = "update san_pham " +
+                "set so_luong = so_luong - ( " +
+                "    select sum(so_luong)  " +
+                "    from chi_tiet_hoa_don_mua " +
+                "    where ma_hoa_don = '" + hdm.getMaHD() + "' and " +
+                "       san_pham.ma_san_pham = chi_tiet_hoa_don_mua.ma_san_pham " +
+                "    group by chi_tiet_hoa_don_mua.ma_san_pham " +
+                ") " +
+                "where ma_san_pham in (" +
+                "   select ma_san_pham from chi_tiet_hoa_don_mua where ma_hoa_don = '" + hdm.getMaHD() + "'" +
+                ");";
+        con.executeUpdate(sql);
+        sql = "delete from chi_tiet_hoa_don_mua where ma_hoa_don = '" + hdm.getMaHD() + "';";
+        con.executeUpdate(sql);
+        sql = "delete from hoa_don_mua where ma_hoa_don = '" + hdm.getMaHD() + "'";
+        con.executeUpdate(sql);
     }
 
     public ArrayList<HoaDonMua> getDsHDM() {

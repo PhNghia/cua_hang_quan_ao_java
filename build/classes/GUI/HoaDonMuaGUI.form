@@ -42,9 +42,7 @@
                       <Component id="jbtnThem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jbtnThuHoi" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jbtnIn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="1000" max="32767" attributes="0"/>
+                      <EmptySpace pref="1078" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -55,7 +53,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbtnThem" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbtnThuHoi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbtnIn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="10" max="32767" attributes="0"/>
                   </Group>
@@ -71,11 +68,6 @@
             <Component class="javax.swing.JButton" name="jbtnThuHoi">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Thu h&#x1ed3;i"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jbtnIn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="In"/>
               </Properties>
             </Component>
           </SubComponents>

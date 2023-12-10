@@ -16,12 +16,46 @@ public class SanPham {
     private String mauSac;
     private int giaBan;
     private int soLuong;
+    private float giamGia;
     private String hinhAnh;
     private int trangThai;
+    private int hienThi;
     public final static String[] dsTrangThai = new String[] { "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
     public final static String[] dsTrangThaiForFilter = new String[] { "Tất cả", "Ngừng bán", "Chuẩn bị bán", "Đang bán" };
 
+    // sản phẩm ko có giá nhập trung bình, tạo giá nhập trung bình để thuận tiện cho thống kê nhập
+    // tương tự với tổng tiền sản phẩm nhập
+    private float giaNhapTB;
+    private long tongTienSPNhap;
+
+    public void setGiaNhapTB(float giaNhapTB) {
+        this.giaNhapTB = giaNhapTB;
+    }
+
+    public float getGiaNhapTB() {
+        return giaNhapTB;
+    }
+
+    public void setTongTienSPNhap (long tongTienSPNhap) {
+        this.tongTienSPNhap = tongTienSPNhap;
+    }
+
+    public long getTongTienSPNhap () {
+        return tongTienSPNhap;
+    }
+
     public SanPham() {
+    }
+
+    public SanPham(String maSP, String tenSP) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+    }
+
+    public SanPham(String maSP, String tenSP, int trangThai) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.trangThai = trangThai;
     }
 
     public SanPham(String maSP, String tenSP, int giaBan, int soLuong) {
@@ -31,6 +65,15 @@ public class SanPham {
         this.soLuong = soLuong;
     }
 
+    public SanPham(String maSP, String tenSP, int giaBan, int soLuong, float giamGia) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.giaBan = giaBan;
+        this.soLuong = soLuong;
+        this.giamGia = giamGia;
+    }
+
+    
     public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaBan, int soLuong, int trangThai) {
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -53,6 +96,18 @@ public class SanPham {
         this.soLuong = soLuong;
         this.hinhAnh = hinhAnh;
         this.trangThai = trangThai;
+    }
+
+    public SanPham(String maSP, String tenSP, String chatLieu, String kichCo, String mauSac, int giaBan, int soLuong, int trangThai, int hienThi) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.chatLieu = chatLieu;
+        this.kichCo = kichCo;
+        this.mauSac = mauSac;
+        this.giaBan = giaBan;
+        this.soLuong = soLuong;
+        this.trangThai = trangThai;
+        this.hienThi = hienThi;
     }
     
     public String getMaSP() {
@@ -111,6 +166,14 @@ public class SanPham {
         this.soLuong = soLuong;
     }
 
+    public float getGiamGia() {
+        return giamGia;
+    }
+
+    public void setGiamGia(float giamGia) {
+        this.giamGia = giamGia;
+    }
+
     public String getHinhAnh() {
         return hinhAnh;
     }
@@ -125,6 +188,14 @@ public class SanPham {
 
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public int getHienThi() {
+        return hienThi;
+    }
+
+    public void setHienThi(int hienThi) {
+        this.hienThi = hienThi;
     }
 
     public String[] getDsTrangThai() {
